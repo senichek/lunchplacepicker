@@ -1,8 +1,14 @@
 package com.olexiy.lunchplacepicker.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.olexiy.lunchplacepicker.web.json.JacksonObjectMapper;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.jdbc.datasource.init.DataSourceInitializer;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -30,5 +36,21 @@ public class Webconfig implements WebMvcConfigurer {
         resolver.setSuffix(".jsp");
         resolver.setViewClass(JstlView.class);
         registry.viewResolver(resolver);
+    }
+
+    @Bean
+    public DataSourceInitializer dataSourceInitializer (){
+        ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator();
+        resourceDatabasePopulator.addScript(new ClassPathResource("/database/InitDB.sql"));
+        resourceDatabasePopulator.addScript(new ClassPathResource("/database/PopulateDB.sql"));
+        DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
+        dataSourceInitializer.setDataSource(dataSource());
+        dataSourceInitializer.setDatabasePopulator(resourceDatabasePopulator);
+        return dataSourceInitializer;
+    }
+
+    @Bean
+    public ObjectMapper jacksonObjectMapper() {
+        return JacksonObjectMapper.getMapper();
     }
 }

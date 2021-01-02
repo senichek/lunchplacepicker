@@ -20,14 +20,14 @@ public class Like extends AbstractBaseEntity {
     public Like(Integer id, Integer userID, Integer menuID, LocalDateTime creationDateTime) {
         super(id);
         this.userID = userID;
-        this.menuID = menuID;
+       // this.menuID = menuID;
         this.creationDateTime = creationDateTime;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "menu", nullable = false)
+    @JoinColumn(name = "menu_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonBackReference
+    //@JsonBackReference
     @NotNull
     private Menu menu;
 
@@ -35,9 +35,9 @@ public class Like extends AbstractBaseEntity {
     @javax.validation.constraints.NotNull
     private Integer userID;
 
-    @Column(name = "menu_id", nullable = false)
+    /*@Column(name = "menu_id", nullable = false)
     @javax.validation.constraints.NotNull
-    private Integer menuID;
+    private Integer menuID;*/
 
     public Like() {
     }

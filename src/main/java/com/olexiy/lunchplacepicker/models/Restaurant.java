@@ -35,12 +35,18 @@ public class Restaurant extends AbstractBaseEntity {
     @Size(min = 2, max = 1000)
     private String description;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "restaurant_id", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "restaurant")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonBackReference
+   // @JsonBackReference
     @NotNull
     private Menu menu;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "admin_id", nullable = false)
+    @JsonBackReference(value = "user")
+    @NotNull
+    private User user;
 
     public Restaurant(Integer id, LocalDateTime registerDateTime, String name, String address, String description) {
         super(id);
@@ -51,5 +57,53 @@ public class Restaurant extends AbstractBaseEntity {
     }
 
     public Restaurant() {
+    }
+
+    public LocalDateTime getRegisterDateTime() {
+        return registerDateTime;
+    }
+
+    public void setRegisterDateTime(LocalDateTime registerDateTime) {
+        this.registerDateTime = registerDateTime;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

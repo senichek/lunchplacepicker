@@ -1,5 +1,6 @@
 package com.olexiy.lunchplacepicker.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
@@ -11,11 +12,17 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx")})
 public class User extends AbstractBaseEntity {
+
+    @Column(name = "name", nullable = false)
+    @NotBlank
+    @Size(min = 2, max = 50)
+    private String name;
 
     @Column(name = "email", nullable = false, unique = true)
     @Email
@@ -33,7 +40,7 @@ public class User extends AbstractBaseEntity {
     @Column(name = "registered", nullable = false, columnDefinition = "timestamp default now()")
     @NotNull
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Date registered = new Date();
+    private LocalDateTime registered;
 
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @Enumerated(EnumType.STRING)
@@ -45,16 +52,29 @@ public class User extends AbstractBaseEntity {
     @BatchSize(size = 200)
     private Set<Role> roles;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")//, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JsonManagedReference(value = "user")
+    @OrderBy("name asc")
+    private List<Restaurant> restaurants;
 
     public User() {
     }
 
-    public User(Integer id, String email, String password, Date registered, Set<Role> roles) {
+    public User(Integer id, String name, String email, String password, LocalDateTime registered, Set<Role> roles) {
         super(id);
+        this.name = name;
         this.email = email;
         this.password = password;
         this.registered = registered;
         this.roles = roles;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -69,11 +89,11 @@ public class User extends AbstractBaseEntity {
         this.password = password;
     }
 
-    public Date getRegistered() {
+    public LocalDateTime getRegistered() {
         return registered;
     }
 
-    public void setRegistered(Date registered) {
+    public void setRegistered(LocalDateTime registered) {
         this.registered = registered;
     }
 
@@ -87,6 +107,14 @@ public class User extends AbstractBaseEntity {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = CollectionUtils.isEmpty(roles) ? EnumSet.noneOf(Role.class) : EnumSet.copyOf(roles);
+    }
+
+    public List<Restaurant> getRestaurants() {
+        return restaurants;
+    }
+
+    public void setRestaurants(List<Restaurant> restaurants) {
+        this.restaurants = restaurants;
     }
 
     @Override

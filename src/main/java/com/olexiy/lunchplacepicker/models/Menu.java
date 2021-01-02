@@ -1,7 +1,10 @@
 package com.olexiy.lunchplacepicker.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -25,8 +28,15 @@ public class Menu extends AbstractBaseEntity {
     private String description;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "menu")//, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @JsonManagedReference
+   // @JsonManagedReference(value = "menu")
     private Map<Integer, Like> likes;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rest_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+  //  @JsonBackReference(value = "menu")
+    @NotNull
+    private Restaurant restaurant;
 
     public Menu(Integer id, LocalDateTime creationDateTime, String description) {
         super(id);
