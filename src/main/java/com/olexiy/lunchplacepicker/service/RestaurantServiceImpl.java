@@ -6,7 +6,6 @@ import com.olexiy.lunchplacepicker.utils.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,12 +20,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public List<Restaurant> getAll() {
-        Iterable<Restaurant> restaurants = restaurantRepo.findAll();
-        List<Restaurant> all = new ArrayList<>();
-        restaurants.forEach(r -> {
-            all.add(r);
-        });
-        return all;
+        return restaurantRepo.findAll();
     }
 
     @Override

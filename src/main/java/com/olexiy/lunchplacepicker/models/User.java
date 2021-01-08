@@ -69,6 +69,10 @@ public class User extends AbstractBaseEntity {
         this.roles = roles;
     }
 
+    public User(Integer id, String name, String email, String password, LocalDateTime registered, Role role, Role... roles) {
+        this(id, name, email, password, registered, EnumSet.of(role, roles));
+    }
+
     public String getName() {
         return name;
     }
@@ -120,10 +124,28 @@ public class User extends AbstractBaseEntity {
     @Override
     public String toString() {
         return "User{" +
+                "id='" + id + '\'' +
+                "name='" + name + '\'' +
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", registered=" + registered +
                 ", roles=" + roles +
                 '}';
+    }
+
+    /*@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return Objects.equals(name, user.name) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(registered, user.registered) &&
+                Objects.equals(roles, user.roles);
+    }*/
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, email, registered, roles, restaurants);
     }
 }

@@ -1,6 +1,7 @@
 package com.olexiy.lunchplacepicker.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "restaurants")
@@ -35,25 +37,25 @@ public class Restaurant extends AbstractBaseEntity {
     @Size(min = 2, max = 1000)
     private String description;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "restaurant")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     @OnDelete(action = OnDeleteAction.CASCADE)
-   // @JsonBackReference
+    @JsonManagedReference(value = "restaurant")
     @NotNull
-    private Menu menu;
+    private List<Menu> menu;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "admin_id", nullable = false)
+    @JoinColumn(name = "rest_admin_id", nullable = false)
     @JsonBackReference(value = "user")
     @NotNull
     private User user;
 
-    public Restaurant(Integer id, LocalDateTime registerDateTime, String name, String address, String description) {
+    public Restaurant(Integer id, String name, String address, String description, LocalDateTime registerDateTime) {
         super(id);
-        this.registerDateTime = registerDateTime;
         this.name = name;
         this.address = address;
         this.description = description;
+        this.registerDateTime = registerDateTime;
     }
 
     public Restaurant() {
@@ -91,11 +93,11 @@ public class Restaurant extends AbstractBaseEntity {
         this.description = description;
     }
 
-    public Menu getMenu() {
+    public List<Menu> getMenu() {
         return menu;
     }
 
-    public void setMenu(Menu menu) {
+    public void setMenu(List<Menu> menu) {
         this.menu = menu;
     }
 

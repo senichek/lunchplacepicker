@@ -29,11 +29,11 @@ CREATE TABLE restaurants
 (
     id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     name          VARCHAR                           NOT NULL,
-    admin_id      INTEGER                           NOT NULL,
+    rest_admin_id      INTEGER                           NOT NULL,
     address       VARCHAR                           NOT NULL,
     description   VARCHAR                           NOT NULL,
     register_date TIMESTAMP           DEFAULT now() NOT NULL,
-    FOREIGN KEY (admin_id) REFERENCES users (id) ON DELETE CASCADE
+    FOREIGN KEY (rest_admin_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
 CREATE TABLE menus

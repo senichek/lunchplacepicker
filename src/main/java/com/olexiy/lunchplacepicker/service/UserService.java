@@ -10,9 +10,13 @@ public interface UserService {
 
     User getByID(Integer id);
 
-    void save(User user);
+    User getByEmail(String email);
 
-    void delete(Integer id);
+    User save(User user);
+
+    void deleteByID(Integer id);
 
     boolean existsById(Integer id);
+
+    User getWithRestaurants(Integer id);
 }

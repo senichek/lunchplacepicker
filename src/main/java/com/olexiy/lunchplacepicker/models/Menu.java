@@ -1,7 +1,6 @@
 package com.olexiy.lunchplacepicker.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -31,10 +30,10 @@ public class Menu extends AbstractBaseEntity {
    // @JsonManagedReference(value = "menu")
     private Map<Integer, Like> likes;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rest_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-  //  @JsonBackReference(value = "menu")
+    @JsonBackReference(value = "restaurant")
     @NotNull
     private Restaurant restaurant;
 

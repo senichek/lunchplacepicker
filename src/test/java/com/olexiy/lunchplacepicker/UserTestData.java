@@ -4,6 +4,7 @@ import com.olexiy.lunchplacepicker.models.Role;
 import com.olexiy.lunchplacepicker.models.User;
 
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.Collections;
 
 import static com.olexiy.lunchplacepicker.models.AbstractBaseEntity.START_SEQ;
@@ -14,21 +15,19 @@ public class UserTestData {
     public static final int NOT_FOUND = 10;
 
     public static final User user = new User(USER_ID, "User", "user@gmail.com", "user",
-            LocalDateTime.parse("2020-03-30 17:00:00"), Collections.singleton(Role.USER));
+            LocalDateTime.of(2020, Month.MARCH, 30, 17, 0), Collections.singleton(Role.USER));
 
-    public static final User admin = new User(USER_ID, "Admin", "admin@gmail.com", "admin",
-            LocalDateTime.parse("2018-11-25 19:00:00"), Collections.singleton(Role.ADMIN));
+    public static final User admin = new User(ADMIN_ID, "Admin", "admin@gmail.com", "admin",
+            LocalDateTime.of(2018, Month.NOVEMBER, 25, 19, 0), Role.ADMIN, Role.USER);
 
-    /*У админа должны быть рестораны
-    Админов может быть больше одного
     static {
-        user.setMeals(meals);
-        admin.setMeals(List.of(adminMeal2, adminMeal1));
-    }*/
+        user.setRestaurants(RestaurantTestData.restaurantsUser);
+        admin.setRestaurants(RestaurantTestData.restaurantsAdmin);
+    }
 
     public static User getNew() {
         return new User(null, "NewUser", "newuser@gmail.com", "newpass",
-                LocalDateTime.now(), Collections.singleton(Role.USER));
+                LocalDateTime.of(2021, Month.JANUARY, 5, 23, 0), Collections.singleton(Role.USER));
     }
 
     public static User getUpdated() {

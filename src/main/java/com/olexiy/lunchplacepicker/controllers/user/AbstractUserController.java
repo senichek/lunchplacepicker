@@ -66,7 +66,7 @@ public abstract class AbstractUserController {
 
     public void delete(Integer id) {
         log.info("deleted user with id {}", id);
-        userService.delete(id);
+        userService.deleteByID(id);
     }
 
     public List<Restaurant> getRestaurantsOfUser(Integer id) {

@@ -23,7 +23,7 @@ public class AdminRestController extends AbstractUserController {
         return super.getByID(id);
     }
 
-    @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
     public void save(@RequestBody User user) {
         super.save(user);
