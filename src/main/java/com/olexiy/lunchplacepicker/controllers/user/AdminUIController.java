@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/rest/admin", produces = MediaType.APPLICATION_JSON_VALUE)
-public class AdminRestController extends AbstractUserController {
+@RequestMapping(value = "/admin", produces = MediaType.APPLICATION_JSON_VALUE)
+public class AdminUIController extends AbstractUserController {
 
     @GetMapping(value = "/users")
     public List<User> getAll() {
         return super.getAll();
     }
 
-    @GetMapping(value = "/users/{id}")
+    @GetMapping(value = "/{id}")
     public User getByID(@PathVariable("id") Integer id) {
         return super.getByID(id);
     }
@@ -29,7 +29,7 @@ public class AdminRestController extends AbstractUserController {
         super.save(user);
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Transactional
     public void delete(@PathVariable("id") Integer id) {
