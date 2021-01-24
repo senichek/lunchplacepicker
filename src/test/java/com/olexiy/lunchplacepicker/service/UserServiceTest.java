@@ -55,10 +55,21 @@ class UserServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    void save() {
+    void saveWithOneRole() {
         User userFromService = userService.save(UserTestData.getNew());
         int newID = userFromService.getId();
         User expected = UserTestData.getNew();
+        expected.setId(newID);
+
+        Assertions.assertThat(userFromService).usingRecursiveComparison()
+                .ignoringFields("restaurants", "password").isEqualTo(expected);
+    }
+
+    @Test
+    void saveWithTwoRoles() {
+        User userFromService = userService.save(UserTestData.getNewWithTwoRoles());
+        int newID = userFromService.getId();
+        User expected = UserTestData.getNewWithTwoRoles();
         expected.setId(newID);
 
         Assertions.assertThat(userFromService).usingRecursiveComparison()
@@ -90,5 +101,13 @@ class UserServiceTest extends AbstractServiceTest {
 
         Assertions.assertThat(restsOfUserFromService).usingRecursiveComparison()
                 .ignoringFields("menu", "user").isEqualTo(UserTestData.user.getRestaurants());
+    }
+
+    @Test
+    void update() {
+        User expected = UserTestData.getUpdated();
+        User userFromService = userService.save(expected);
+        Assertions.assertThat(userFromService).usingRecursiveComparison()
+                .ignoringFields("restaurants", "password").isEqualTo(expected);
     }
 }

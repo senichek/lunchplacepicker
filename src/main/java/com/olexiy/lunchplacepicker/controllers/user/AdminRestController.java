@@ -2,6 +2,7 @@ package com.olexiy.lunchplacepicker.controllers.user;
 
 import com.olexiy.lunchplacepicker.models.Restaurant;
 import com.olexiy.lunchplacepicker.models.User;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,8 +24,9 @@ public class AdminRestController extends AbstractUserController {
         return super.getByID(id);
     }
 
-    @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/users", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @Transactional
+    @Modifying
     public void save(@RequestBody User user) {
         super.save(user);
     }

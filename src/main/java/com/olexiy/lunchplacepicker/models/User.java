@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
@@ -32,7 +33,7 @@ public class User extends AbstractBaseEntity {
 
     @Column(name = "password", nullable = false)
     @NotBlank
-    @Size(min = 5, max = 100)
+    @Size(min = 4, max = 100)
     // https://stackoverflow.com/a/12505165/548473
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
@@ -133,7 +134,7 @@ public class User extends AbstractBaseEntity {
                 '}';
     }
 
-    /*@Override
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
@@ -142,7 +143,7 @@ public class User extends AbstractBaseEntity {
                 Objects.equals(email, user.email) &&
                 Objects.equals(registered, user.registered) &&
                 Objects.equals(roles, user.roles);
-    }*/
+    }
 
     @Override
     public int hashCode() {

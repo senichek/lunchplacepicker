@@ -30,12 +30,18 @@ public class UserTestData {
                 LocalDateTime.of(2021, Month.JANUARY, 5, 23, 0), Collections.singleton(Role.USER));
     }
 
+    public static User getNewWithTwoRoles() {
+        return new User(null, "NewUserTwoRoles", "newuserTwoRoles@gmail.com", "newpass",
+                LocalDateTime.of(2021, Month.FEBRUARY, 3, 22, 0), Role.ADMIN, Role.USER);
+    }
+
     public static User getUpdated() {
-        User updated = user;
-        updated.setName("UpdatedName");
-        updated.setEmail("updated@gmail.com");
-        updated.setPassword("newPass");
-        updated.setRegistered(LocalDateTime.parse("2018-10-23 11:00:00"));
+        User updated = new User();
+        updated.setId(USER_ID);
+        updated.setName("userUpdated");
+        updated.setEmail("userUpdated@gmail.com");
+        updated.setPassword("UpdatedPass");
+        updated.setRegistered(LocalDateTime.of(2020, Month.MARCH, 30, 17, 0));
         updated.setRoles(Collections.singletonList(Role.ADMIN));
         return updated;
     }
