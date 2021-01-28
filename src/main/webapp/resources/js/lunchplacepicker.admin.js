@@ -1,4 +1,5 @@
-var adminUrl = "rest/admin/users/";
+var adminUrl = "admin/users/";
+var userRestaurantsUrl = "admin/restaurants/";
 
 var table = $('#users_table').DataTable({
     "ajax": {
@@ -15,6 +16,11 @@ var table = $('#users_table').DataTable({
         {'data': 'roles'},
         {
             data: null,
+            defaultContent: "<button class='restaurants'>Restaurants</button>",
+            orderable: false
+        },
+        {
+            data: null,
             defaultContent: "<button class='update'>Update</button>",
             orderable: false
         },
@@ -27,6 +33,11 @@ var table = $('#users_table').DataTable({
 });
 
 let tableRowData;
+
+$('#users_table tbody').on('click', '.restaurants', function () {
+    let data = table.row($(this).parents('tr')).data();
+    window.location.href = userRestaurantsUrl + data.id + "/all";
+});
 
 $('#users_table tbody').on('click', '.update', function () {
     tableRowData = table.row($(this).parents('tr')).data();

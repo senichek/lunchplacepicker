@@ -17,11 +17,6 @@ import java.util.List;
 @Table(name = "restaurants")
 public class Restaurant extends AbstractBaseEntity {
 
-    @Column(name = "register_date", nullable = false)
-    @NotNull
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime registerDateTime;
-
     @Column(name = "name", nullable = false)
     @NotBlank
     @Size(min = 2, max = 120)
@@ -31,6 +26,11 @@ public class Restaurant extends AbstractBaseEntity {
     @NotBlank
     @Size(min = 2, max = 120)
     private String address;
+
+    @Column(name = "register_date", nullable = false)
+    @NotNull
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDateTime registerDateTime;
 
     @Column(name = "description", nullable = false)
     @NotBlank
@@ -107,5 +107,16 @@ public class Restaurant extends AbstractBaseEntity {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", registerDateTime=" + registerDateTime +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
