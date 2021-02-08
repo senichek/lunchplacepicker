@@ -1,4 +1,4 @@
-package com.olexiy.lunchplacepicker.service;
+package com.olexiy.lunchplacepicker.service.restaurant;
 
 import com.olexiy.lunchplacepicker.models.Restaurant;
 
@@ -10,11 +10,11 @@ public interface RestaurantService {
 
     Restaurant getByID(Integer id);
 
+    Restaurant getByUserIdAndEntityId(Integer userId, Integer entityId);
+
     List<Restaurant> getAllByUserId(Integer id);
 
-    void save(Restaurant restaurant);
+    Restaurant save(Restaurant restaurant);
 
     void delete(Integer id);
-
-    boolean existsById(Integer id);
 }

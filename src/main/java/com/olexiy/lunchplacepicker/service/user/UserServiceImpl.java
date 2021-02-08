@@ -1,4 +1,4 @@
-package com.olexiy.lunchplacepicker.service;
+package com.olexiy.lunchplacepicker.service.user;
 
 import com.olexiy.lunchplacepicker.models.User;
 import com.olexiy.lunchplacepicker.repository.RestaurantRepo;
@@ -69,10 +69,5 @@ public class UserServiceImpl implements UserService {
         } else {
             userRepo.deleteById(id);
         }
-    }
-
-    @Override
-    public boolean existsById(Integer id) {
-        return userRepo.existsById(id);
     }
 }

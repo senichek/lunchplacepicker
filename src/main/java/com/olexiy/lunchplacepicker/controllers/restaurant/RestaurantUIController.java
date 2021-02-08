@@ -9,30 +9,26 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/admin/restaurants", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/admin", produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestaurantUIController extends AbstractRestaurantController {
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "/rs/all")
     public List<Restaurant> getAll() {
         return super.getAll();
     }
 
-    @GetMapping(value = "/{id}")
-    public Restaurant getByID(@PathVariable("id") Integer id) {
-        return super.getByID(id);
-    }
-
-    @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
-    public void save(@RequestBody Restaurant restaurant) {
-        super.save(restaurant);
+    public void save(@RequestBody Restaurant restaurant, @PathVariable(value = "userId") Integer userId) {
+        super.save(restaurant, userId);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{userId}/{entityId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Transactional
-    public void delete(@PathVariable("id") Integer id) {
-        super.delete(id);
+    public void delete(@PathVariable("userId") Integer userId,
+                       @PathVariable("entityId") Integer entityId) {
+        super.delete(userId, entityId);
     }
 
     @GetMapping(value = "/{id}/all")

@@ -3,6 +3,7 @@ package com.olexiy.lunchplacepicker.service;
 import com.olexiy.lunchplacepicker.UserTestData;
 import com.olexiy.lunchplacepicker.models.Restaurant;
 import com.olexiy.lunchplacepicker.models.User;
+import com.olexiy.lunchplacepicker.service.user.UserService;
 import com.olexiy.lunchplacepicker.utils.exceptions.NotFoundException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -87,8 +88,8 @@ class UserServiceTest extends AbstractServiceTest {
 
     @Test
     void existsById() {
-        boolean exists = userService.existsById(UserTestData.ADMIN_ID);
-        Assertions.assertThat(exists).isTrue();
+        User user = userService.getByID(UserTestData.ADMIN_ID);
+        Assertions.assertThat(user).isNotNull();
     }
 
     @Test

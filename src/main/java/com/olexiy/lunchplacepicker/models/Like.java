@@ -17,28 +17,39 @@ public class Like extends AbstractBaseEntity {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime creationDateTime;
 
-    public Like(Integer id, Integer userID, Integer menuID, LocalDateTime creationDateTime) {
-        super(id);
-        this.userID = userID;
-       // this.menuID = menuID;
-        this.creationDateTime = creationDateTime;
-    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menu_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    //@JsonBackReference
+    @JsonBackReference(value = "menu")
     @NotNull
     private Menu menu;
 
-    @Column(name = "user_id", nullable = false)
-    @javax.validation.constraints.NotNull
-    private Integer userID;
+    /*@Column(name = "user_id", nullable = false)
+    @NotNull
+    private Integer userID;*/
 
-    /*@Column(name = "menu_id", nullable = false)
-    @javax.validation.constraints.NotNull
-    private Integer menuID;*/
+    public Like(Integer id, LocalDateTime creationDateTime) {
+        super(id);
+        this.creationDateTime = creationDateTime;
+    }
 
     public Like() {
+    }
+
+    public LocalDateTime getCreationDateTime() {
+        return creationDateTime;
+    }
+
+    public void setCreationDateTime(LocalDateTime creationDateTime) {
+        this.creationDateTime = creationDateTime;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
     }
 }

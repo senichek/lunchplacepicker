@@ -1,4 +1,4 @@
-package com.olexiy.lunchplacepicker.service;
+package com.olexiy.lunchplacepicker.service.restaurant;
 
 import com.olexiy.lunchplacepicker.models.Restaurant;
 import com.olexiy.lunchplacepicker.repository.RestaurantRepo;
@@ -25,16 +25,27 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant getByID(Integer id) {
-        if (!restaurantRepo.existsById(id)) {
+        Restaurant restaurant = restaurantRepo.getById(id);
+        if (restaurant == null) {
             throw new NotFoundException(String.format("Entity with id %s does not exist;", id));
         } else {
-            return restaurantRepo.getById(id);
+            return restaurant;
         }
     }
 
     @Override
-    public void save(Restaurant restaurant) {
-        restaurantRepo.save(restaurant);
+    public Restaurant getByUserIdAndEntityId(Integer userId, Integer entityId) {
+        Restaurant restaurant = restaurantRepo.getByIdAndUserId(entityId, userId);
+        if (restaurant == null) {
+            throw new NotFoundException(String.format("Entity %s doesn't exist or doesn't belong to user %s;" , entityId, userId));
+        } else {
+            return restaurant;
+        }
+    }
+
+    @Override
+    public Restaurant save(Restaurant restaurant) {
+        return restaurantRepo.save(restaurant);
     }
 
     @Override
@@ -44,11 +55,6 @@ public class RestaurantServiceImpl implements RestaurantService {
         } else {
             restaurantRepo.deleteById(id);
         }
-    }
-
-    @Override
-    public boolean existsById(Integer id) {
-        return restaurantRepo.existsById(id);
     }
 
     @Override

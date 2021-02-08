@@ -1,10 +1,9 @@
-var userID = location.pathname.split('/')[4]; //extracting id from URL
-var restaurantUrl = "admin/restaurants/";
+var userID = location.pathname.split('/')[3]; //extracting id from URL
+var restaurantUrl = "admin/" + userID;
 
-debugger;
 var table = $('#restaurants_table').DataTable({
     "ajax": {
-        "url": restaurantUrl + userID + "/all",
+        "url": restaurantUrl + "/all",
         "method": "get",
         "type": "json",
         "dataSrc": ""
@@ -17,7 +16,7 @@ var table = $('#restaurants_table').DataTable({
         {'data': 'description'},
         {
             data: null,
-            defaultContent: "<button class='menu'>Menus</button>",
+            defaultContent: "<button class='menus'>Menus</button>",
             orderable: false
         },
         {
@@ -33,11 +32,14 @@ var table = $('#restaurants_table').DataTable({
     ]
 });
 
-let tableRowData;
+$('#restaurants_table tbody').on('click', '.menus', function () {
+    let data = table.row($(this).parents('tr')).data();
+    window.location.href = "admin/menus/" + data.id + "/all";
+});
 
 $('#restaurants_table tbody').on('click', '.update', function () {
-    tableRowData = table.row($(this).parents('tr')).data();
-    showRestaurantUpdateForm(tableRowData);
+    let data = table.row($(this).parents('tr')).data();
+    showRestaurantUpdateForm(data);
 });
 
 $('#restaurants_table tbody').on('click', '.delete', function () {
@@ -45,22 +47,31 @@ $('#restaurants_table tbody').on('click', '.delete', function () {
     deleteRow(data.id);
 });
 
+$('#addNewRestBtn').on('click', function () {
+    $('#restaurantModal').modal('show');
+    // Id of the restaurant's (userId) owner is taken from URL
+    document.getElementById("restaurantId").setAttribute('value', "");
+    document.getElementById("restaurantName").setAttribute('value', "");
+    document.getElementById("restaurantAddress").setAttribute('value', "");
+    document.getElementById("restaurantDescription").setAttribute('value', "");
+});
+
 function deleteRow(id) {
     $.ajax({
-        url: restaurantUrl + id,
+        url: restaurantUrl + "/" + id,
         type: "DELETE"
     }).done(function () {
         table.ajax.reload();
     });
 }
 
-function showRestaurantUpdateForm(tableRowData) {
+function showRestaurantUpdateForm(data) {
     $('#restaurantModal').modal('show');
     // Pre-fill the form input fields by current user values;
-    document.getElementById("restaurantId").setAttribute('value', tableRowData.id);
-    document.getElementById("restaurantName").setAttribute('value', tableRowData.name);
-    document.getElementById("restaurantAddress").setAttribute('value', tableRowData.address);
-    document.getElementById("restaurantDescription").setAttribute('value', tableRowData.description);
+    document.getElementById("restaurantId").setAttribute('value', data.id);
+    document.getElementById("restaurantName").setAttribute('value', data.name);
+    document.getElementById("restaurantAddress").setAttribute('value', data.address);
+    document.getElementById("restaurantDescription").setAttribute('value', data.description);
 }
 
 $('#allUsers').on('click', function () {

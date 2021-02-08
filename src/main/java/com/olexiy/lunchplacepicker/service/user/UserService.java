@@ -1,4 +1,4 @@
-package com.olexiy.lunchplacepicker.service;
+package com.olexiy.lunchplacepicker.service.user;
 
 import com.olexiy.lunchplacepicker.models.User;
 
@@ -15,8 +15,6 @@ public interface UserService {
     User save(User user);
 
     void deleteByID(Integer id);
-
-    boolean existsById(Integer id);
 
     User getWithRestaurants(Integer id);
 }

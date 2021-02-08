@@ -25,6 +25,4 @@ public interface UserRepo extends JpaRepository<User, Integer> {
     @Modifying
     @Query("DELETE FROM User u WHERE u.id=:id")
     void deleteById(Integer id);
-
-    boolean existsById(Integer id);
 }

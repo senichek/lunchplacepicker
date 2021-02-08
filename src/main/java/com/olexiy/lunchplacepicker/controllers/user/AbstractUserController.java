@@ -1,9 +1,8 @@
 package com.olexiy.lunchplacepicker.controllers.user;
 
-import com.olexiy.lunchplacepicker.models.Restaurant;
 import com.olexiy.lunchplacepicker.models.User;
-import com.olexiy.lunchplacepicker.service.RestaurantService;
-import com.olexiy.lunchplacepicker.service.UserService;
+import com.olexiy.lunchplacepicker.service.restaurant.RestaurantService;
+import com.olexiy.lunchplacepicker.service.user.UserService;
 import com.olexiy.lunchplacepicker.utils.UserUtils;
 import com.olexiy.lunchplacepicker.utils.exceptions.NotFoundException;
 import org.slf4j.Logger;
@@ -45,39 +44,36 @@ public abstract class AbstractUserController {
             user.setPassword(UserUtils.generateCommonLangPassword());
             log.info("created {}", user);
             userService.save(user);
-        } else if (!userService.existsById(user.getId())) {
-            throw new NotFoundException(String.format("Entity with id %s does not exist;", user.getId()));
         } else {
             User toUpdate = userService.getByID(user.getId());
-            /*User comes with no password and date from UI
-            because the password is not serialized;*/
-            if (user.getPassword() == null) {
-                user.setPassword(toUpdate.getPassword());
+            if (toUpdate == null) {
+                throw new NotFoundException(String.format("Entity with id %s does not exist;", user.getId()));
+            } else {
+                 /*User comes with no password and date from UI
+                because the password is not serialized;*/
+                if (user.getPassword() == null) {
+                    user.setPassword(toUpdate.getPassword());
+                }
+                if (!toUpdate.getName().equals(user.getName())) {
+                    toUpdate.setName(user.getName());
+                }
+                if (!toUpdate.getEmail().equals(user.getEmail())) {
+                    toUpdate.setEmail(user.getEmail());
+                }
+                if (!toUpdate.getPassword().equals(user.getPassword())) {
+                    toUpdate.setPassword(user.getPassword());
+                }
+                if (!toUpdate.getRoles().equals(user.getRoles())) {
+                    toUpdate.setRoles(user.getRoles());
+                }
+                log.info("updated {}", toUpdate);
+                userService.save(toUpdate);
             }
-            if (!toUpdate.getName().equals(user.getName())) {
-                toUpdate.setName(user.getName());
-            }
-            if (!toUpdate.getEmail().equals(user.getEmail())) {
-                toUpdate.setEmail(user.getEmail());
-            }
-            if (!toUpdate.getPassword().equals(user.getPassword())) {
-                toUpdate.setPassword(user.getPassword());
-            }
-            if (!toUpdate.getRoles().equals(user.getRoles())) {
-                toUpdate.setRoles(user.getRoles());
-            }
-            log.info("updated {}", toUpdate);
-            userService.save(toUpdate);
         }
     }
 
     public void delete(Integer id) {
         log.info("deleted user with id {}", id);
         userService.deleteByID(id);
-    }
-
-    public List<Restaurant> getRestaurantsOfUser(Integer id) {
-        log.info("get all restaurants of user {}", id);
-        return restaurantService.getAllByUserId(id);
     }
 }

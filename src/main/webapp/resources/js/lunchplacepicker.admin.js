@@ -1,5 +1,4 @@
 var adminUrl = "admin/users/";
-var userRestaurantsUrl = "admin/restaurants/";
 
 var table = $('#users_table').DataTable({
     "ajax": {
@@ -32,16 +31,14 @@ var table = $('#users_table').DataTable({
     ]
 });
 
-let tableRowData;
-
 $('#users_table tbody').on('click', '.restaurants', function () {
     let data = table.row($(this).parents('tr')).data();
-    window.location.href = userRestaurantsUrl + data.id + "/all";
+    window.location.href = "admin/" + data.id + "/all";
 });
 
 $('#users_table tbody').on('click', '.update', function () {
-    tableRowData = table.row($(this).parents('tr')).data();
-    showUserUpdateForm(tableRowData);
+    let data = table.row($(this).parents('tr')).data();
+    showUserUpdateForm(data);
 });
 
 $('#users_table tbody').on('click', '.delete', function () {
@@ -58,12 +55,12 @@ function deleteRow(id) {
     });
 }
 
-function showUserUpdateForm(tableRowData) {
+function showUserUpdateForm(data) {
     $('#userModal').modal('show');
     // Pre-fill the form input fields by current user values;
-    document.getElementById("userId").setAttribute('value', tableRowData.id);
-    document.getElementById("userName").setAttribute('value', tableRowData.name);
-    document.getElementById("userEmail").setAttribute('value', tableRowData.email);
+    document.getElementById("userId").setAttribute('value', data.id);
+    document.getElementById("userName").setAttribute('value', data.name);
+    document.getElementById("userEmail").setAttribute('value', data.email);
 }
 
 $('#addNewUserBtn').on('click', function () {

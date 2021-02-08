@@ -14,8 +14,13 @@ public class RootController {
         return "users";
     }
 
-    @GetMapping("/admin/restaurants/{id}/all")
+    @GetMapping("/admin/{id}/all")
     public String RestaurantsOfUser(@PathVariable int id) {
         return "restaurants";
+    }
+
+    @GetMapping("/admin/menus/{id}/all")
+    public String MenusOfRestaurant(@PathVariable int id) {
+        return "menus";
     }
 }
