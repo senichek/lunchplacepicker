@@ -13,8 +13,8 @@ public class RestaurantTestData {
     public static final int REST1_ID = START_SEQ + 2;
     public static final int REST_NOT_FOUND = 10;
 
-    public static final Restaurant rest1 = new Restaurant(REST1_ID, "Chez Marlene", "avenue de Paris", "French Cuisine", LocalDateTime.of(2020, Month.MARCH, 30, 10, 0));
-    public static final Restaurant rest2 = new Restaurant(REST1_ID + 1, "Chez Antoine", "rue de Versailles", "Creperie", LocalDateTime.of(2018, Month.MAY, 28, 11, 0));
+    public static final Restaurant rest1 = new Restaurant(REST1_ID, "Chez Marlene", "58 avenue de Paris", "French Cuisine", LocalDateTime.of(2020, Month.MARCH, 30, 10, 0));
+    public static final Restaurant rest2 = new Restaurant(REST1_ID + 1, "Chez Antoine", "93 rue de Versailles", "Creperie", LocalDateTime.of(2018, Month.MAY, 28, 11, 0));
     public static final Restaurant rest3 = new Restaurant(REST1_ID + 2, "La Belle Epoque", "10 Place de la Mairie", "French Cuisine", LocalDateTime.of(2017, Month.MARCH, 28, 12, 0));
     public static final Restaurant rest4 = new Restaurant(REST1_ID + 3, "La Veranda", "1 Boulevard de la Reine", "European Cuisine", LocalDateTime.of(2016, Month.MAY, 28, 13, 0));
     public static final Restaurant rest5 = new Restaurant(REST1_ID + 4, "Le Sept", "7 Rue de Montreuil", "European Cuisine", LocalDateTime.of(2015, Month.MAY, 27, 14, 0));

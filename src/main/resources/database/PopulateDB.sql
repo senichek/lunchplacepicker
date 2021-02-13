@@ -8,8 +8,8 @@ VALUES ('USER', 100000),
        ('USER', 100001);
 
 INSERT INTO restaurants (name, rest_admin_id, address, description, register_date)
-VALUES ('Chez Marlene', '100001', 'avenue de Paris', 'French Cuisine', '2020-03-30 10:00:00'),
-       ('Chez Antoine', '100001', 'rue de Versailles', 'Creperie', '2018-05-28 11:00:00'),
+VALUES ('Chez Marlene', '100001', '58 avenue de Paris', 'French Cuisine', '2020-03-30 10:00:00'),
+       ('Chez Antoine', '100001', '93 rue de Versailles', 'Creperie', '2018-05-28 11:00:00'),
        ('La Belle Epoque', '100000', '10 Place de la Mairie', 'French Cuisine', '2017-03-28 12:00:00'),
        ('La Veranda', '100000', '1 Boulevard de la Reine', 'European Cuisine', '2016-05-28 13:00:00'),
        ('Le Sept', '100000', '7 Rue de Montreuil', 'European Cuisine', '2015-05-27 14:00:00'),
