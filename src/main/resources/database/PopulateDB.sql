@@ -1,6 +1,9 @@
+/*The default password for Admin = admin
+  The Default password for User = user
+  Encrypted by BCrypt */
 INSERT INTO users (name, email, password, registered)
-VALUES ('User', 'user@gmail.com', 'user', '2020-03-30 17:00:00'),
-       ('Admin', 'admin@gmail.com', 'admin', '2018-11-25 19:00:00');
+VALUES ('User', 'user@gmail.com', '$2a$10$6WZL2gzFrQZ3TXuZi0ClQektYMypL7wvQvNRW04Q2YkeEVMjcvkOS', '2020-03-30 17:00:00'),
+       ('Admin', 'admin@gmail.com', '$2a$10$TnuLvKiSOudIoIESqRPbbukqwib.qNxzz8qRdjRgNlK8QAlFObd.i', '2018-11-25 19:00:00');
 
 INSERT INTO user_roles (role, user_id)
 VALUES ('USER', 100000),

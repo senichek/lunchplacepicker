@@ -14,10 +14,10 @@ public class UserTestData {
     public static final int ADMIN_ID = START_SEQ + 1;
     public static final int NOT_FOUND = 10;
 
-    public static final User user = new User(USER_ID, "User", "user@gmail.com", "user",
+    public static final User user = new User(USER_ID, "User", "user@gmail.com", "$2a$10$6WZL2gzFrQZ3TXuZi0ClQektYMypL7wvQvNRW04Q2YkeEVMjcvkOS",
             LocalDateTime.of(2020, Month.MARCH, 30, 17, 0), Collections.singleton(Role.USER));
 
-    public static final User admin = new User(ADMIN_ID, "Admin", "admin@gmail.com", "admin",
+    public static final User admin = new User(ADMIN_ID, "Admin", "admin@gmail.com", "$2a$10$TnuLvKiSOudIoIESqRPbbukqwib.qNxzz8qRdjRgNlK8QAlFObd.i",
             LocalDateTime.of(2018, Month.NOVEMBER, 25, 19, 0), Role.ADMIN, Role.USER);
 
     static {

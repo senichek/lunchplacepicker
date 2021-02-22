@@ -21,9 +21,6 @@ public abstract class AbstractUserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private RestaurantService restaurantService;
-
     public AbstractUserController() {
     }
 

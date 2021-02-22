@@ -19,7 +19,7 @@ class UserServiceTest extends AbstractServiceTest {
     @Test
     void getAll() {
         List<User> usersFromService = userService.getAll();
-        List<User> expected = List.of(UserTestData.user, UserTestData.admin);
+        List<User> expected = List.of(UserTestData.admin, UserTestData.user);
         Assertions.assertThat(usersFromService).usingRecursiveComparison()
                 .ignoringFields("restaurants", "password").isEqualTo(expected);
     }
