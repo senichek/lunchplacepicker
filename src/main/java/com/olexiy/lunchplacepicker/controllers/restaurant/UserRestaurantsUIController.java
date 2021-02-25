@@ -1,6 +1,7 @@
 package com.olexiy.lunchplacepicker.controllers.restaurant;
 
 import com.olexiy.lunchplacepicker.models.Restaurant;
+import com.olexiy.lunchplacepicker.utils.SecurityUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,30 +10,24 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/profile", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/profile/restaurants", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserRestaurantsUIController extends AbstractRestaurantController {
 
-    @GetMapping(value = "/rs/all")
-    public List<Restaurant> getAll() {
-        return super.getAll();
-    }
-
-    @PostMapping(value = "/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/all", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
-    public void save(@RequestBody Restaurant restaurant, @PathVariable(value = "userId") Integer userId) {
-        super.save(restaurant, userId);
+    public void save(@RequestBody Restaurant restaurant) {
+        super.save(restaurant, SecurityUtils.getLoggedInUser().getId());
     }
 
-    @DeleteMapping("/{userId}/{entityId}")
+    @DeleteMapping("/all/{entityId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Transactional
-    public void delete(@PathVariable("userId") Integer userId,
-                       @PathVariable("entityId") Integer entityId) {
-        super.delete(userId, entityId);
+    public void delete(@PathVariable("entityId") Integer entityId) {
+        super.delete(SecurityUtils.getLoggedInUser().getId(), entityId);
     }
 
-    @GetMapping(value = "/{id}/all")
-    public List<Restaurant> getRestaurantsOfUser(@PathVariable("id") Integer id) {
-        return super.getRestaurantsOfUser(id);
+    @GetMapping(value = "/all")
+    public List<Restaurant> getRestaurantsOfLoggedInUser() {
+        return super.getRestaurantsOfLoggedInUser();
     }
 }

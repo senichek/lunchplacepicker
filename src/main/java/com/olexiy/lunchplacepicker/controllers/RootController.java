@@ -20,8 +20,8 @@ public class RootController {
         return "restaurants";
     }
 
-    @GetMapping("/profile/{id}/all")
-    public String RestaurantsOfUser(@PathVariable int id) {
+    @GetMapping("/profile/restaurants/all")
+    public String RestaurantsOfUser() {
         return "userUI/userRestaurants";
     }
 
@@ -38,6 +38,11 @@ public class RootController {
     @GetMapping(value = "/menus")
     public String MenusAll(){
         return "menusMainPage";
+    }
+
+    @GetMapping(value = "/register")
+    public String registration(){
+        return "userUI/registration";
     }
 
     @GetMapping(value = "/")

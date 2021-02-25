@@ -9,12 +9,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/admin", produces = MediaType.APPLICATION_JSON_VALUE)
-public class RestaurantUIController extends AbstractRestaurantController {
+@RequestMapping(value = "/rest/admin", produces = MediaType.APPLICATION_JSON_VALUE)
+public class AdminRestaurantsRestController extends AbstractRestaurantController {
 
     @GetMapping(value = "/rs/all")
     public List<Restaurant> getAll() {
         return super.getAll();
+    }
+
+    @GetMapping(value = "/{userId}/{entityId}")
+    public Restaurant getByID(@PathVariable("userId") Integer userId,
+                              @PathVariable("entityId") Integer entityId) {
+        return super.getByID(userId, entityId);
     }
 
     @PostMapping(value = "/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE)

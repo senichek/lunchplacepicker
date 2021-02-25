@@ -1,9 +1,8 @@
-var userID = location.pathname.split('/')[3]; //extracting id from URL
-var restaurantUrl = "profile/" + userID;
+var restaurantUrl = "profile/restaurants/all";
 
 var table = $('#restaurants_table').DataTable({
     "ajax": {
-        "url": restaurantUrl + "/all",
+        "url": restaurantUrl,
         "method": "get",
         "type": "json",
         "dataSrc": ""
@@ -74,16 +73,16 @@ function showRestaurantUpdateForm(data) {
     document.getElementById("restaurantDescription").setAttribute('value', data.description);
 }
 
-$('#allUsers').on('click', function () {
-    window.location.href = "admin/users";
+$('#logoutBtn').on('click', function () {
+    window.location.href = "logout";
 });
 
-function saveRestaurant(user) {
+function saveRestaurant(restaurant) {
     $.ajax({
         type: "POST",
         url: restaurantUrl,
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify(user)
+        data: JSON.stringify(restaurant)
     }).done(function () {
         table.ajax.reload();
         $("#restaurantModal").modal("hide");

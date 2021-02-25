@@ -1,16 +1,18 @@
 package com.olexiy.lunchplacepicker.controllers.user;
 
+import com.olexiy.lunchplacepicker.models.Role;
 import com.olexiy.lunchplacepicker.models.User;
-import com.olexiy.lunchplacepicker.service.restaurant.RestaurantService;
 import com.olexiy.lunchplacepicker.service.user.UserService;
 import com.olexiy.lunchplacepicker.utils.UserUtils;
 import com.olexiy.lunchplacepicker.utils.exceptions.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -20,6 +22,9 @@ public abstract class AbstractUserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public AbstractUserController() {
     }
@@ -38,7 +43,15 @@ public abstract class AbstractUserController {
         if (user.isNew()) {
             // the date doesn't come from the form, it is set up by default
             user.setRegistered(LocalDateTime.now());
-            user.setPassword(UserUtils.generateCommonLangPassword());
+            if (user.getPassword() == null) {
+                user.setPassword(UserUtils.generateCommonLangPassword());
+            }
+            if (user.getPassword() != null) {
+                user.setPassword(passwordEncoder.encode(user.getPassword()));
+            }
+            if (user.getRoles() == null) {
+                user.setRoles(Collections.singleton(Role.USER));
+            }
             log.info("created {}", user);
             userService.save(user);
         } else {

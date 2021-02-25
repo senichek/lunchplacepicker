@@ -4,6 +4,7 @@ import com.olexiy.lunchplacepicker.models.Restaurant;
 import com.olexiy.lunchplacepicker.models.User;
 import com.olexiy.lunchplacepicker.service.restaurant.RestaurantService;
 import com.olexiy.lunchplacepicker.service.user.UserService;
+import com.olexiy.lunchplacepicker.utils.SecurityUtils;
 import com.olexiy.lunchplacepicker.utils.exceptions.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -79,5 +80,10 @@ public abstract class AbstractRestaurantController {
     public List<Restaurant> getRestaurantsOfUser(Integer id) {
         log.info("get all restaurants of user {}", id);
         return restaurantService.getAllByUserId(id);
+    }
+
+    public List<Restaurant> getRestaurantsOfLoggedInUser() {
+        log.info("get all restaurants of the logged in user {}", SecurityUtils.getLoggedInUser().getId());
+        return restaurantService.getAllByUserId(SecurityUtils.getLoggedInUser().getId());
     }
 }
