@@ -40,7 +40,11 @@
         </tr>
         </thead>
     </table>
-        <button id="logoutBtn">Logout</button></a>
+    <%--style="display: inline-block = removes linebreak after the form--%>
+    <form style="display: inline-block; " action="logout" method="POST"> <input type="submit" value="Logout"/>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
+    <button id="mainPageBtn">Main page</button></a>
 </div>
 
 <%--RESTAURANT MODAL START--%>

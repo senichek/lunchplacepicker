@@ -21,14 +21,11 @@
 <body>
 <br>
 <div class="container-fluid">
-    <%--mr-1 - spacing between the buttons--%>
-        <a href="profile/restaurants/all" class="btn btn-dark float-right mr-1" id="enterAsUserBtn">Enter as User</a>
-        <a href="login" class="btn btn-dark float-right mr-1" id="enterAsAdminBtn">Enter as Admin</a>
-        <a href="register" class="btn btn-info float-right mr-1" id="enterAsAdminBtn">Register</a>
+    <a href="menus" class="btn btn-info float-left mr-1" id="menusBtn">Menus</a>
+    <jsp:include page="header.jsp"/>
     <br>
     <br>
        <div class="card-deck">
-
        </div>
 </div>
 </body>

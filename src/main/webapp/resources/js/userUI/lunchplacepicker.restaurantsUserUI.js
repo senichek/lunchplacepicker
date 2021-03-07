@@ -33,7 +33,7 @@ var table = $('#restaurants_table').DataTable({
 
 $('#restaurants_table tbody').on('click', '.menus', function () {
     let data = table.row($(this).parents('tr')).data();
-    window.location.href = "admin/menus/" + data.id + "/all";
+    window.location.href = "profile/menus/" + data.id + "/all/likes";
 });
 
 $('#restaurants_table tbody').on('click', '.update', function () {
@@ -72,10 +72,6 @@ function showRestaurantUpdateForm(data) {
     document.getElementById("restaurantAddress").setAttribute('value', data.address);
     document.getElementById("restaurantDescription").setAttribute('value', data.description);
 }
-
-$('#logoutBtn').on('click', function () {
-    window.location.href = "logout";
-});
 
 function saveRestaurant(restaurant) {
     $.ajax({

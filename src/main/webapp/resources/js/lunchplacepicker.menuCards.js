@@ -6,7 +6,6 @@ $.ajax({
     dataType: 'json',
     success: function (data, textStatus, jqXHR) {
         var likes = "Total likes: ";
-        debugger;
         for (var i = 0; i < data.length; i++) {
             renderHTMLCardsMenus(data[i].id, data[i].description, likes + data[i].likes.length, imgSource);
         }
@@ -36,12 +35,30 @@ function renderHTMLCardsMenus(id, description, likes, imgSource) {
     pElementBold.className = "card-text-bold";
     pElementBold.style = "font-weight: bold;";
     pElement.className = "card-text";
+    pElement.id = id; // each likes-counter has its own id
     voteButton.className = "btn btn-info";
     voteButton.id = "voteBtn";
     voteButton.innerText = "Vote";
 
     voteButton.onclick = function () {
-        alert("Voted! for " + id);
+        var like = createLikeObject(id)
+        // check if the user is logged in. Only logged in users can vote
+        // Once we hit URL /ifloggedin the UserProfileController returns true or false
+        $.ajax({
+            url: 'ifloggedin',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data, textStatus, jqXHR) {
+                if (data) {
+                    saveLike(like, id);
+                } else {
+                    alert("Please log in to vote")
+                }
+            },
+            error: function (a, b, c) {
+                console.log('something went wrong:', a, b, c);
+            }
+        });
     }
 
     // the divs that used only once are taken from jsp page, we do not create them here
@@ -53,5 +70,45 @@ function renderHTMLCardsMenus(id, description, likes, imgSource) {
     pElementBold.innerText = description;
     pElement.innerText = likes + "\n";
     cardBody.appendChild(voteButton);
+}
+
+function createLikeObject(menuID) {
+    var menu = {
+        id: menuID
+    }
+
+    var like = {
+        menu: menu
+    };
+    return like;
+}
+
+function saveLike(like, menuID) {
+    $.ajax({
+        type: "POST",
+        url: "likes/" + menuID,
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(like)
+    }).done(function () {
+        updateLikesCounter();
+    });
+}
+
+function updateLikesCounter() {
+    $.ajax({
+        url: 'menus',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data, textStatus, jqXHR) {
+            var likes = "Total likes: ";
+            debugger;
+            for (var i = 0; i < data.length; i++) {
+                document.getElementById(data[i].id).innerHTML = likes + data[i].likes.length;
+            }
+        },
+        error: function (a, b, c) {
+            console.log('something went wrong:', a, b, c);
+        }
+    });
 }
 

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/admin/menus", produces = MediaType.APPLICATION_JSON_VALUE)
-public class MenuUIController extends AbstractMenuController {
+@RequestMapping(value = "rest/admin/menus", produces = MediaType.APPLICATION_JSON_VALUE)
+public class AdminMenuRestController extends AbstractMenuController {
 
     // unused in UI
     @GetMapping(value = "/")

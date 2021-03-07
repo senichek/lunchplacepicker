@@ -20,14 +20,19 @@ public class RootController {
         return "restaurants";
     }
 
+    @GetMapping("/admin/menus/{id}/all")
+    public String MenusOfRestaurant(@PathVariable int id) {
+        return "menus";
+    }
+
     @GetMapping("/profile/restaurants/all")
     public String RestaurantsOfUser() {
         return "userUI/userRestaurants";
     }
 
-    @GetMapping("/admin/menus/{id}/all")
-    public String MenusOfRestaurant(@PathVariable int id) {
-        return "menus";
+    @GetMapping("/profile/menus/{id}/all/likes")
+    public String MenusOfUserRestaurantsWithLikes(@PathVariable int id) {
+        return "userUI/userMenus";
     }
 
     @GetMapping(value = "/restaurants")
@@ -43,6 +48,11 @@ public class RootController {
     @GetMapping(value = "/register")
     public String registration(){
         return "userUI/registration";
+    }
+
+    @GetMapping(value = "/login")
+    public String login(){
+        return "userUI/login";
     }
 
     @GetMapping(value = "/")

@@ -15,4 +15,16 @@ public class SecurityUtils {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         return userPrincipal.getUser();
     }
+
+    public static boolean isLoggedIn() {
+        String authName = SecurityContextHolder.getContext().getAuthentication().getName();
+        if (authName.equals("anonymousUser")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /*public static void login() {
+    }*/
 }

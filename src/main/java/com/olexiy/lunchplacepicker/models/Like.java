@@ -25,9 +25,9 @@ public class Like extends AbstractBaseEntity {
     @NotNull
     private Menu menu;
 
-    /*@Column(name = "user_id", nullable = false)
+    @Column(name = "user_id", nullable = false)
     @NotNull
-    private Integer userID;*/
+    private Integer userID;
 
     public Like(Integer id, LocalDateTime creationDateTime) {
         super(id);
@@ -51,5 +51,13 @@ public class Like extends AbstractBaseEntity {
 
     public void setMenu(Menu menu) {
         this.menu = menu;
+    }
+
+    public Integer getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Integer userID) {
+        this.userID = userID;
     }
 }

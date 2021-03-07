@@ -30,15 +30,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/restaurants", "/menus", "/register").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/profile/**").authenticated()
+                .antMatchers("/profile/**", "/likes").authenticated()
                 .and()
                 .formLogin()
-                //.loginPage("/login") only needed for custom login page, I use the default one
+                .loginPage("/login") //custom login page, login view must be also returned by controller
                 .permitAll()
                 .and()
+                //.csrf().disable()
                 .logout()
                 .permitAll();
     }
+
+    //TODO
+    // добавить автологин сразу после регистрации пользователя
+    // добавить обработку кода 403 когда нет прав для просмотра страницы, например перенаправление на страницу логина
+    // Добавить голосование за ресторан, для этого нам потребуется еще одна таблица для лайков
 
     @Bean
     DaoAuthenticationProvider authenticationProvider () {

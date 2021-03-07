@@ -17,12 +17,18 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/lunchplacepicker.menuCards.js" defer></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/luncplacepicker.common.js" defer></script>
 
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
+
 </head>
 <body>
 <br>
 <div class="container-fluid">
+    <a href="restaurants" class="btn btn-info float-left mr-1" id="menusBtn">Restaurants</a>
+    <jsp:include page="header.jsp"/>
+    <br>
+    <br>
        <div class="card-deck">
-
        </div>
 </div>
 </body>

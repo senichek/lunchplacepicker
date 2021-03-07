@@ -1,6 +1,7 @@
 package com.olexiy.lunchplacepicker.controllers.user;
 
 import com.olexiy.lunchplacepicker.models.User;
+import com.olexiy.lunchplacepicker.utils.SecurityUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;

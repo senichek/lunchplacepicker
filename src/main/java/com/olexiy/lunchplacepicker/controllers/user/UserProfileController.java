@@ -1,6 +1,7 @@
 package com.olexiy.lunchplacepicker.controllers.user;
 
 import com.olexiy.lunchplacepicker.models.User;
+import com.olexiy.lunchplacepicker.utils.SecurityUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +27,11 @@ public class UserProfileController extends AbstractUserController {
     @Transactional
     public void save(@RequestBody User user) {
         super.save(user);
+    }
+
+    @GetMapping(value = "/ifloggedin")
+    public boolean ifLoggedIn() {
+       return SecurityUtils.isLoggedIn();
     }
 
     /*@DeleteMapping("/{id}")

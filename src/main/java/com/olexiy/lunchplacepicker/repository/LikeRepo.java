@@ -15,4 +15,8 @@ public interface LikeRepo extends JpaRepository<Like, Integer> {
     Like getById(Integer id);
 
     void deleteById(Integer id);
+
+    List<Like> getAllByMenu_Id(int id);
+
+    Like getByUserIDAndAndMenuId(int userID, int menuID);
 }
