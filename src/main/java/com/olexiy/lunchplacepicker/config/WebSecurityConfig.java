@@ -38,12 +38,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 //.csrf().disable()
                 .logout()
-                .permitAll();
+                .permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/accessDenied");
     }
-
+//exceptionHandling().accessDeniedPage("/accessDenied.jsp");
     //TODO
     // добавить автологин сразу после регистрации пользователя
-    // добавить обработку кода 403 когда нет прав для просмотра страницы, например перенаправление на страницу логина
     // Добавить голосование за ресторан, для этого нам потребуется еще одна таблица для лайков
 
     @Bean

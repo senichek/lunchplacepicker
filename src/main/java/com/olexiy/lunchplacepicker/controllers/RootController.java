@@ -55,6 +55,11 @@ public class RootController {
         return "userUI/login";
     }
 
+    @GetMapping(value = "/accessDenied")
+    public String accessDenied(){
+        return "userUI/accessDenied";
+    }
+
     @GetMapping(value = "/")
     public String index(Model model){
         model.addAttribute("var", "test variable string");
