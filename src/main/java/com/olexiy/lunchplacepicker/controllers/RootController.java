@@ -46,9 +46,7 @@ public class RootController {
     }
 
     @GetMapping(value = "/register")
-    public String registration(){
-        return "userUI/registration";
-    }
+    public String registration(){ return "userUI/registration"; }
 
     @GetMapping(value = "/login")
     public String login(){

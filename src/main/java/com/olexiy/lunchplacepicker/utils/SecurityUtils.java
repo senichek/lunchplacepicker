@@ -4,6 +4,10 @@ import com.olexiy.lunchplacepicker.models.User;
 import com.olexiy.lunchplacepicker.security.UserPrincipal;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 
 public class SecurityUtils {
 
@@ -25,6 +29,11 @@ public class SecurityUtils {
         }
     }
 
-    /*public static void login() {
-    }*/
+    public static void login(HttpServletRequest request, String username, String password) {
+        try {
+            request.login(username, password);
+        } catch (ServletException e) {
+            System.out.println(e);
+        }
+    }
 }
