@@ -42,9 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().accessDeniedPage("/accessDenied");
     }
-//exceptionHandling().accessDeniedPage("/accessDenied.jsp");
     //TODO
-    // добавить автологин сразу после регистрации пользователя
     // Добавить голосование за ресторан, для этого нам потребуется еще одна таблица для лайков
 
     @Bean

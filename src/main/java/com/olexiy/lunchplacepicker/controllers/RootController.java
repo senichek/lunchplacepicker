@@ -12,17 +12,17 @@ public class RootController {
     //@PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin/users")
     public String Users() {
-        return "users";
+        return "adminUI/users";
     }
 
     @GetMapping("/admin/{id}/all")
     public String RestaurantsOfAdmin(@PathVariable int id) {
-        return "restaurants";
+        return "adminUI/restaurants";
     }
 
     @GetMapping("/admin/menus/{id}/all")
     public String MenusOfRestaurant(@PathVariable int id) {
-        return "menus";
+        return "adminUI/menus";
     }
 
     @GetMapping("/profile/restaurants/all")

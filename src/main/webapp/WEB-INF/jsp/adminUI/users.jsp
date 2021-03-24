@@ -13,7 +13,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js" defer></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/lunchplacepicker.admin.js" defer></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/adminUI/lunchplacepicker.admin.js" defer></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/luncplacepicker.common.js" defer></script>
 
     <meta name="_csrf" content="${_csrf.token}"/>
