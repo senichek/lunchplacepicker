@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public class MainUIRestaurantController extends AbstractRestaurantController {
     @GetMapping(value = "/restaurants")
-    public List<Restaurant> getAll() {
-        return super.getAll();
+    public List<Restaurant> getAllWithLikes() {
+        return super.getAllWithLikes();
     }
 }

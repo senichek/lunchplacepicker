@@ -15,11 +15,10 @@ public interface MenuRepo extends JpaRepository<Menu, Integer> {
 
     List<Menu> getAllByRestaurantId(Integer id);
 
-    @Query(value = "SELECT DISTINCT m FROM Menu m LEFT JOIN FETCH m.likes WHERE m.restaurant.id=:id")
+    @Query(value = "SELECT DISTINCT m FROM Menu m LEFT JOIN FETCH m.likesOfMenu WHERE m.restaurant.id=:id")
     List<Menu> getAllByRestaurantIdWithLikes(Integer id);
 
-    //@Query(value = "SELECT DISTINCT m FROM Menu m JOIN FETCH m.likes")
-    @Query(value = "SELECT DISTINCT m FROM Menu m LEFT JOIN FETCH m.likes")
+    @Query(value = "SELECT DISTINCT m FROM Menu m LEFT JOIN FETCH m.likesOfMenu")
     List<Menu> getAllWithLikes();
 
     void deleteById(Integer id);

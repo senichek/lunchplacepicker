@@ -1,7 +1,8 @@
 DROP TABLE IF EXISTS user_roles;
-DROP TABLE IF EXISTS menus cascade ;
-DROP TABLE IF EXISTS restaurants;
-DROP TABLE IF EXISTS likes;
+DROP TABLE IF EXISTS menus cascade;
+DROP TABLE IF EXISTS restaurants cascade;
+DROP TABLE IF EXISTS likes_of_menu;
+DROP TABLE IF EXISTS likes_of_restaurant;
 DROP TABLE IF EXISTS users;
 DROP SEQUENCE IF EXISTS global_seq;
 
@@ -45,7 +46,7 @@ CREATE TABLE menus
     FOREIGN KEY (rest_id) REFERENCES restaurants (id) ON DELETE CASCADE
 );
 
-CREATE TABLE likes
+CREATE TABLE likes_of_menu
 (
     id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     menu_id     INTEGER   NOT NULL,
@@ -53,4 +54,14 @@ CREATE TABLE likes
     creation_date   TIMESTAMP DEFAULT now() NOT NULL,
     FOREIGN KEY (menu_id) REFERENCES menus (id) ON DELETE CASCADE
 );
-CREATE UNIQUE INDEX unique_userLike_per_menu_idx ON likes (user_id, menu_id);
+CREATE UNIQUE INDEX unique_userLike_per_menu_idx ON likes_of_menu (user_id, menu_id);
+
+CREATE TABLE likes_of_restaurant
+(
+    id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    rest_id     INTEGER   NOT NULL,
+    user_id    INT       NOT NULL,
+    creation_date   TIMESTAMP DEFAULT now() NOT NULL,
+    FOREIGN KEY (rest_id) REFERENCES restaurants (id) ON DELETE CASCADE
+);
+CREATE UNIQUE INDEX unique_userLike_per_restaurant_idx ON likes_of_restaurant (user_id, rest_id);

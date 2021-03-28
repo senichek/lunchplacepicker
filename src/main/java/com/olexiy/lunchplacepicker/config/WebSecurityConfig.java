@@ -43,7 +43,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().accessDeniedPage("/accessDenied");
     }
     //TODO
-    // Добавить голосование за ресторан, для этого нам потребуется еще одна таблица для лайков
+    // добавить сортировку по количеству лайков (дроп-даун на странице)
+    // добавить валидацию введенных данных BindingResult
 
     @Bean
     DaoAuthenticationProvider authenticationProvider () {

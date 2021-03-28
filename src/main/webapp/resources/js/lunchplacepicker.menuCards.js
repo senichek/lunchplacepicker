@@ -7,7 +7,7 @@ $.ajax({
     success: function (data, textStatus, jqXHR) {
         var likes = "Total likes: ";
         for (var i = 0; i < data.length; i++) {
-            renderHTMLCardsMenus(data[i].id, data[i].description, likes + data[i].likes.length, imgSource);
+            renderHTMLCardsMenus(data[i].id, data[i].description, likes + data[i].likesOfMenu.length, imgSource);
         }
     },
     error: function (a, b, c) {
@@ -41,7 +41,7 @@ function renderHTMLCardsMenus(id, description, likes, imgSource) {
     voteButton.innerText = "Vote";
 
     voteButton.onclick = function () {
-        var like = createLikeObject(id)
+        var like = createLikeOfMenuObject(id)
         // check if the user is logged in. Only logged in users can vote
         // Once we hit URL /ifloggedin the UserProfileController returns true or false
         $.ajax({
@@ -50,7 +50,7 @@ function renderHTMLCardsMenus(id, description, likes, imgSource) {
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
                 if (data) {
-                    saveLike(like, id);
+                    saveLike(like, id, "likes/menu/");
                 } else {
                     alert("Please log in to vote")
                 }
@@ -72,7 +72,7 @@ function renderHTMLCardsMenus(id, description, likes, imgSource) {
     cardBody.appendChild(voteButton);
 }
 
-function createLikeObject(menuID) {
+function createLikeOfMenuObject(menuID) {
     var menu = {
         id: menuID
     }
@@ -81,17 +81,6 @@ function createLikeObject(menuID) {
         menu: menu
     };
     return like;
-}
-
-function saveLike(like, menuID) {
-    $.ajax({
-        type: "POST",
-        url: "likes/" + menuID,
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify(like)
-    }).done(function () {
-        updateLikesCounter();
-    });
 }
 
 function updateLikesCounter() {
@@ -103,7 +92,7 @@ function updateLikesCounter() {
             var likes = "Total likes: ";
             debugger;
             for (var i = 0; i < data.length; i++) {
-                document.getElementById(data[i].id).innerHTML = likes + data[i].likes.length;
+                document.getElementById(data[i].id).innerHTML = likes + data[i].likesOfMenu.length;
             }
         },
         error: function (a, b, c) {
@@ -111,4 +100,3 @@ function updateLikesCounter() {
         }
     });
 }
-

@@ -31,8 +31,8 @@ public class AdminRestaurantsUIController extends AbstractRestaurantController {
         super.delete(userId, entityId);
     }
 
-    @GetMapping(value = "/{id}/all")
-    public List<Restaurant> getRestaurantsOfUser(@PathVariable("id") Integer id) {
-        return super.getRestaurantsOfUser(id);
+    @GetMapping(value = "/{id}/all/likes")
+    public List<Restaurant> getRestaurantsOfUserWithLikes(@PathVariable("id") Integer id) {
+        return super.getRestaurantsOfUserWithLikes(id);
     }
 }

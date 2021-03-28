@@ -1,15 +1,11 @@
 package com.olexiy.lunchplacepicker.controllers.like;
 
-import com.olexiy.lunchplacepicker.controllers.menu.AbstractMenuController;
-import com.olexiy.lunchplacepicker.models.Like;
-import com.olexiy.lunchplacepicker.models.Menu;
-import org.springframework.http.HttpStatus;
+import com.olexiy.lunchplacepicker.models.LikeOfMenu;
+import com.olexiy.lunchplacepicker.models.LikeOfRestaurant;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -21,15 +17,26 @@ public class LikeUIController extends AbstractLikeController {
         return super.getAll();
     }*/
 
-    @GetMapping(value = "/{id}")
-    public List<Like> getByMenuID(@PathVariable("id") Integer id) {
+    @GetMapping(value = "/menu/{id}")
+    public List<LikeOfMenu> getByMenuID(@PathVariable("id") Integer id) {
         return super.getAllByMenuID(id);
     }
 
-    @PostMapping(value = "/{menuID}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/restaurant/{id}")
+    public List<LikeOfRestaurant> getByRestaurantID(@PathVariable("id") Integer id) {
+        return super.getAllByRestaurantID(id);
+    }
+
+    @PostMapping(value = "/menu/{menuID}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
-    public void save(@RequestBody Like like, @PathVariable("menuID") Integer id) {
-        super.save(like, id);
+    public void saveLikeOfMenu(@RequestBody LikeOfMenu likeOfMenu, @PathVariable("menuID") Integer id) {
+        super.saveLikeOfMenu(likeOfMenu, id);
+    }
+
+    @PostMapping(value = "/restaurant/{restaurantID}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Transactional
+    public void saveLikeOfRestaurant(@RequestBody LikeOfRestaurant likeOfRestaurant, @PathVariable("restaurantID") Integer id) {
+        super.saveLikeOfRestaurant(likeOfRestaurant, id);
     }
 
     /*@GetMapping(value = "/likes/{id}")

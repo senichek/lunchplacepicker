@@ -32,7 +32,7 @@
             <th>Menu ID</th>
             <th>Description</th>
             <th>Registered</th>
-            <th>Total likes</th>
+            <th>Likes</th>
             <th></th>
             <th></th>
         </tr>

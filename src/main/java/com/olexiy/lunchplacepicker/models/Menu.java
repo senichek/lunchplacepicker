@@ -12,7 +12,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @Table(name = "menus")
@@ -30,8 +29,7 @@ public class Menu extends AbstractBaseEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "menu")//, cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JsonManagedReference(value = "menu")
-    //private Map<Integer, Like> likes;
-    private List<Like> likes;
+    private List<LikeOfMenu> likesOfMenu;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rest_id", nullable = false)
@@ -65,12 +63,12 @@ public class Menu extends AbstractBaseEntity {
         this.description = description;
     }
 
-    public List<Like> getLikes() {
-        return likes;
+    public List<LikeOfMenu> getLikes() {
+        return likesOfMenu;
     }
 
-    public void setLikes(List<Like> likes) {
-        this.likes = likes;
+    public void setLikes(List<LikeOfMenu> likesOfMenu) {
+        this.likesOfMenu = likesOfMenu;
     }
 
     public Restaurant getRestaurant() {
@@ -88,7 +86,7 @@ public class Menu extends AbstractBaseEntity {
                 ", description='" + description + '\'' +
                 ", restaurant=" + restaurant +
                 ", creationDateTime=" + creationDateTime +
-                ", likes=" + likes +
+                ", likes=" + likesOfMenu +
                 '}';
     }
 }

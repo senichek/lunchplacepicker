@@ -10,8 +10,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "likes", uniqueConstraints = {@UniqueConstraint(columnNames = "menu_id", name = "users_unique_email_idx")})
-public class Like extends AbstractBaseEntity {
+@Table(name = "likes_of_restaurant", uniqueConstraints = {@UniqueConstraint(columnNames = "rest_id", name = "users_unique_like_per_restaurant_idx")})
+public class LikeOfRestaurant extends AbstractBaseEntity {
     @Column(name = "creation_date", nullable = false)
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
@@ -19,22 +19,22 @@ public class Like extends AbstractBaseEntity {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "menu_id", nullable = false)
+    @JoinColumn(name = "rest_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonBackReference(value = "menu")
+    @JsonBackReference(value = "restaurant")
     @NotNull
-    private Menu menu;
+    private Restaurant restaurant;
 
     @Column(name = "user_id", nullable = false)
     @NotNull
     private Integer userID;
 
-    public Like(Integer id, LocalDateTime creationDateTime) {
+    public LikeOfRestaurant(Integer id, LocalDateTime creationDateTime) {
         super(id);
         this.creationDateTime = creationDateTime;
     }
 
-    public Like() {
+    public LikeOfRestaurant() {
     }
 
     public LocalDateTime getCreationDateTime() {
@@ -45,12 +45,12 @@ public class Like extends AbstractBaseEntity {
         this.creationDateTime = creationDateTime;
     }
 
-    public Menu getMenu() {
-        return menu;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setMenu(Menu menu) {
-        this.menu = menu;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     public Integer getUserID() {

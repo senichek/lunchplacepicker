@@ -33,6 +33,11 @@ public abstract class AbstractRestaurantController {
         return restaurantService.getAll();
     }
 
+    public List<Restaurant> getAllWithLikes() {
+        log.info("get all restaurants with likes");
+        return restaurantService.getAllWithLikes();
+    }
+
     // Used only by rest controller
     public Restaurant getByID(Integer userId, Integer entityId) {
         log.info("get restaurant {} of user {}", entityId, userId);
@@ -82,8 +87,18 @@ public abstract class AbstractRestaurantController {
         return restaurantService.getAllByUserId(id);
     }
 
+    public List<Restaurant> getRestaurantsOfUserWithLikes(Integer id) {
+        log.info("get all restaurants of user {}", id);
+        return restaurantService.getAllByUserIdWithLikes(id);
+    }
+
     public List<Restaurant> getRestaurantsOfLoggedInUser() {
         log.info("get all restaurants of the logged in user {}", SecurityUtils.getLoggedInUser().getId());
         return restaurantService.getAllByUserId(SecurityUtils.getLoggedInUser().getId());
+    }
+
+    public List<Restaurant> getRestaurantsOfLoggedInUserWithLikes() {
+        log.info("get all restaurants of the logged in user {}", SecurityUtils.getLoggedInUser().getId());
+        return restaurantService.getAllByUserIdWithLikes(SecurityUtils.getLoggedInUser().getId());
     }
 }

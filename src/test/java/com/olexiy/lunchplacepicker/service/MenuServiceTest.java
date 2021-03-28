@@ -1,13 +1,9 @@
 package com.olexiy.lunchplacepicker.service;
 
-import com.olexiy.lunchplacepicker.models.Like;
-import com.olexiy.lunchplacepicker.models.Menu;
-import com.olexiy.lunchplacepicker.service.like.LikeService;
+import com.olexiy.lunchplacepicker.service.like.LikeOfMenuService;
 import com.olexiy.lunchplacepicker.service.menu.MenuService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
 
 class MenuServiceTest extends AbstractServiceTest {
 
@@ -15,7 +11,7 @@ class MenuServiceTest extends AbstractServiceTest {
     MenuService menuService;
 
     @Autowired
-    LikeService likeService;
+    LikeOfMenuService likeOfMenuService;
 
     @Test
     void getAll() {

@@ -1,4 +1,4 @@
-var restaurantUrl = "profile/restaurants/all";
+var restaurantUrl = "profile/restaurants/all/likes";
 
 var table = $('#restaurants_table').DataTable({
     "ajax": {
@@ -13,6 +13,7 @@ var table = $('#restaurants_table').DataTable({
         {"data": "address"},
         {"data": "registerDateTime"},
         {'data': 'description'},
+        {"data": "likesOfRestaurant.length"},
         {
             data: null,
             defaultContent: "<button class='menus'>Menus</button>",

@@ -50,6 +50,10 @@ public class Restaurant extends AbstractBaseEntity {
     @NotNull
     private User user;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")//, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JsonManagedReference(value = "restaurant")
+    private List<LikeOfRestaurant> likesOfRestaurant;
+
     public Restaurant(Integer id, String name, String address, String description, LocalDateTime registerDateTime) {
         super(id);
         this.name = name;

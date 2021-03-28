@@ -3,7 +3,7 @@ var restaurantUrl = "admin/" + userID;
 
 var table = $('#restaurants_table').DataTable({
     "ajax": {
-        "url": restaurantUrl + "/all",
+        "url": restaurantUrl + "/all/likes",
         "method": "get",
         "type": "json",
         "dataSrc": ""
@@ -14,6 +14,7 @@ var table = $('#restaurants_table').DataTable({
         {"data": "address"},
         {"data": "registerDateTime"},
         {'data': 'description'},
+        {"data": "likesOfRestaurant.length"},
         {
             data: null,
             defaultContent: "<button class='menus'>Menus</button>",

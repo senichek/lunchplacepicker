@@ -34,6 +34,7 @@
             <th>Address</th>
             <th>Registered</th>
             <th>Description</th>
+            <th>Likes</th>
             <th></th>
             <th></th>
             <th></th>

@@ -8,6 +8,10 @@ public interface RestaurantService {
 
     List<Restaurant> getAll();
 
+    List<Restaurant> getAllWithLikes();
+
+    List<Restaurant> getAllByUserIdWithLikes(Integer id);
+
     Restaurant getByID(Integer id);
 
     Restaurant getByUserIdAndEntityId(Integer userId, Integer entityId);

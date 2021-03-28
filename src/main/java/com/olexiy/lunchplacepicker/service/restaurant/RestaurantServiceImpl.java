@@ -24,6 +24,16 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
+    public List<Restaurant> getAllWithLikes() {
+        return restaurantRepo.getAllWithLikes();
+    }
+
+    @Override
+    public List<Restaurant> getAllByUserIdWithLikes(Integer id) {
+        return restaurantRepo.getAllByUserIdWithLikes(id);
+    }
+
+    @Override
     public Restaurant getByID(Integer id) {
         Restaurant restaurant = restaurantRepo.getById(id);
         if (restaurant == null) {

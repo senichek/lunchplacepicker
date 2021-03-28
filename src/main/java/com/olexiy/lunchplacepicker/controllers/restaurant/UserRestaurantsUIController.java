@@ -26,8 +26,8 @@ public class UserRestaurantsUIController extends AbstractRestaurantController {
         super.delete(SecurityUtils.getLoggedInUser().getId(), entityId);
     }
 
-    @GetMapping(value = "/all")
-    public List<Restaurant> getRestaurantsOfLoggedInUser() {
-        return super.getRestaurantsOfLoggedInUser();
+    @GetMapping(value = "/all/likes")
+    public List<Restaurant> getRestaurantsOfLoggedInUserWithLikes() {
+        return super.getRestaurantsOfLoggedInUserWithLikes();
     }
 }

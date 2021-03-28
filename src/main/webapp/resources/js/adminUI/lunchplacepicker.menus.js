@@ -12,7 +12,7 @@ var table = $('#menus_table').DataTable({
         {"data": "id"},
         {"data": "description"},
         {"data": "creationDateTime"},
-        {"data": "likes.length"},
+        {"data": "likesOfMenu.length"},
         {
             data: null,
             defaultContent: "<button class='update'>Update</button>",
@@ -82,7 +82,6 @@ function saveMenu(menu) {
 }
 
 $('#saveMenuBtn').on('click', function () {
-    debugger;
     var menu = convertMenuFormToObject();
     saveMenu(menu);
     document.getElementById("menuForm").reset();

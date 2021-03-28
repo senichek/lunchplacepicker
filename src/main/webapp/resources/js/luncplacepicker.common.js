@@ -14,3 +14,14 @@ function login(email, password, redirectURL) {
     $("#loginForm").submit();
     window.location.href = redirectURL;
 }
+
+function saveLike(like, entityID, URL) {
+    $.ajax({
+        type: 'POST',
+        url: URL + entityID,
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(like)
+    }).done(function () {
+        updateLikesCounter();
+    });
+}
