@@ -43,12 +43,12 @@ public class UserMenuUIController extends AbstractMenuController {
     }
 
     @GetMapping(value = "/{id}/all")
-    public List<Menu> getMenusByRestaurantId(@PathVariable("id") Integer id) {
-        return super.getMenusByRestaurantId(id);
+    public List<Menu> getAllMenusByRestaurantId(@PathVariable("id") Integer id) {
+        return super.getAllMenusByRestaurantId(id);
     }
 
     @GetMapping(value = "/{id}/all/likes")
-    public List<Menu> getMenusByRestaurantIdWithLikes(@PathVariable("id") Integer id) {
-        return super.getMenusByRestaurantIdWithLikes(id);
+    public List<Menu> getAllMenusByRestaurantIdWithLikes(@PathVariable("id") Integer id) {
+        return super.getAllMenusByRestaurantIdWithLikes(id);
     }
 }

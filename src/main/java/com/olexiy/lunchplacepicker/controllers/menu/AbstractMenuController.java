@@ -69,12 +69,12 @@ public abstract class AbstractMenuController {
         menuService.delete(id);
     }
 
-    public List<Menu> getMenusByRestaurantId(Integer id) {
+    public List<Menu> getAllMenusByRestaurantId(Integer id) {
         log.info("get all menus of restaurant {}", id);
         return menuService.getAllByRestaurantId(id);
     }
 
-    public List<Menu> getMenusByRestaurantIdWithLikes(Integer id) {
+    public List<Menu> getAllMenusByRestaurantIdWithLikes(Integer id) {
         log.info("get all menus of restaurant {} with likes", id);
         return menuService.getAllByRestaurantIdWithLikes(id);
     }

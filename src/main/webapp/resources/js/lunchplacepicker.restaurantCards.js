@@ -25,6 +25,7 @@ function renderHTMLCardsRestaurant(id, name, description, address, likes, imgSou
     let pElement = document.createElement("p");
     let voteCounter = document.createElement("p");
     let voteButton = document.createElement("button");
+    let showMenuButton = document.createElement("button");
 
     card.className = "card";
     card.style = "min-width: 18rem";
@@ -39,9 +40,13 @@ function renderHTMLCardsRestaurant(id, name, description, address, likes, imgSou
     voteCounter.id = id;
 
    // pElement.id = id; // each likes-counter has its own id
-    voteButton.className = "btn btn-info";
+    voteButton.className = "btn btn-info mr-1";
     voteButton.id = "voteBtn";
     voteButton.innerText = "Vote";
+
+    showMenuButton.className = "btn btn-dark";
+    showMenuButton.id = "showMenuBtn";
+    showMenuButton.innerText = "See Menu";
 
     voteButton.onclick = function () {
         var like = createLikeOfRestaurantObject(id)
@@ -64,6 +69,28 @@ function renderHTMLCardsRestaurant(id, name, description, address, likes, imgSou
         });
     }
 
+    showMenuButton.onclick = function () {
+        $('#showMenuModal').modal('show');
+        $('#showMenuModalLabel').text("Menu of " + name);
+
+        $.ajax({
+            url: 'menus/restaurant/' + id,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data, textStatus, jqXHR) {
+                // There can be many menus in 'data' array;
+                let menuText = data[0].description + '<br>' + '===========' + '<br>';
+                for (let i = 1; i < data.length; i++) {
+                    menuText = menuText + data[i].description + '<br>' + '===========' + '<br>';
+                }
+                $('#menuDescription').html(menuText);
+            },
+            error: function (a, b, c) {
+                console.log('something went wrong:', a, b, c);
+            }
+        });
+    }
+
     // the divs that used only once are taken from jsp page, we do not create them here
     // appendChild - adding a tag inside another tag
     document.getElementsByClassName("container-fluid")[0].appendChild(document.getElementsByClassName("card-deck")[0]);
@@ -75,6 +102,7 @@ function renderHTMLCardsRestaurant(id, name, description, address, likes, imgSou
     voteCounter.innerText = likes;
     cardBody.appendChild(voteCounter);
     cardBody.appendChild(voteButton);
+    cardBody.appendChild(showMenuButton);
 }
 
 function createLikeOfRestaurantObject(restaurantID) {

@@ -1,8 +1,8 @@
-var restaurantUrl = "profile/restaurants/all/likes";
+var restaurantUrl = "profile/restaurants/all";
 
 var table = $('#restaurants_table').DataTable({
     "ajax": {
-        "url": restaurantUrl,
+        "url": restaurantUrl + '/likes',
         "method": "get",
         "type": "json",
         "dataSrc": ""

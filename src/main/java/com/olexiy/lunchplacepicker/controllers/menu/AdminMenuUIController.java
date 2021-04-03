@@ -44,11 +44,11 @@ public class AdminMenuUIController extends AbstractMenuController {
 
     @GetMapping(value = "/{id}/all")
     public List<Menu> getMenusByRestaurantId(@PathVariable("id") Integer id) {
-        return super.getMenusByRestaurantId(id);
+        return super.getAllMenusByRestaurantId(id);
     }
 
     @GetMapping(value = "/{id}/all/likes")
     public List<Menu> getMenusByRestaurantIdWithLikes(@PathVariable("id") Integer id) {
-        return super.getMenusByRestaurantIdWithLikes(id);
+        return super.getAllMenusByRestaurantIdWithLikes(id);
     }
 }
