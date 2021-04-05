@@ -38,6 +38,7 @@ $('#users_table tbody').on('click', '.restaurants', function () {
 
 $('#users_table tbody').on('click', '.update', function () {
     let data = table.row($(this).parents('tr')).data();
+    document.getElementById("userForm").reset();
     showUserUpdateForm(data);
 });
 
@@ -64,6 +65,7 @@ function showUserUpdateForm(data) {
 }
 
 $('#addNewUserBtn').on('click', function () {
+    document.getElementById("userForm").reset();
     // New user must not have ID, the ID will be generated automatically later;
     $('#userModal').modal('show');
     document.getElementById("userId").setAttribute('value', "");
@@ -77,7 +79,12 @@ function saveUser(user) {
         url: adminUrl,
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(user)
-    }).done(function () {
+    }).done(function (a, b, text) {
+        debugger;
+        if (text.responseText != "") {
+            failNoty(text.responseText);
+            return;
+        }
         table.ajax.reload();
         $("#userModal").modal("hide");
     });
@@ -90,7 +97,7 @@ $('#saveUserBtn').on('click', function () {
         alert("Choose at least one role")
     } else {
         saveUser(user);
-        document.getElementById("userForm").reset();
+        //document.getElementById("userForm").reset();
     }
 });
 

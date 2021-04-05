@@ -52,7 +52,7 @@ function renderHTMLCardsMenus(id, description, likes, imgSource) {
                 if (data) {
                     saveLike(like, id, "likes/menu/");
                 } else {
-                    alert("Please log in to vote")
+                    infoNoty("Please log in to vote");
                 }
             },
             error: function (a, b, c) {

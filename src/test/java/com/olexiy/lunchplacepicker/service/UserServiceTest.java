@@ -101,7 +101,7 @@ class UserServiceTest extends AbstractServiceTest {
                 .ignoringFields("restaurants", "password").isEqualTo(UserTestData.user);
 
         Assertions.assertThat(restsOfUserFromService).usingRecursiveComparison()
-                .ignoringFields("menu", "user").isEqualTo(UserTestData.user.getRestaurants());
+                .ignoringFields("menu", "user", "likesOfRestaurant").isEqualTo(UserTestData.user.getRestaurants());
     }
 
     @Test

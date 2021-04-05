@@ -17,6 +17,9 @@
 
 	<properties>
 		<java.version>15</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!--Webjars-->
+		<webjars-noty.version>3.1.4</webjars-noty.version>
 	</properties>
 
 	<dependencies>
@@ -88,6 +91,11 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.11</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>noty</artifactId>
+			<version>${webjars-noty.version}</version>
 		</dependency>
 
 		<!--Test-->

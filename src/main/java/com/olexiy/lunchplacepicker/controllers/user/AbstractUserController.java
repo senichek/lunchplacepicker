@@ -3,6 +3,7 @@ package com.olexiy.lunchplacepicker.controllers.user;
 import com.olexiy.lunchplacepicker.models.Role;
 import com.olexiy.lunchplacepicker.models.User;
 import com.olexiy.lunchplacepicker.service.user.UserService;
+import com.olexiy.lunchplacepicker.utils.CustomValidator;
 import com.olexiy.lunchplacepicker.utils.UserUtils;
 import com.olexiy.lunchplacepicker.utils.exceptions.NotFoundException;
 import org.slf4j.Logger;
@@ -52,6 +53,10 @@ public abstract class AbstractUserController {
             if (user.getRoles() == null) {
                 user.setRoles(Collections.singleton(Role.USER));
             }
+
+            /*The failed validation triggers an exception. The methods marked by @ExceptionHandler will
+            handle the exception, see GlobalExceptionHandler class.*/
+            CustomValidator.validate(user);
             log.info("created {}", user);
             userService.save(user);
         } else {

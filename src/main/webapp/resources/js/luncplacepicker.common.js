@@ -25,3 +25,19 @@ function saveLike(like, entityID, URL) {
         updateLikesCounter();
     });
 }
+
+function failNoty(errorText) {
+    new Noty({
+        text: errorText,
+        type: "error",
+        layout: "bottomRight"
+    }).show();
+}
+
+function infoNoty(message) {
+    new Noty({
+        text: message,
+        type: "information",
+        layout: "topCenter"
+    }).show();
+}

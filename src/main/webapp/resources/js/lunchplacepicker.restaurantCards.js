@@ -60,7 +60,7 @@ function renderHTMLCardsRestaurant(id, name, description, address, likes, imgSou
                 if (data) {
                     saveLike(like, id, "likes/restaurant/");
                 } else {
-                    alert("Please log in to vote")
+                    infoNoty("Please log in to vote");
                 }
             },
             error: function (a, b, c) {

@@ -45,6 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     //TODO
     // добавить сортировку по количеству лайков (дроп-даун на странице)
     // добавить валидацию введенных данных BindingResult
+    // При вводе нового меню сделать так, чтобы считывались переводы строки, а то меню вводится одной строкой
 
     @Bean
     DaoAuthenticationProvider authenticationProvider () {

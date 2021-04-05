@@ -9,6 +9,10 @@
 <html>
 <head>
     <title>Title</title>
+
+    <link rel="stylesheet" href="webjars/noty/3.1.4/demo/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="webjars/noty/3.1.4/lib/noty.css"/>
+    <script type="text/javascript" src="webjars/noty/3.1.4/lib/noty.min.js" defer></script>
 </head>
 <body>
 <%--mr-1 - spacing between the buttons--%>
