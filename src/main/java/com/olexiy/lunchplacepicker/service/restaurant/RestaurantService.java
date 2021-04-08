@@ -10,6 +10,10 @@ public interface RestaurantService {
 
     List<Restaurant> getAllWithLikes();
 
+    List<Restaurant> getAllWithLikesDesc();
+
+    List<Restaurant> getAllWithLikesAsc();
+
     List<Restaurant> getAllByUserIdWithLikes(Integer id);
 
     Restaurant getByID(Integer id);

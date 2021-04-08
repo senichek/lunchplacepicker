@@ -20,4 +20,8 @@ public interface MenuService {
     void delete(Integer id);
 
     List<Menu> getAllWithLikes();
+
+    List<Menu> getAllWithLikesDesc();
+
+    List<Menu> getAllWithLikesAsc();
 }

@@ -38,6 +38,16 @@ public abstract class AbstractRestaurantController {
         return restaurantService.getAllWithLikes();
     }
 
+    public List<Restaurant> getAllWithLikesDesc() {
+        log.info("get all restaurants with likes Desc");
+        return restaurantService.getAllWithLikesDesc();
+    }
+
+    public List<Restaurant> getAllWithLikesAsc() {
+        log.info("get all restaurants with likes Asc");
+        return restaurantService.getAllWithLikesAsc();
+    }
+
     // Used only by rest controller
     public Restaurant getByID(Integer userId, Integer entityId) {
         log.info("get restaurant {} of user {}", entityId, userId);

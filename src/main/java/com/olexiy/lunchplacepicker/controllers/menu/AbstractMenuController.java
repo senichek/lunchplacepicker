@@ -83,4 +83,14 @@ public abstract class AbstractMenuController {
         log.info("get all menus with likes");
         return menuService.getAllWithLikes();
     }
+
+    public List<Menu> getAllWithLikesDesc() {
+        log.info("get all menus with likes Desc");
+        return menuService.getAllWithLikesDesc();
+    }
+
+    public List<Menu> getAllWithLikesAsc() {
+        log.info("get all menus with likes Asc");
+        return menuService.getAllWithLikesAsc();
+    }
 }

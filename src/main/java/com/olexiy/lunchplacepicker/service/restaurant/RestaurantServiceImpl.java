@@ -6,7 +6,9 @@ import com.olexiy.lunchplacepicker.utils.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
@@ -26,6 +28,28 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public List<Restaurant> getAllWithLikes() {
         return restaurantRepo.getAllWithLikes();
+    }
+
+    @Override
+    public List<Restaurant> getAllWithLikesDesc() {
+        List<Restaurant> restaurants = restaurantRepo.getAllWithLikes();
+
+        List<Restaurant> sortedRest = restaurants.stream()
+                .sorted(Comparator.comparingInt(Restaurant::getTotalLikes).reversed())
+                .collect(Collectors.toList());
+
+        return sortedRest;
+    }
+
+    @Override
+    public List<Restaurant> getAllWithLikesAsc() {
+        List<Restaurant> restaurants = restaurantRepo.getAllWithLikes();
+
+        List<Restaurant> sortedRest = restaurants.stream()
+                .sorted(Comparator.comparingInt(Restaurant::getTotalLikes))
+                .collect(Collectors.toList());
+
+        return sortedRest;
     }
 
     @Override

@@ -79,6 +79,10 @@ public class Menu extends AbstractBaseEntity {
         this.restaurant = restaurant;
     }
 
+    public int getTotalLikes() {
+        return this.likesOfMenu.size();
+    }
+
     @Override
     public String toString() {
         return "Menu{" +

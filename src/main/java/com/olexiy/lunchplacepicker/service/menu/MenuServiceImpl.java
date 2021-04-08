@@ -6,7 +6,9 @@ import com.olexiy.lunchplacepicker.repository.RestaurantRepo;
 import com.olexiy.lunchplacepicker.utils.exceptions.NotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MenuServiceImpl implements MenuService {
@@ -62,5 +64,27 @@ public class MenuServiceImpl implements MenuService {
     public List<Menu> getAllWithLikes() {
         List<Menu> all = menuRepo.getAllWithLikes();
         return all;
+    }
+
+    @Override
+    public List<Menu> getAllWithLikesDesc() {
+        List<Menu> menus = menuRepo.getAllWithLikes();
+
+        List<Menu> sortedMenus = menus.stream()
+                .sorted(Comparator.comparingInt(Menu::getTotalLikes).reversed())
+                .collect(Collectors.toList());
+
+        return sortedMenus;
+    }
+
+    @Override
+    public List<Menu> getAllWithLikesAsc() {
+        List<Menu> menus = menuRepo.getAllWithLikes();
+
+        List<Menu> sortedMenus = menus.stream()
+                .sorted(Comparator.comparingInt(Menu::getTotalLikes))
+                .collect(Collectors.toList());
+
+        return sortedMenus;
     }
 }

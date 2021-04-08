@@ -1,7 +1,9 @@
 var imgSource = "resources/images/placeholder_menu_pic.jpg";
 
+var URL = window.location.href; // return full URL with params
+
 $.ajax({
-    url: 'menus',
+    url: URL,
     type: 'GET',
     dataType: 'json',
     success: function (data, textStatus, jqXHR) {

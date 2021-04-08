@@ -113,6 +113,18 @@ public class Restaurant extends AbstractBaseEntity {
         this.user = user;
     }
 
+    public List<LikeOfRestaurant> getLikesOfRestaurant() {
+        return likesOfRestaurant;
+    }
+
+    public void setLikesOfRestaurant(List<LikeOfRestaurant> likesOfRestaurant) {
+        this.likesOfRestaurant = likesOfRestaurant;
+    }
+
+    public int getTotalLikes() {
+        return this.likesOfRestaurant.size();
+    }
+
     @Override
     public String toString() {
         return "Restaurant{" +

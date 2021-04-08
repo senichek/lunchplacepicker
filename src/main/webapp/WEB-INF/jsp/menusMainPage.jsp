@@ -25,6 +25,15 @@
 <br>
 <div class="container-fluid">
     <a href="restaurants" class="btn btn-info float-left mr-1" id="menusBtn">Restaurants</a>
+
+    <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="sortByLikesDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sort by likes
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="menus?sort=desc" id="fromMoreToLess">From more to less</a>
+        <a class="dropdown-item" href="menus?sort=asc" id="fromLessToMore">From less to more</a>
+    </div>
+
     <jsp:include page="header.jsp"/>
     <br>
     <br>
