@@ -125,7 +125,6 @@ function updateLikesCounter() {
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {
             var likes = "Total likes: ";
-            debugger;
             for (var i = 0; i < data.length; i++) {
                 document.getElementById(data[i].id).innerHTML = likes + data[i].likesOfRestaurant.length;
             }

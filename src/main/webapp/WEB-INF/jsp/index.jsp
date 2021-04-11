@@ -13,4 +13,7 @@
 <br>
 <br>
 <a href="admin/users">Admin</a>
+<br>
+<br>
+<a href="login">Login</a>
 </html>

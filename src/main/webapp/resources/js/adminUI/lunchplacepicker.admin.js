@@ -80,7 +80,6 @@ function saveUser(user) {
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(user)
     }).done(function (a, b, text) {
-        debugger;
         if (text.responseText != "") {
             failNoty(text.responseText);
             return;

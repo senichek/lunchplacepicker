@@ -21,7 +21,11 @@ function saveLike(like, entityID, URL) {
         url: URL + entityID,
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(like)
-    }).done(function () {
+    }).done(function (text) {
+        debugger;
+        if (text != "") {
+            failNoty(text);
+        }
         updateLikesCounter();
     });
 }

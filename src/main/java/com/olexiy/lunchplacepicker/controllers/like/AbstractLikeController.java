@@ -7,6 +7,7 @@ import com.olexiy.lunchplacepicker.service.like.LikeOfRestaurantService;
 import com.olexiy.lunchplacepicker.service.menu.MenuService;
 import com.olexiy.lunchplacepicker.service.restaurant.RestaurantService;
 import com.olexiy.lunchplacepicker.utils.SecurityUtils;
+import com.olexiy.lunchplacepicker.utils.TimeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,9 +52,15 @@ public abstract class AbstractLikeController {
         likeOfMenu.setCreationDateTime(LocalDateTime.now());
 
         LikeOfMenu likeOfMenuExist = likeOfMenuService.getByUserIDAndAndMenuId(likeOfMenu.getUserID(), likeOfMenu.getMenu().getId());
-        if (likeOfMenuExist != null) {
+        if (likeOfMenuExist != null && TimeUtils.isLikeTimeBetweenExclusive(likeOfMenu.getCreationDateTime())) {
             likeOfMenuService.deleteById(likeOfMenuExist.getId());
             log.info("deleted LIKE for menu {} ", menuID);
+        }
+        if (likeOfMenu != null && !TimeUtils.isLikeTimeBetweenExclusive(likeOfMenu.getCreationDateTime())) {
+             /*In order to trigger an exception for informing a user that it is too late to change the mind (to remove Like)
+             we try to save the existing Like, it will trigger the ConstraintViolationException (DataIntegrityViolationException)
+             handled by GlobalExceptionHandler class. */
+            likeOfMenuService.save(likeOfMenu);
         } else {
             log.info("created LIKE for menu {} ", menuID);
             likeOfMenuService.save(likeOfMenu);
@@ -66,9 +73,16 @@ public abstract class AbstractLikeController {
         likeOfRestaurant.setCreationDateTime(LocalDateTime.now());
 
         LikeOfRestaurant likeOfRestaurantExist = likeOfRestaurantService.getByUserIDAndRestaurantId(likeOfRestaurant.getUserID(), likeOfRestaurant.getRestaurant().getId());
-        if (likeOfRestaurantExist != null) {
+        if (likeOfRestaurantExist != null && TimeUtils.isLikeTimeBetweenExclusive(likeOfRestaurant.getCreationDateTime())) {
             likeOfRestaurantService.deleteById(likeOfRestaurantExist.getId());
             log.info("deleted LIKE for restaurant {} ", restaurantID);
+            return;
+        }
+        if (likeOfRestaurantExist != null && !TimeUtils.isLikeTimeBetweenExclusive(likeOfRestaurant.getCreationDateTime())) {
+             /*In order to trigger an exception for informing a user that it is too late to change the mind (to remove Like)
+             we try to save the existing Like, it will trigger the ConstraintViolationException (DataIntegrityViolationException)
+             handled by GlobalExceptionHandler class. */
+            likeOfRestaurantService.save(likeOfRestaurant);
         } else {
             log.info("created LIKE for restaurant {} ", restaurantID);
             likeOfRestaurantService.save(likeOfRestaurant);

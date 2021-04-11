@@ -43,7 +43,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().accessDeniedPage("/accessDenied");
     }
     //TODO
-    // добавить сортировку по количеству лайков (дроп-даун на странице)
     // доделать валидацию введенных данных
     // При вводе нового меню сделать так, чтобы считывались переводы строки, а то меню вводится одной строкой
     // Добавить загрузку картинок
