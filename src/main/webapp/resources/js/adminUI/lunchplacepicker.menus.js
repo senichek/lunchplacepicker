@@ -75,8 +75,13 @@ function saveMenu(menu) {
         url: menuUrl + restaurantID,
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(menu)
-    }).done(function () {
+    }).done(function (a, b, text) {
+        if (text.responseText != "") {
+            failNoty(text.responseText);
+            return;
+        }
         table.ajax.reload();
+        document.getElementById("menuForm").reset();
         $("#menuModal").modal("hide");
     });
 }
@@ -84,7 +89,6 @@ function saveMenu(menu) {
 $('#saveMenuBtn').on('click', function () {
     var menu = convertMenuFormToObject();
     saveMenu(menu);
-    document.getElementById("menuForm").reset();
 });
 
 function convertMenuFormToObject() {

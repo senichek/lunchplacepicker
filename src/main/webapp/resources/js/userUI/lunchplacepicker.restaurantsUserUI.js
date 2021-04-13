@@ -80,8 +80,13 @@ function saveRestaurant(restaurant) {
         url: restaurantUrl,
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(restaurant)
-    }).done(function () {
+    }).done(function (a, b, text) {
+        if (text.responseText != "") {
+            failNoty(text.responseText);
+            return;
+        }
         table.ajax.reload();
+        document.getElementById("restaurantForm").reset();
         $("#restaurantModal").modal("hide");
     });
 }
@@ -89,7 +94,6 @@ function saveRestaurant(restaurant) {
 $('#saveRestaurantBtn').on('click', function () {
     var restaurant = convertRestaurantFormToObject();
     saveRestaurant(restaurant);
-    document.getElementById("restaurantForm").reset();
 });
 
 function convertRestaurantFormToObject() {

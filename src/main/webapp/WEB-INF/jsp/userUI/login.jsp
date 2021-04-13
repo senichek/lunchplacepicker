@@ -11,6 +11,8 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="webjars/noty/3.1.4/lib/noty.css"/>
+    <script type="text/javascript" src="webjars/noty/3.1.4/lib/noty.min.js" defer></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/luncplacepicker.common.js" defer></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/userUI/lunchplacepicker.logInOnClick.js" defer></script>

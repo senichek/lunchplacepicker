@@ -93,10 +93,9 @@ $('#saveUserBtn').on('click', function () {
     var user = convertUserFormToObject();
     if (!document.getElementById('role_user').checked
         && (!document.getElementById('role_admin').checked)) {
-        alert("Choose at least one role")
+        failNoty("[Choose at least one role]")
     } else {
         saveUser(user);
-        //document.getElementById("userForm").reset();
     }
 });
 

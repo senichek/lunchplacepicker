@@ -11,7 +11,9 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="webjars/noty/3.1.4/lib/noty.css"/>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="webjars/noty/3.1.4/lib/noty.min.js" defer></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/userUI/lunchplacepicker.userRegistration.js" defer></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/luncplacepicker.common.js" defer></script>
 
@@ -20,75 +22,32 @@
 
 </head>
 <body>
-<br>
-
-
-<body>
-<div class="container">
-    <form class="form-signin" id="signUpForm" method="post" action="/lunchplacepicker/register">
-        <h2 class="form-signin-heading">Please sign up</h2>
-        <p>
-            <label for="username" class="sr-only">Username</label>
-            <input type="text" id="userName" name="username" class="form-control" placeholder="Username" required autofocus>
-        </p>
-        <p>
-            <label for="userEmail" class="sr-only">Username</label>
-            <input type="text" id="userEmail" name="email" class="form-control" placeholder="Email" required autofocus>
-        </p>
-        <p>
-            <label for="userPassword" class="sr-only">Password</label>
-            <input type="password" id="userPassword" name="password" class="form-control" placeholder="Password" required>
-        </p>
-        <p>
-            <label for="userPasswordConfirmation" class="sr-only">Password</label>
-            <input type="password" id="userPasswordConfirmation" name="password" class="form-control" placeholder="Confirm Password" required>
-        </p>
-        <button class="btn btn-lg btn-primary btn-block" id="registerBtn" type="submit">Sign Up</button>
-    </form>
-</div>
-</body>
-
-
-
-
-<%--<div class="row centered-form">
-    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title text-center"> <b>Please Sign Up</b> </h3>
-            </div>
-            <div class="panel-body">
-                <form role="form">
-
-                    <div class="form-group">
-                        <input type="text" name="name" id="userName" class="form-control input-sm"
-                               placeholder="Username">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" id="userEmail" class="form-control input-sm"
-                               placeholder="Email Address">
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <input type="password" name="password" id="userPassword" class="form-control input-sm"
-                                       placeholder="Password">
-                            </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <input type="password" name="password_confirmation" id="userPassword_confirmation"
-                                       class="form-control input-sm" placeholder="Confirm Password">
-                            </div>
-                        </div>
-                    </div>
-
-                    <input type="submit" id="registerBtn" value="Register" class="btn btn-info btn-block">
-                </form>
-            </div>
-        </div>
-    </div>
-</div>--%>
+<form class="form-signin" id="signUpForm">
+    <h2 class="form-signin-heading">Please sign up</h2>
+    <p>
+        <label for="username" class="sr-only">Username</label>
+        <input type="text" id="userName" name="username" class="form-control"
+               placeholder="Username" required autofocus>
+    </p>
+    <p>
+        <label for="userEmail" class="sr-only">Useremail</label>
+        <input type="text" id="userEmail" name="email" class="form-control"
+               placeholder="Email" required autofocus>
+    </p>
+    <p>
+        <label for="userPassword" class="sr-only">Password</label>
+        <input type="password" id="userPassword" name="password" class="form-control"
+               placeholder="Password" required>
+    </p>
+    <p>
+        <label for="userPasswordConfirmation" class="sr-only">Password</label>
+        <input type="password" id="userPasswordConfirmation" name="password" class="form-control"
+               placeholder="Confirm Password" required>
+    </p>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <button class="btn btn-lg btn-primary btn-block" type="button" id="registerBtn">Sign Up</button>
+    <%--By assigning the button <type="button"> we override the standard button behavior in the <form>
+    and preventing the form from reloading when the button is clicked.--%>
+</form>
 </body>
 </html>

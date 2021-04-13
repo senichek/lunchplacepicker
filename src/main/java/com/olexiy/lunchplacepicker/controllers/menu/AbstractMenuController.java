@@ -4,6 +4,7 @@ import com.olexiy.lunchplacepicker.models.Menu;
 import com.olexiy.lunchplacepicker.models.Restaurant;
 import com.olexiy.lunchplacepicker.service.menu.MenuService;
 import com.olexiy.lunchplacepicker.service.restaurant.RestaurantService;
+import com.olexiy.lunchplacepicker.utils.CustomValidator;
 import com.olexiy.lunchplacepicker.utils.exceptions.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,6 +48,8 @@ public abstract class AbstractMenuController {
             }
             // the date doesn't come from the form, it is set up by default
             menu.setCreationDateTime(LocalDateTime.now());
+
+            CustomValidator.validate(menu);
             menu = menuService.save(menu);
             log.info("created {}", menu);
         } else {

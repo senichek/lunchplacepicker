@@ -57,8 +57,8 @@ public abstract class AbstractUserController {
             /*The failed validation triggers an exception. The methods marked by @ExceptionHandler will
             handle the exception, see GlobalExceptionHandler class.*/
             CustomValidator.validate(user);
-            log.info("created {}", user);
             userService.save(user);
+            log.info("created {}", user);
         } else {
             User toUpdate = userService.getByID(user.getId());
             if (toUpdate == null) {

@@ -79,14 +79,19 @@ $('#allUsers').on('click', function () {
     window.location.href = "admin/users";
 });
 
-function saveRestaurant(user) {
+function saveRestaurant(restaurant) {
     $.ajax({
         type: "POST",
         url: restaurantUrl,
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify(user)
-    }).done(function () {
+        data: JSON.stringify(restaurant)
+    }).done(function (a, b, text) {
+        if (text.responseText != "") {
+            failNoty(text.responseText);
+            return;
+        }
         table.ajax.reload();
+        document.getElementById("restaurantForm").reset();
         $("#restaurantModal").modal("hide");
     });
 }
@@ -94,7 +99,6 @@ function saveRestaurant(user) {
 $('#saveRestaurantBtn').on('click', function () {
     var restaurant = convertRestaurantFormToObject();
     saveRestaurant(restaurant);
-    document.getElementById("restaurantForm").reset();
 });
 
 function convertRestaurantFormToObject() {

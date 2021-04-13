@@ -4,6 +4,7 @@ import com.olexiy.lunchplacepicker.models.Restaurant;
 import com.olexiy.lunchplacepicker.models.User;
 import com.olexiy.lunchplacepicker.service.restaurant.RestaurantService;
 import com.olexiy.lunchplacepicker.service.user.UserService;
+import com.olexiy.lunchplacepicker.utils.CustomValidator;
 import com.olexiy.lunchplacepicker.utils.SecurityUtils;
 import com.olexiy.lunchplacepicker.utils.exceptions.NotFoundException;
 import org.slf4j.Logger;
@@ -64,7 +65,11 @@ public abstract class AbstractRestaurantController {
             }
             // the date doesn't come from the form, it is set up by default
             restaurant.setRegisterDateTime(LocalDateTime.now());
-            restaurant = restaurantService.save(restaurant);
+
+            /*The failed validation triggers an exception. The methods marked by @ExceptionHandler will
+            handle the exception, see GlobalExceptionHandler class.*/
+            CustomValidator.validate(restaurant);
+            restaurantService.save(restaurant);
             log.info("created {}", restaurant);
         } else {
             Restaurant toUpdate = restaurantService.getByID(restaurant.getId());

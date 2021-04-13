@@ -22,7 +22,6 @@ function saveLike(like, entityID, URL) {
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(like)
     }).done(function (text) {
-        debugger;
         if (text != "") {
             failNoty(text);
         }

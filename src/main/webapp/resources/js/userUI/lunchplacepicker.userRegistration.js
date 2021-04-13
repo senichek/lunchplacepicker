@@ -6,24 +6,20 @@ function convertUserRegFormToObject() {
         email: document.getElementById("userEmail").value,
         password: document.getElementById("userPassword").value
     };
-
-    debugger;
     if (document.getElementById("userPassword").value == document.getElementById("userPasswordConfirmation").value) {
         return user;
     } else {
-        alert("Passwords don't match");
+        failNoty("[Passwords don't match]")
+        return null;
     }
 }
 
 $('#registerBtn').on('click', function () {
     var user = convertUserRegFormToObject();
     if (user == null) {
-        $("#signUpForm").submit(function(event) {
-            event.preventDefault(); // Preventing the form submission if the data (e.g. passwords do not match) is incorrect
-        });
+        return;
     } else {
         saveUser(user);
-        window.open("restaurants");
     }
 });
 
@@ -33,7 +29,11 @@ function saveUser(user) {
         url: registerUrl,
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(user)
-    }).done(function () {
-        alert("Success");
+    }).done(function (a, b, text) {
+        if (text.responseText != "") {
+            failNoty(text.responseText);
+            return;
+        }
+        window.location.replace("restaurants")
     });
 }

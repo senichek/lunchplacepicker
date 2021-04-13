@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
         String errorMessage = "";
         List<String> errors = new ArrayList<>();
         for (ConstraintViolation c : constraintViolations) {
-            errorMessage = c.getPropertyPath().toString() + " " + c.getMessage();
+            errorMessage = "[" + c.getPropertyPath().toString() + " - " + c.getMessage() + "]";
             errors.add(errorMessage);
         }
         log.info(errors.toString());
