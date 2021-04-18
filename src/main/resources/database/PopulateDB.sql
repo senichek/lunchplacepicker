@@ -32,13 +32,6 @@ VALUES (100002, '2020-03-30 12:00:00', 'French Lunch Menu'),
 
 INSERT INTO likes_of_menu (menu_id, user_id)
 VALUES (100010, 100000),
-       (100011, 100000),
-       (100012, 100000),
-       (100013, 100000),
-       (100014, 100001),
-       (100015, 100000),
-       (100015, 100001),
-       (100016, 100001),
        (100017, 100001);
 
 INSERT INTO likes_of_restaurant (rest_id, user_id)

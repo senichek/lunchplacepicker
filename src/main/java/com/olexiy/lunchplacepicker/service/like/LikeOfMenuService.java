@@ -15,4 +15,6 @@ public interface LikeOfMenuService {
     List<LikeOfMenu> getAllByMenuID(int id);
 
     LikeOfMenu getByUserIDAndAndMenuId(int userID, int menuID);
+
+    LikeOfMenu getByUserId(Integer id);
 }

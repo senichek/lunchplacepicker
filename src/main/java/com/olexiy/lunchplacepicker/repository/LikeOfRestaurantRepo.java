@@ -18,4 +18,6 @@ public interface LikeOfRestaurantRepo extends JpaRepository<LikeOfRestaurant, In
     List<LikeOfRestaurant> getAllByRestaurantId(int id);
 
     LikeOfRestaurant getByUserIDAndRestaurantId(int userID, int restaurantID);
+
+    LikeOfRestaurant getByUserID(Integer id);
 }

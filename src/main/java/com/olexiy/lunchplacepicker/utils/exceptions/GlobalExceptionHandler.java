@@ -2,7 +2,6 @@ package com.olexiy.lunchplacepicker.utils.exceptions;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,7 +18,7 @@ public class GlobalExceptionHandler {
 
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(ConstraintViolationException.class)
     public ModelAndView defaultErrorHandler(HttpServletRequest req, ConstraintViolationException cEx) throws Exception {
         Set<ConstraintViolation<?>> constraintViolations = cEx.getConstraintViolations();
         String errorMessage = "";
@@ -33,19 +32,12 @@ public class GlobalExceptionHandler {
         return logAndGetExceptionView(errors);
     }
 
-    @ExceptionHandler(DataIntegrityViolationException.class)
-    public ModelAndView dataIntegrityHandler(Exception e) throws Exception {
+    @ExceptionHandler(TooLateToVoteException.class)
+    public ModelAndView VoteErrorHandler(Exception ex) throws Exception {
         List<String> errors = new ArrayList<>();
-        if (e.getMessage().contains("unique_userlike_per_restaurant_idx") || e.getMessage().contains("unique_userlike_per_menu_idx")) {
-            errors.add("Too late. You can remove your vote only before 11:00 AM");
-            log.info(errors.toString());
-            return logAndGetExceptionView(errors);
-        }
-        else {
-            errors.add(e.getLocalizedMessage());
-            log.info(errors.toString());
-            return logAndGetExceptionView(errors);
-        }
+        errors.add(ex.getMessage());
+        log.info(errors.toString());
+        return logAndGetExceptionView(errors);
     }
 
     private ModelAndView logAndGetExceptionView(List<String> errors) {

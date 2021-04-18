@@ -38,4 +38,9 @@ public class LikeOfMenuServiceImpl implements LikeOfMenuService {
     public LikeOfMenu getByUserIDAndAndMenuId(int userID, int menuID) {
         return likeOfMenuRepo.getByUserIDAndAndMenuId(userID, menuID);
     }
+
+    @Override
+    public LikeOfMenu getByUserId(Integer id) {
+        return likeOfMenuRepo.getByUserID(id);
+    }
 }

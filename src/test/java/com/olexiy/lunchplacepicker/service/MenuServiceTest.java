@@ -39,6 +39,5 @@ class MenuServiceTest extends AbstractServiceTest {
 
     @Test
     void getAllWithLikes() {
-
     }
 }

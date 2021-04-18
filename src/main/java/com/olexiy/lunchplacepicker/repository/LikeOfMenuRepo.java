@@ -17,4 +17,6 @@ public interface LikeOfMenuRepo extends JpaRepository<LikeOfMenu, Integer> {
     List<LikeOfMenu> getAllByMenu_Id(int id);
 
     LikeOfMenu getByUserIDAndAndMenuId(int userID, int menuID);
+
+    LikeOfMenu getByUserID(Integer id);
 }

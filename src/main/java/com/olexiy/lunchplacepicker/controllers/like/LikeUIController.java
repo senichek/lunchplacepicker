@@ -35,25 +35,7 @@ public class LikeUIController extends AbstractLikeController {
 
     @PostMapping(value = "/restaurant/{restaurantID}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
-    public void saveLikeOfRestaurant(@RequestBody LikeOfRestaurant likeOfRestaurant, @PathVariable("restaurantID") Integer id) {
+    public void saveLikeOfRestaurant(@RequestBody LikeOfRestaurant likeOfRestaurant, @PathVariable("restaurantID") Integer id) throws Exception {
         super.saveLikeOfRestaurant(likeOfRestaurant, id);
     }
-
-    /*@GetMapping(value = "/likes/{id}")
-    public List<Menu> getAllByRestIDWithLikes(@PathVariable("id") Integer id) {
-        return super.getMenusByRestaurantIdWithLikes(id);
-    }
-
-    @PostMapping(value = "/{restId}/{menuId}/", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @Transactional
-    public void save(@RequestBody Menu menu) {
-        super.save(menu);
-    }
-
-    @DeleteMapping("/likes/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @Transactional
-    public void delete(@PathVariable("id") Integer id) {
-        super.delete(id);
-    }*/
 }

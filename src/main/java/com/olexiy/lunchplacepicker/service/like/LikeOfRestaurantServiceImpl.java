@@ -39,4 +39,10 @@ public class LikeOfRestaurantServiceImpl implements LikeOfRestaurantService {
     public LikeOfRestaurant getByUserIDAndRestaurantId(int userID, int restaurantID) {
         return likeOfRestaurantRepo.getByUserIDAndRestaurantId(userID, restaurantID);
     }
+
+    @Override
+    public LikeOfRestaurant getByUserId(Integer id) {
+        return likeOfRestaurantRepo.getByUserID(id);
+    }
+
 }

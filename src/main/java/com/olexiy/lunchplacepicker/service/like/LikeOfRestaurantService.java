@@ -15,4 +15,6 @@ public interface LikeOfRestaurantService {
     List<LikeOfRestaurant> getAllByRestaurantID(int id);
 
     LikeOfRestaurant getByUserIDAndRestaurantId(int userID, int restaurantID);
+
+    LikeOfRestaurant getByUserId(Integer id);
 }
