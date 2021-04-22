@@ -37,6 +37,9 @@ public class Restaurant extends AbstractBaseEntity {
     @Size(min = 2, max = 1000)
     private String description;
 
+    @Column(name = "img_url", nullable = false)
+    private String imgUrl;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonManagedReference(value = "restaurant")
@@ -54,12 +57,13 @@ public class Restaurant extends AbstractBaseEntity {
     @JsonManagedReference(value = "restaurant")
     private List<LikeOfRestaurant> likesOfRestaurant;
 
-    public Restaurant(Integer id, String name, String address, String description, LocalDateTime registerDateTime) {
+    public Restaurant(Integer id, String name, String address, String description, LocalDateTime registerDateTime, String imgUrl) {
         super(id);
         this.name = name;
         this.address = address;
         this.description = description;
         this.registerDateTime = registerDateTime;
+        this.imgUrl = imgUrl;
     }
 
     public Restaurant() {
@@ -123,6 +127,14 @@ public class Restaurant extends AbstractBaseEntity {
 
     public int getTotalLikes() {
         return this.likesOfRestaurant.size();
+    }
+
+    public String getImageUrl() {
+        return imgUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imgUrl = imageUrl;
     }
 
     @Override

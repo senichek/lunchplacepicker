@@ -38,10 +38,14 @@ public class Menu extends AbstractBaseEntity {
     @NotNull
     private Restaurant restaurant;
 
-    public Menu(Integer id, LocalDateTime creationDateTime, String description) {
+    @Column(name = "img_url", nullable = false)
+    private String imgUrl;
+
+    public Menu(Integer id, LocalDateTime creationDateTime, String description, String imgUrl) {
         super(id);
         this.creationDateTime = creationDateTime;
         this.description = description;
+        this.imgUrl = imgUrl;
     }
 
     public Menu() {
@@ -81,6 +85,14 @@ public class Menu extends AbstractBaseEntity {
 
     public int getTotalLikes() {
         return this.likesOfMenu.size();
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     @Override

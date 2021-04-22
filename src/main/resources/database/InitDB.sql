@@ -30,38 +30,40 @@ CREATE TABLE restaurants
 (
     id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     name          VARCHAR                           NOT NULL,
-    rest_admin_id      INTEGER                           NOT NULL,
+    rest_admin_id INTEGER                           NOT NULL,
     address       VARCHAR                           NOT NULL,
     description   VARCHAR                           NOT NULL,
     register_date TIMESTAMP           DEFAULT now() NOT NULL,
+    img_url        VARCHAR,
     FOREIGN KEY (rest_admin_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
 CREATE TABLE menus
 (
-    id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    rest_id     INTEGER   NOT NULL,
-    creation_date   TIMESTAMP NOT NULL,
-    description TEXT      NOT NULL,
+    id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    rest_id       INTEGER   NOT NULL,
+    creation_date TIMESTAMP NOT NULL,
+    description   TEXT      NOT NULL,
+    img_url        VARCHAR,
     FOREIGN KEY (rest_id) REFERENCES restaurants (id) ON DELETE CASCADE
 );
 
 CREATE TABLE likes_of_menu
 (
-    id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    menu_id     INTEGER   NOT NULL,
-    user_id    INT       NOT NULL,
-    creation_date   TIMESTAMP DEFAULT now() NOT NULL,
+    id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    menu_id       INTEGER                           NOT NULL,
+    user_id       INT                               NOT NULL,
+    creation_date TIMESTAMP           DEFAULT now() NOT NULL,
     FOREIGN KEY (menu_id) REFERENCES menus (id) ON DELETE CASCADE
 );
 CREATE UNIQUE INDEX unique_userLike_per_menu_idx ON likes_of_menu (user_id, menu_id);
 
 CREATE TABLE likes_of_restaurant
 (
-    id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    rest_id     INTEGER   NOT NULL,
-    user_id    INT       NOT NULL,
-    creation_date   TIMESTAMP DEFAULT now() NOT NULL,
+    id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    rest_id       INTEGER                           NOT NULL,
+    user_id       INT                               NOT NULL,
+    creation_date TIMESTAMP           DEFAULT now() NOT NULL,
     FOREIGN KEY (rest_id) REFERENCES restaurants (id) ON DELETE CASCADE
 );
 CREATE UNIQUE INDEX unique_userLike_per_restaurant_idx ON likes_of_restaurant (user_id, rest_id);

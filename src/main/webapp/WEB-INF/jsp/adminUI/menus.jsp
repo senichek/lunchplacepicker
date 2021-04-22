@@ -61,9 +61,11 @@
                         <form id="menuForm">
                             <input type="hidden" id="menuId" name="id">
                             <div class="form-group">
-                                <%--<label for="menuDescription">Description:</label>--%>
+                                <label for="menuImg">Image link (if you leave it empty a placeholder will be used):</label>
+                                <input type="text" class="form-control" , style="width: 35%" id="menuImg" placeholder="https://..." name="image">
+                            </div>
+                            <div class="form-group">
                                 <textarea class="form-control col-xs-12" rows="6" style="width: 35%" id="menuDescription" name="description"></textarea>
-                            <%--<input type="text" class="form-control" , style="width: 35%" id="menuDescription" name="description">--%>
                             </div>
                         </form>
                     </div>

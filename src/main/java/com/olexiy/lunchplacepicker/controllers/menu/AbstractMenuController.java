@@ -58,6 +58,9 @@ public abstract class AbstractMenuController {
             if (toUpdate == null) {
                 throw new NotFoundException(String.format("Entity with id %s does not exist;", menu.getId()));
             } else {
+                if (!toUpdate.getImgUrl().equals(menu.getImgUrl())) {
+                    toUpdate.setImgUrl(menu.getImgUrl());
+                }
                 if (!toUpdate.getDescription().equals(menu.getDescription())) {
                     toUpdate.setDescription(menu.getDescription());
                 }

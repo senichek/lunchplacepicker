@@ -28,8 +28,8 @@ var table = $('#menus_table').DataTable({
 
 let tableRowData;
 $('#menus_table tbody').on('click', '.update', function () {
-    tableRowData = table.row($(this).parents('tr')).data();
-    showMenuUpdateForm(tableRowData);
+    let data = tableRowData = table.row($(this).parents('tr')).data();
+    showMenuUpdateForm(data);
 });
 
 $('#menus_table tbody').on('click', '.delete', function () {
@@ -41,6 +41,7 @@ $('#addNewMenuBtn').on('click', function () {
     $('#menuModal').modal('show');
     // Id of the restaurant's (userId) owner is taken from URL
     document.getElementById("menuId").setAttribute('value', "");
+    document.getElementById("menuImg").setAttribute('value', "");
     document.getElementById("menuDescription").setAttribute('value', "");
 });
 
@@ -53,12 +54,13 @@ function deleteRow(id) {
     });
 }
 
-function showMenuUpdateForm(tableRowData) {
+function showMenuUpdateForm(data) {
     $('#menuModal').modal('show');
     // Pre-fill the form input fields by current user values;
-    document.getElementById("menuId").setAttribute('value', tableRowData.id);
+    document.getElementById("menuId").setAttribute('value', data.id);
+    document.getElementById("menuImg").setAttribute('value', data.imgUrl);
    // In order to pre-fill <textarea> we do not use .setAttribute();
-    document.getElementById('menuDescription').value = tableRowData.description;
+    document.getElementById('menuDescription').value = data.description;
 }
 
 $('#allRestaurants').on('click', function () {
@@ -90,6 +92,7 @@ $('#saveMenuBtn').on('click', function () {
 function convertMenuFormToObject() {
     var menu = {
         id: document.getElementById("menuId").value,
+        imgUrl: document.getElementById("menuImg").value,
         description: document.getElementById("menuDescription").value
     };
     return menu;

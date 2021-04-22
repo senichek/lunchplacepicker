@@ -1,4 +1,4 @@
-var imgSource = "resources/images/placeholder_restaurant_pic.jpg";
+var placeholderImg = "resources/images/placeholder_restaurant_pic.jpg";
 
 var URL = window.location.href; // return full URL with params
 
@@ -9,7 +9,10 @@ $.ajax({
     success: function (data, textStatus, jqXHR) {
         var likes = "Total likes: ";
         for (var i = 0; i < data.length; i++) {
-            renderHTMLCardsRestaurant(data[i].id, data[i].name, data[i].description, data[i].address, likes + data[i].likesOfRestaurant.length, imgSource);
+            if (data[i].imgUrl == "") {
+                data[i].imgUrl = placeholderImg;
+            }
+            renderHTMLCardsRestaurant(data[i].id, data[i].name, data[i].description, data[i].address, likes + data[i].likesOfRestaurant.length, data[i].imgUrl);
         }
     },
     error: function (a, b, c) {

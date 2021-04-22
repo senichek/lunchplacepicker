@@ -86,6 +86,9 @@ public abstract class AbstractRestaurantController {
                 if (!toUpdate.getDescription().equals(restaurant.getDescription())) {
                     toUpdate.setDescription(restaurant.getDescription());
                 }
+                if (!toUpdate.getImageUrl().equals(restaurant.getImageUrl())) {
+                    toUpdate.setImageUrl(restaurant.getImageUrl());
+                }
                 log.info("updated {}", toUpdate);
                 restaurantService.save(toUpdate);
             }

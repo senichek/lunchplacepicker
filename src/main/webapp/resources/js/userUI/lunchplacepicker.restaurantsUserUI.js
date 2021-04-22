@@ -54,6 +54,7 @@ $('#addNewRestBtn').on('click', function () {
     document.getElementById("restaurantName").setAttribute('value', "");
     document.getElementById("restaurantAddress").setAttribute('value', "");
     document.getElementById("restaurantDescription").setAttribute('value', "");
+    document.getElementById("restaurantImg").setAttribute('value', "");
 });
 
 function deleteRow(id) {
@@ -72,6 +73,7 @@ function showRestaurantUpdateForm(data) {
     document.getElementById("restaurantName").setAttribute('value', data.name);
     document.getElementById("restaurantAddress").setAttribute('value', data.address);
     document.getElementById("restaurantDescription").setAttribute('value', data.description);
+    document.getElementById("restaurantImg").setAttribute('value', data.imgUrl);
 }
 
 function saveRestaurant(restaurant) {
@@ -102,6 +104,7 @@ function convertRestaurantFormToObject() {
         name: document.getElementById("restaurantName").value,
         address: document.getElementById("restaurantAddress").value,
         description: document.getElementById("restaurantDescription").value,
+        imgUrl: document.getElementById("restaurantImg").value
     };
     return restaurant;
 }

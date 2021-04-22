@@ -1,4 +1,4 @@
-var imgSource = "resources/images/placeholder_menu_pic.jpg";
+var placeholderImg = "resources/images/placeholder_menu_pic.jpg";
 
 var URL = window.location.href; // return full URL with params
 
@@ -9,7 +9,10 @@ $.ajax({
     success: function (data, textStatus, jqXHR) {
         var likes = "Total likes: ";
         for (var i = 0; i < data.length; i++) {
-            renderHTMLCardsMenus(data[i].id, data[i].description, likes + data[i].likesOfMenu.length, imgSource);
+            if (data[i].imgUrl == "") {
+                data[i].imgUrl = placeholderImg;
+            }
+            renderHTMLCardsMenus(data[i].id, data[i].description, likes + data[i].likesOfMenu.length, data[i].imgUrl);
         }
     },
     error: function (a, b, c) {
@@ -92,7 +95,6 @@ function updateLikesCounter() {
         dataType: 'json',
         success: function (data, textStatus, jqXHR) {
             var likes = "Total likes: ";
-            debugger;
             for (var i = 0; i < data.length; i++) {
                 document.getElementById(data[i].id).innerHTML = likes + data[i].likesOfMenu.length;
             }

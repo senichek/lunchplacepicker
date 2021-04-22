@@ -77,6 +77,10 @@
                                 <label for="restaurantDescription">Description:</label>
                                 <input type="text" class="form-control" , style="width: 35%" id="restaurantDescription" name="description">
                             </div>
+                            <div class="form-group">
+                                <label for="restaurantImg">Image link (if you leave it empty a placeholder will be used):</label>
+                                <input type="text" class="form-control" , style="width: 35%" id="restaurantImg" placeholder="https://..." name="image">
+                            </div>
                         </form>
                     </div>
                     <%--RESTAURANT FORM END--%>

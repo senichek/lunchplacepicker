@@ -43,10 +43,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().accessDeniedPage("/accessDenied");
     }
     //TODO
-    // переделать лайки, пользователь может поставить только один уникальный лайк (один лайк ресторану и один меню)
     // При вводе нового меню сделать так, чтобы считывались переводы строки, а то меню вводится одной строкой
-    // Добавить загрузку картинок
-    // Добавить генератор меню
+    // Доделать REST
 
     @Bean
     DaoAuthenticationProvider authenticationProvider () {
