@@ -13,16 +13,16 @@ import java.util.List;
 public class UserMenuUIController extends AbstractMenuController {
 
     // unused in UI
-    /*@GetMapping(value = "/")
+    @GetMapping(value = "/")
     public List<Menu> getAll() {
         return super.getAll();
-    }*/
+    }
 
     // unused in UI
-    /*@GetMapping(value = "/likes")
+    @GetMapping(value = "/likes")
     public List<Menu> getAllWithLikes() {
         return super.getAllWithLikes();
-    }*/
+    }
 
     @GetMapping(value = "/{id}")
     public Menu getByID(@PathVariable("id") Integer id) {

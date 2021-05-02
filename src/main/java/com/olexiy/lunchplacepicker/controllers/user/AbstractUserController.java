@@ -36,8 +36,13 @@ public abstract class AbstractUserController {
     }
 
     public User getByID(Integer id) {
-        log.info("get user with id {}", id);
-        return userService.getByID(id);
+        User user = userService.getByID(id);
+        if (user != null) {
+            log.info("get user with id {}", id);
+            return userService.getByID(id);
+        } else {
+            throw new NotFoundException(String.format("Entity with id %s does not exist;", id));
+        }
     }
 
     public void save(User user) {

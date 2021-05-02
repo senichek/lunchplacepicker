@@ -29,22 +29,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/restaurants", "/menus", "/register").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/profile/**", "/likes").authenticated()
+                .antMatchers("/admin/**", "/rest/admin/**").hasRole("ADMIN")
+                .antMatchers("/profile/**", "/likes", "/rest/profile/**").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login") //custom login page, login view must be also returned by controller
                 .permitAll()
                 .and()
-                //.csrf().disable()
+                .csrf().ignoringAntMatchers("/rest/**")
+                .and()
                 .logout()
                 .permitAll()
                 .and()
-                .exceptionHandling().accessDeniedPage("/accessDenied");
+                .exceptionHandling().accessDeniedPage("/accessDenied")
+                .and()
+                .httpBasic();
     }
     //TODO
-    // При вводе нового меню сделать так, чтобы считывались переводы строки, а то меню вводится одной строкой
     // Доделать REST
+    // Доделать тесты
+    // Добавить обработку дубликата пользователя при регистрации
+    // Доделать тестовый абстрактный класс AbstractControllerTest, вынести в него дублирующееся
 
     @Bean
     DaoAuthenticationProvider authenticationProvider () {

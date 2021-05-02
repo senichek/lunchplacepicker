@@ -64,4 +64,9 @@ public class RootController {
         String index = "index";
         return index;
     }
+
+    @GetMapping(value = "/api-doc")
+    public String showApiDocs(){
+        return "api-doc";
+    }
 }

@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping(value = "/rest/admin/users", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdminRestController extends AbstractUserController {
 
-    @GetMapping(value = "/")
+    @GetMapping
     public List<User> getAll() {
         return super.getAll();
     }

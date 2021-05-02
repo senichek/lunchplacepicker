@@ -28,7 +28,7 @@
     <button class='addMenu' id="addNewMenuBtn" style="offset-after: auto">Add Menu</button>
     <br>
     <br>
-    <table id='menus_table' class="display">
+    <table id='menus_table' class="display" style="white-space: pre-line">  <%--"white-space: pre-line" preserves line breaks--%>
         <thead>
         <tr>
             <th>Menu ID</th>

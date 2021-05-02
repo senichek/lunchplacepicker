@@ -34,8 +34,13 @@ public abstract class AbstractMenuController {
     }
 
     public Menu getByID(Integer id) {
-        log.info("get menu with id {}", id);
-        return menuService.getByID(id);
+        Menu menu = menuService.getByID(id);
+        if (menu != null) {
+            log.info("get menu with id {}", id);
+            return menuService.getByID(id);
+        } else {
+            throw new NotFoundException(String.format("Entity with id %s does not exist;", id));
+        }
     }
 
     public void save(Menu menu, Integer userID) {
@@ -76,8 +81,13 @@ public abstract class AbstractMenuController {
     }
 
     public List<Menu> getAllMenusByRestaurantId(Integer id) {
-        log.info("get all menus of restaurant {}", id);
-        return menuService.getAllByRestaurantId(id);
+        List<Menu> menus = menuService.getAllByRestaurantId(id);
+        if (menus.size() != 0) {
+            log.info("get all menus of restaurant {}", id);
+            return menuService.getAllByRestaurantId(id);
+        } else {
+            throw new NotFoundException(String.format("Entity with id %s does not exist;", id));
+        }
     }
 
     public List<Menu> getAllMenusByRestaurantIdWithLikes(Integer id) {

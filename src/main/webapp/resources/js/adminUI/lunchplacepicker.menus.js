@@ -94,6 +94,7 @@ $('#saveMenuBtn').on('click', function () {
 });
 
 function convertMenuFormToObject() {
+    $('#menuDescription').css('whiteSpace', 'pre-wrap'); // preserve linebreaks
     var menu = {
         id: document.getElementById("menuId").value,
         imgUrl: document.getElementById("menuImg").value,

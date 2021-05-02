@@ -84,10 +84,12 @@ function renderHTMLCardsRestaurant(id, name, description, address, likes, imgSou
             dataType: 'json',
             success: function (data, textStatus, jqXHR) {
                 // There can be many menus in 'data' array;
+                debugger;
                 let menuText = data[0].description + '<br>' + '===========' + '<br>';
                 for (let i = 1; i < data.length; i++) {
                     menuText = menuText + data[i].description + '<br>' + '===========' + '<br>';
                 }
+                $('#menuDescription').css('whiteSpace', 'pre-wrap'); // preserve linebreaks
                 $('#menuDescription').html(menuText);
             },
             error: function (a, b, c) {
