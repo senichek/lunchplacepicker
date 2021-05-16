@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "rest/admin/menus", produces = MediaType.APPLICATION_JSON_VALUE)
-public class AdminMenuRestController extends AbstractMenuController {
+@RequestMapping(value = "/rest/profile/menus", produces = MediaType.APPLICATION_JSON_VALUE)
+public class UserMenuRestController extends AbstractMenuController {
 
-    // unused in UI
+    // unused in UI, used only in REST
     @GetMapping(value = "/")
     public List<Menu> getAll() {
         return super.getAll();
     }
 
-    // unused in UI
+    // unused in UI, used only in REST
     @GetMapping(value = "/likes")
     public List<Menu> getAllWithLikes() {
         return super.getAllWithLikes();
@@ -44,12 +44,12 @@ public class AdminMenuRestController extends AbstractMenuController {
     }
 
     @GetMapping(value = "/{id}/all")
-    public List<Menu> getMenusByRestaurantId(@PathVariable("id") Integer id) {
+    public List<Menu> getAllMenusByRestaurantId(@PathVariable("id") Integer id) {
         return super.getAllMenusByRestaurantId(id);
     }
 
     @GetMapping(value = "/{id}/all/likes")
-    public List<Menu> getMenusByRestaurantIdWithLikes(@PathVariable("id") Integer id) {
+    public List<Menu> getAllMenusByRestaurantIdWithLikes(@PathVariable("id") Integer id) {
         return super.getAllMenusByRestaurantIdWithLikes(id);
     }
 }

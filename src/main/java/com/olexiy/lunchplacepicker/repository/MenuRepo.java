@@ -11,7 +11,8 @@ import java.util.List;
 @Repository
 @Transactional(readOnly = true)
 public interface MenuRepo extends JpaRepository<Menu, Integer> {
-    Menu getById(Integer id);
+
+    Menu getMenuById(Integer id);
 
     List<Menu> getAllByRestaurantId(Integer id);
 

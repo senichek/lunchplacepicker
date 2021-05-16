@@ -1,11 +1,288 @@
-= Getting Started With Spring REST Docs
+= Greeting REST Service API Guide
+:sectnums:
+:sectnumlevels: 5
+:toc: left
+:toclevels: 3
+:page-layout: docs
 
-This is an example output for a service running at http://localhost:8080:
+This is an example output for a service running at http://localhost:8080/lunchplacepicker/
+
+== UserProfileRestController
+
+=== Check if a User is logged in
 
 .request
-include::{snippets}/ifLoggedIn/http-request.adoc[]
+include::{snippets}/restControllers/UserProfileRestController/ifLoggedIn/curl-request.adoc[]
 
 .response
-include::{snippets}/ifLoggedIn/http-response.adoc[]
+include::{snippets}/restControllers/UserProfileRestController/ifLoggedIn/http-response.adoc[]
 
-As you can see the format is very simple, and in fact you always get the same message.
+=== Register new User
+
+.request
+include::{snippets}/restControllers/UserProfileRestController/save/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/UserProfileRestController/save/http-response.adoc[]
+
+
+== AdminRestController
+
+=== Get list of all Users
+
+.request
+include::{snippets}/restControllers/AdminRestController/getAll/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/AdminRestController/getAll/http-response.adoc[]
+
+=== Get User by userID
+
+.request
+include::{snippets}/restControllers/AdminRestController/getByID/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/AdminRestController/getByID/http-response.adoc[]
+
+=== Create new User
+
+.request
+include::{snippets}/restControllers/AdminRestController/save/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/AdminRestController/save/http-response.adoc[]
+
+=== Delete User
+
+.request
+include::{snippets}/restControllers/AdminRestController/deleteUser/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/AdminRestController/deleteUser/http-response.adoc[]
+
+
+== UserRestaurantsRestController
+
+=== Create new Restaurant
+
+.request
+include::{snippets}/restControllers/UserRestaurantsRestController/save/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/UserRestaurantsRestController/save/http-response.adoc[]
+
+=== Delete Restaurant
+
+.request
+include::{snippets}/restControllers/UserRestaurantsRestController/delete/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/UserRestaurantsRestController/delete/http-response.adoc[]
+
+=== Get all Restaurants with likes of the logged-in User
+
+.request
+include::{snippets}/restControllers/UserRestaurantsRestController/getRestaurantsOfLoggedInUserWithLikes/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/UserRestaurantsRestController/getRestaurantsOfLoggedInUserWithLikes/http-response.adoc[]
+
+
+== AdminRestaurantsRestController
+
+=== Get all Restaurants (of all users)
+
+.request
+include::{snippets}/restControllers/AdminRestaurantsRestController/getAll/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/AdminRestaurantsRestController/getAll/http-response.adoc[]
+
+=== Get Restaurant by its ID
+
+.request
+include::{snippets}/restControllers/AdminRestaurantsRestController/getByID/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/AdminRestaurantsRestController/getByID/http-response.adoc[]
+
+=== Create new Restaurant
+
+.request
+include::{snippets}/restControllers/AdminRestaurantsRestController/save/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/AdminRestaurantsRestController/save/http-response.adoc[]
+
+=== Delete Restaurant
+
+.request
+include::{snippets}/restControllers/AdminRestaurantsRestController/delete/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/AdminRestaurantsRestController/delete/http-response.adoc[]
+
+=== Get all Restaurants of a User
+
+.request
+include::{snippets}/restControllers/AdminRestaurantsRestController/getRestaurantsOfUser/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/AdminRestaurantsRestController/getRestaurantsOfUser/http-response.adoc[]
+
+
+== UserMenuRestController
+
+=== Get all Menus
+
+.request
+include::{snippets}/restControllers/UserMenuRestController/getAll/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/UserMenuRestController/getAll/http-response.adoc[]
+
+=== Get all Menus with Likes
+
+.request
+include::{snippets}/restControllers/UserMenuRestController/getAllWithLikes/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/UserMenuRestController/getAllWithLikes/http-response.adoc[]
+
+=== Get Menu by ID
+
+.request
+include::{snippets}/restControllers/UserMenuRestController/getByID/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/UserMenuRestController/getByID/http-response.adoc[]
+
+=== Create new Menu (or update Menu)
+
+.request
+include::{snippets}/restControllers/UserMenuRestController/save/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/UserMenuRestController/save/http-response.adoc[]
+
+=== Delete Menu
+
+.request
+include::{snippets}/restControllers/UserMenuRestController/delete/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/UserMenuRestController/delete/http-response.adoc[]
+
+=== Get all Menus by Restaurant ID
+
+.request
+include::{snippets}/restControllers/UserMenuRestController/getAllMenusByRestaurantId/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/UserMenuRestController/getAllMenusByRestaurantId/http-response.adoc[]
+
+=== Get all Menus by Restaurant ID with Likes
+
+.request
+include::{snippets}/restControllers/UserMenuRestController/getAllMenusByRestaurantIdWithLikes/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/UserMenuRestController/getAllMenusByRestaurantIdWithLikes/http-response.adoc[]
+
+
+== AdminMenuRestController
+
+=== Get all Menus
+
+.request
+include::{snippets}/restControllers/AdminMenuRestController/getAll/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/AdminMenuRestController/getAll/http-response.adoc[]
+
+=== Get all Menus with Likes
+
+.request
+include::{snippets}/restControllers/AdminMenuRestController/getAllWithLikes/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/AdminMenuRestController/getAllWithLikes/http-response.adoc[]
+
+=== Get Menu by its ID
+
+.request
+include::{snippets}/restControllers/AdminMenuRestController/getByID/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/AdminMenuRestController/getByID/http-response.adoc[]
+
+=== Create (Save or Update) Menu
+
+.request
+include::{snippets}/restControllers/AdminMenuRestController/save/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/AdminMenuRestController/save/http-response.adoc[]
+
+=== Delete Menu
+
+.request
+include::{snippets}/restControllers/AdminMenuRestController/delete/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/AdminMenuRestController/delete/http-response.adoc[]
+
+=== Get Menu by Restaurant ID
+
+.request
+include::{snippets}/restControllers/AdminMenuRestController/getMenusByRestaurantId/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/AdminMenuRestController/getMenusByRestaurantId/http-response.adoc[]
+
+=== Get Menu by Restaurant ID with Likes
+
+.request
+include::{snippets}/restControllers/AdminMenuRestController/getMenusByRestaurantIdWithLikes/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/AdminMenuRestController/getMenusByRestaurantIdWithLikes/http-response.adoc[]
+
+== LikeRestController
+
+=== Get all Likes by Menu ID
+
+.request
+include::{snippets}/restControllers/LikeRestController/getAllByMenuID/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/LikeRestController/getAllByMenuID/http-response.adoc[]
+
+=== Get all Likes by Restaurant ID
+
+.request
+include::{snippets}/restControllers/LikeRestController/getAllByRestaurantID/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/LikeRestController/getAllByRestaurantID/http-response.adoc[]
+
+=== Save/Create Like of Menu
+NOTE: User can have (can create) only one unique like and if a User has already liked <Menu A> he/she can
+remove this Like or like <Menu B> only before 11:00 AM.
+
+.request
+include::{snippets}/restControllers/LikeRestController/saveLikeOfMenu/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/LikeRestController/saveLikeOfMenu/http-response.adoc[]
+
+=== Save/Create Like of Restaurant
+NOTE: User can have (can create) only one unique like and if a User has already liked <Restaurant A> he/she can
+remove this Like or like <Restaurant B> only before 11:00 AM.
+
+.request
+include::{snippets}/restControllers/LikeRestController/saveLikeOfRestaurant/curl-request.adoc[]
+
+.response
+include::{snippets}/restControllers/LikeRestController/saveLikeOfRestaurant/http-response.adoc[]
+

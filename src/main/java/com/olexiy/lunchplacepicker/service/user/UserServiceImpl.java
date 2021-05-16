@@ -4,6 +4,8 @@ import com.olexiy.lunchplacepicker.models.User;
 import com.olexiy.lunchplacepicker.repository.RestaurantRepo;
 import com.olexiy.lunchplacepicker.repository.UserRepo;
 import com.olexiy.lunchplacepicker.utils.exceptions.NotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,8 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+    protected final Logger log = LoggerFactory.getLogger(getClass());
 
     private UserRepo userRepo;
 
@@ -27,6 +31,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAll() {
+        log.info("get all users");
         return userRepo.getAll();
     }
 
@@ -43,6 +48,7 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             throw new NotFoundException(String.format("Entity with id %s does not exist;", id));
         } else {
+            log.info("get user {}", user);
             return user;
         }
     }
@@ -67,6 +73,7 @@ public class UserServiceImpl implements UserService {
         if (!userRepo.existsById(id)) {
             throw new NotFoundException(String.format("Entity with id %s does not exist;", id));
         } else {
+            log.info("deleted user with id {}", id);
             userRepo.deleteById(id);
         }
     }

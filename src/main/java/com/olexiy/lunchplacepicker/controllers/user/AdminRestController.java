@@ -26,6 +26,7 @@ public class AdminRestController extends AbstractUserController {
     @PostMapping(value = "/", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @Transactional
     @Modifying
+    @ResponseStatus(HttpStatus.CREATED)
     public void save(@RequestBody User user) {
         super.save(user);
     }

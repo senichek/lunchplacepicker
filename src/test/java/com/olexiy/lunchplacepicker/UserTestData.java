@@ -6,6 +6,7 @@ import com.olexiy.lunchplacepicker.models.User;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Collections;
+import java.util.List;
 
 import static com.olexiy.lunchplacepicker.models.AbstractBaseEntity.START_SEQ;
 
@@ -18,6 +19,12 @@ public class UserTestData {
             LocalDateTime.of(2020, Month.MARCH, 30, 17, 0), Collections.singleton(Role.USER));
 
     public static final User admin = new User(ADMIN_ID, "Admin", "admin@gmail.com", "$2a$10$TnuLvKiSOudIoIESqRPbbukqwib.qNxzz8qRdjRgNlK8QAlFObd.i",
+            LocalDateTime.of(2018, Month.NOVEMBER, 25, 19, 0), Role.ADMIN, Role.USER);
+
+    public static final User userWithoutRestaurants = new User(USER_ID, "User", "user@gmail.com", "$2a$10$6WZL2gzFrQZ3TXuZi0ClQektYMypL7wvQvNRW04Q2YkeEVMjcvkOS",
+            LocalDateTime.of(2020, Month.MARCH, 30, 17, 0), Collections.singleton(Role.USER));
+
+    public static final User adminWithoutRestaurants = new User(ADMIN_ID, "Admin", "admin@gmail.com", "$2a$10$TnuLvKiSOudIoIESqRPbbukqwib.qNxzz8qRdjRgNlK8QAlFObd.i",
             LocalDateTime.of(2018, Month.NOVEMBER, 25, 19, 0), Role.ADMIN, Role.USER);
 
     static {
@@ -45,4 +52,6 @@ public class UserTestData {
         updated.setRoles(Collections.singletonList(Role.ADMIN));
         return updated;
     }
+
+    public static final List<User> allUsers = List.of(UserTestData.userWithoutRestaurants, UserTestData.adminWithoutRestaurants);
 }

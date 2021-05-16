@@ -25,4 +25,6 @@ public interface RestaurantService {
     Restaurant save(Restaurant restaurant);
 
     void delete(Integer id);
+
+    int deleteByIdAndUserId(Integer restId, Integer userId);
 }

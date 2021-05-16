@@ -30,11 +30,11 @@ VALUES (100002, '2020-03-30 12:00:00', 'French Lunch Menu', 'resources/images/pl
        (100008, '2020-03-30 10:00:00', 'English Breakfast Menu', 'resources/images/placeholder_menu_pic.jpg'),
        (100009, '2020-03-30 10:00:00', 'Crepes', 'resources/images/placeholder_menu_pic.jpg');
 
-INSERT INTO likes_of_menu (menu_id, user_id)
-VALUES (100010, 100000),
-       (100017, 100001);
+INSERT INTO likes_of_menu (menu_id, user_id, creation_date)
+VALUES (100010, 100000, (TO_TIMESTAMP('2021-05-01 07:00.00', 'YYYY-MM-DD HH24:MI:SS.FF'))),
+       (100017, 100001, (TO_TIMESTAMP('2021-05-01 08:00.00', 'YYYY-MM-DD HH24:MI:SS.FF')));
 
-INSERT INTO likes_of_restaurant (rest_id, user_id)
-VALUES (100005, 100001);
+INSERT INTO likes_of_restaurant (rest_id, user_id, creation_date)
+VALUES (100005, 100001, (TO_TIMESTAMP('2021-05-01 07:00.00', 'YYYY-MM-DD HH24:MI:SS.FF')));
 
 

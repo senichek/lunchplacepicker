@@ -98,11 +98,10 @@ public class Menu extends AbstractBaseEntity {
     @Override
     public String toString() {
         return "Menu{" +
-                "id=" + id +
-                ", description='" + description + '\'' +
-                ", restaurant=" + restaurant +
+                "id='" + id + '\'' +
+                " description='" + description + '\'' +
                 ", creationDateTime=" + creationDateTime +
-                ", likes=" + likesOfMenu +
+                ", imgUrl='" + imgUrl + '\'' +
                 '}';
     }
 }

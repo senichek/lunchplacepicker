@@ -30,17 +30,14 @@ public abstract class AbstractRestaurantController {
     }
 
     public List<Restaurant> getAll() {
-        log.info("get all restaurants");
         return restaurantService.getAll();
     }
 
     public List<Restaurant> getAllWithLikes() {
-        log.info("get all restaurants with likes");
         return restaurantService.getAllWithLikes();
     }
 
     public List<Restaurant> getAllWithLikesDesc() {
-        log.info("get all restaurants with likes Desc");
         return restaurantService.getAllWithLikesDesc();
     }
 
@@ -96,8 +93,12 @@ public abstract class AbstractRestaurantController {
     }
 
     public void delete(Integer userId, Integer entityId) {
-        log.info("deleted restaurant with id {} of user {}", entityId, userId);
-        restaurantService.delete(entityId);
+        if (restaurantService.deleteByIdAndUserId(entityId, userId) == 1) {
+            log.info("deleted restaurant with id {} of user {}", entityId, userId);
+        }
+        else {
+            throw new NotFoundException(String.format("Combination user_id %s and entity_id %s does not exist;", userId, entityId));
+        }
     }
 
     public List<Restaurant> getRestaurantsOfUser(Integer id) {

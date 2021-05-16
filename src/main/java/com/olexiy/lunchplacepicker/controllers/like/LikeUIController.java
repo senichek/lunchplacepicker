@@ -13,12 +13,12 @@ import java.util.List;
 public class LikeUIController extends AbstractLikeController {
 
     @GetMapping(value = "/menu/{id}")
-    public List<LikeOfMenu> getByMenuID(@PathVariable("id") Integer id) {
+    public List<LikeOfMenu> getAllByMenuID(@PathVariable("id") Integer id) {
         return super.getAllByMenuID(id);
     }
 
     @GetMapping(value = "/restaurant/{id}")
-    public List<LikeOfRestaurant> getByRestaurantID(@PathVariable("id") Integer id) {
+    public List<LikeOfRestaurant> getAllByRestaurantID(@PathVariable("id") Integer id) {
         return super.getAllByRestaurantID(id);
     }
 

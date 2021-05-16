@@ -4,6 +4,8 @@ import com.olexiy.lunchplacepicker.models.Menu;
 import com.olexiy.lunchplacepicker.repository.MenuRepo;
 import com.olexiy.lunchplacepicker.repository.RestaurantRepo;
 import com.olexiy.lunchplacepicker.utils.exceptions.NotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -12,6 +14,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class MenuServiceImpl implements MenuService {
+
+    protected final Logger log = LoggerFactory.getLogger(getClass());
 
     MenuRepo menuRepo;
 
@@ -29,10 +33,12 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public Menu getByID(Integer id) {
-        if (!menuRepo.existsById(id)) {
+        Menu menu = menuRepo.getMenuById(id);
+        if (menu == null) {
             throw new NotFoundException(String.format("Entity with id %s does not exist;", id));
         } else {
-            return menuRepo.getById(id);
+            log.info("get menu {}", menu);
+            return menu;
         }
     }
 

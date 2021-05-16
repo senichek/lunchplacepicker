@@ -34,13 +34,7 @@ public abstract class AbstractMenuController {
     }
 
     public Menu getByID(Integer id) {
-        Menu menu = menuService.getByID(id);
-        if (menu != null) {
-            log.info("get menu with id {}", id);
-            return menuService.getByID(id);
-        } else {
-            throw new NotFoundException(String.format("Entity with id %s does not exist;", id));
-        }
+        return menuService.getByID(id);
     }
 
     public void save(Menu menu, Integer userID) {

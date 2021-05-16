@@ -25,6 +25,7 @@ public class AdminRestaurantsRestController extends AbstractRestaurantController
 
     @PostMapping(value = "/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
+    @ResponseStatus(HttpStatus.CREATED)
     public void save(@RequestBody Restaurant restaurant, @PathVariable(value = "userId") Integer userId) {
         super.save(restaurant, userId);
     }

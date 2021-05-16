@@ -3,6 +3,8 @@ package com.olexiy.lunchplacepicker.service.restaurant;
 import com.olexiy.lunchplacepicker.models.Restaurant;
 import com.olexiy.lunchplacepicker.repository.RestaurantRepo;
 import com.olexiy.lunchplacepicker.utils.exceptions.NotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import java.util.stream.Collectors;
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
 
+    protected final Logger log = LoggerFactory.getLogger(getClass());
+
     RestaurantRepo restaurantRepo;
 
     @Autowired
@@ -22,11 +26,13 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public List<Restaurant> getAll() {
+        log.info("get all restaurants");
         return restaurantRepo.findAll();
     }
 
     @Override
     public List<Restaurant> getAllWithLikes() {
+        log.info("get all restaurants with likes");
         return restaurantRepo.getAllWithLikes();
     }
 
@@ -37,6 +43,8 @@ public class RestaurantServiceImpl implements RestaurantService {
         List<Restaurant> sortedRest = restaurants.stream()
                 .sorted(Comparator.comparingInt(Restaurant::getTotalLikes).reversed())
                 .collect(Collectors.toList());
+
+        log.info("get all restaurants with likes Desc");
 
         return sortedRest;
     }
@@ -89,6 +97,11 @@ public class RestaurantServiceImpl implements RestaurantService {
         } else {
             restaurantRepo.deleteById(id);
         }
+    }
+
+    @Override
+    public int deleteByIdAndUserId(Integer restId, Integer userId) {
+        return restaurantRepo.deleteByIdAndUserId(restId, userId);
     }
 
     @Override

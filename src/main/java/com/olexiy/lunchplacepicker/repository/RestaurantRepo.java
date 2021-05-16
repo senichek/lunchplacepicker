@@ -19,6 +19,8 @@ public interface RestaurantRepo extends JpaRepository<Restaurant, Integer> {
 
     void deleteById(Integer id);
 
+    int deleteByIdAndUserId(Integer restId, Integer userId);
+
     @Query(value = "SELECT DISTINCT r FROM Restaurant r LEFT JOIN FETCH r.likesOfRestaurant")
     List<Restaurant> getAllWithLikes();
 

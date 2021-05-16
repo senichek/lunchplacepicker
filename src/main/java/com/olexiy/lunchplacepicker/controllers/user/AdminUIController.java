@@ -1,21 +1,18 @@
 package com.olexiy.lunchplacepicker.controllers.user;
 
 import com.olexiy.lunchplacepicker.models.User;
-import com.olexiy.lunchplacepicker.utils.SecurityUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/admin/users", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdminUIController extends AbstractUserController {
 
-    @GetMapping
+    @GetMapping(value = "/all")
     public List<User> getAll() {
         return super.getAll();
     }
@@ -31,7 +28,7 @@ public class AdminUIController extends AbstractUserController {
         super.save(user);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/all/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Transactional
     public void delete(@PathVariable("id") Integer id) {

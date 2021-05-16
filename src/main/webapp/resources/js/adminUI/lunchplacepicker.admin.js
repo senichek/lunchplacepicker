@@ -1,4 +1,5 @@
-var adminUrl = "admin/users/";
+var adminUrl = "admin/users/all/";
+var adminPostUrl = "admin/users/";
 
 var table = $('#users_table').DataTable({
     "ajax": {
@@ -76,7 +77,7 @@ $('#addNewUserBtn').on('click', function () {
 function saveUser(user) {
     $.ajax({
         type: "POST",
-        url: adminUrl,
+        url: adminPostUrl,
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(user)
     }).done(function (a, b, text) {

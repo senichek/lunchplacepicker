@@ -31,18 +31,11 @@ public abstract class AbstractUserController {
     }
 
     public List<User> getAll() {
-        log.info("get all users");
         return userService.getAll();
     }
 
     public User getByID(Integer id) {
-        User user = userService.getByID(id);
-        if (user != null) {
-            log.info("get user with id {}", id);
-            return userService.getByID(id);
-        } else {
-            throw new NotFoundException(String.format("Entity with id %s does not exist;", id));
-        }
+        return userService.getByID(id);
     }
 
     public void save(User user) {
@@ -93,7 +86,6 @@ public abstract class AbstractUserController {
     }
 
     public void delete(Integer id) {
-        log.info("deleted user with id {}", id);
         userService.deleteByID(id);
     }
 }
