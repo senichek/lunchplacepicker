@@ -5,7 +5,7 @@
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Asciidoctor 1.5.6.1">
-    <title>Getting Started With Spring REST Docs</title>
+    <title>Greeting REST Service API Guide</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
     <style>
         /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -425,26 +425,97 @@
             .show-for-print{display:inherit!important}}
     </style>
 </head>
-<body class="book">
+<body class="book toc2 toc-left">
 <div id="header">
-    <h1>Getting Started With Spring REST Docs</h1>
+    <h1>Greeting REST Service API Guide</h1>
+    <div id="toc" class="toc2">
+        <div id="toctitle">Table of Contents</div>
+        <ul class="sectlevel1">
+            <li><a href="#_userprofilerestcontroller">1. UserProfileRestController</a>
+                <ul class="sectlevel2">
+                    <li><a href="#_check_if_a_user_is_logged_in">1.1. Check if a User is logged in</a></li>
+                    <li><a href="#_register_new_user">1.2. Register new User</a></li>
+                </ul>
+            </li>
+            <li><a href="#_adminrestcontroller">2. AdminRestController</a>
+                <ul class="sectlevel2">
+                    <li><a href="#_get_list_of_all_users">2.1. Get list of all Users</a></li>
+                    <li><a href="#_get_user_by_userid">2.2. Get User by userID</a></li>
+                    <li><a href="#_create_new_user">2.3. Create new User</a></li>
+                    <li><a href="#_delete_user">2.4. Delete User</a></li>
+                </ul>
+            </li>
+            <li><a href="#_userrestaurantsrestcontroller">3. UserRestaurantsRestController</a>
+                <ul class="sectlevel2">
+                    <li><a href="#_create_new_restaurant">3.1. Create new Restaurant</a></li>
+                    <li><a href="#_delete_restaurant">3.2. Delete Restaurant</a></li>
+                    <li><a href="#_get_all_restaurants_with_likes_of_the_logged_in_user">3.3. Get all Restaurants with likes of the logged-in User</a></li>
+                </ul>
+            </li>
+            <li><a href="#_adminrestaurantsrestcontroller">4. AdminRestaurantsRestController</a>
+                <ul class="sectlevel2">
+                    <li><a href="#_get_all_restaurants_of_all_users">4.1. Get all Restaurants (of all users)</a></li>
+                    <li><a href="#_get_restaurant_by_its_id">4.2. Get Restaurant by its ID</a></li>
+                    <li><a href="#_create_new_restaurant_2">4.3. Create new Restaurant</a></li>
+                    <li><a href="#_delete_restaurant_2">4.4. Delete Restaurant</a></li>
+                    <li><a href="#_get_all_restaurants_of_a_user">4.5. Get all Restaurants of a User</a></li>
+                </ul>
+            </li>
+            <li><a href="#_usermenurestcontroller">5. UserMenuRestController</a>
+                <ul class="sectlevel2">
+                    <li><a href="#_get_all_menus">5.1. Get all Menus</a></li>
+                    <li><a href="#_get_all_menus_with_likes">5.2. Get all Menus with Likes</a></li>
+                    <li><a href="#_get_menu_by_id">5.3. Get Menu by ID</a></li>
+                    <li><a href="#_create_new_menu_or_update_menu">5.4. Create new Menu (or update Menu)</a></li>
+                    <li><a href="#_delete_menu">5.5. Delete Menu</a></li>
+                    <li><a href="#_get_all_menus_by_restaurant_id">5.6. Get all Menus by Restaurant ID</a></li>
+                    <li><a href="#_get_all_menus_by_restaurant_id_with_likes">5.7. Get all Menus by Restaurant ID with Likes</a></li>
+                </ul>
+            </li>
+            <li><a href="#_adminmenurestcontroller">6. AdminMenuRestController</a>
+                <ul class="sectlevel2">
+                    <li><a href="#_get_all_menus_2">6.1. Get all Menus</a></li>
+                    <li><a href="#_get_all_menus_with_likes_2">6.2. Get all Menus with Likes</a></li>
+                    <li><a href="#_get_menu_by_its_id">6.3. Get Menu by its ID</a></li>
+                    <li><a href="#_create_save_or_update_menu">6.4. Create (Save or Update) Menu</a></li>
+                    <li><a href="#_delete_menu_2">6.5. Delete Menu</a></li>
+                    <li><a href="#_get_menu_by_restaurant_id">6.6. Get Menu by Restaurant ID</a></li>
+                    <li><a href="#_get_menu_by_restaurant_id_with_likes">6.7. Get Menu by Restaurant ID with Likes</a></li>
+                </ul>
+            </li>
+            <li><a href="#_likerestcontroller">7. LikeRestController</a>
+                <ul class="sectlevel2">
+                    <li><a href="#_get_all_likes_by_menu_id">7.1. Get all Likes by Menu ID</a></li>
+                    <li><a href="#_get_all_likes_by_restaurant_id">7.2. Get all Likes by Restaurant ID</a></li>
+                    <li><a href="#_save_create_like_of_menu">7.3. Save/Create Like of Menu</a></li>
+                    <li><a href="#_save_create_like_of_restaurant">7.4. Save/Create Like of Restaurant</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 </div>
 <div id="content">
     <div id="preamble">
         <div class="sectionbody">
             <div class="paragraph">
-                <p>This is an example output for a service running at <a href="http://localhost:8080" class="bare">http://localhost:8080</a>:</p>
+                <p>This is an example output for a service running at <a href="http://localhost:8080/lunchplacepicker/" class="bare">http://localhost:8080/lunchplacepicker/</a></p>
             </div>
-            <div class="listingblock">
-                <div class="title">request</div>
-                <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /rest/ifloggedin HTTP/1.1
-Host: localhost:8080</code></pre>
+        </div>
+    </div>
+    <div class="sect1">
+        <h2 id="_userprofilerestcontroller">1. UserProfileRestController</h2>
+        <div class="sectionbody">
+            <div class="sect2">
+                <h3 id="_check_if_a_user_is_logged_in">1.1. Check if a User is logged in</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+                        <pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/ifloggedin' -i -X GET</code></pre>
+                    </div>
                 </div>
-            </div>
-            <div class="listingblock">
-                <div class="title">response</div>
-                <div class="content">
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
 X-Content-Type-Options: nosniff
@@ -456,27 +527,27 @@ X-Frame-Options: DENY
 Content-Length: 5
 
 false</code></pre>
+                    </div>
                 </div>
             </div>
-            <div class="listingblock">
-                <div class="title">request</div>
-                <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">POST /rest/register HTTP/1.1
-Content-Type: application/json
-Content-Length: 126
-Host: localhost:8080
-
-{
+            <div class="sect2">
+                <h3 id="_register_new_user">1.2. Register new User</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/register' -i -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
   "name" : "NewUser",
   "email" : "newuser@gmail.com",
   "registered" : "2021-01-05T23:00:00",
   "roles" : [ "USER" ]
-}</code></pre>
+}'</code></pre>
+                    </div>
                 </div>
-            </div>
-            <div class="listingblock">
-                <div class="title">response</div>
-                <div class="content">
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 201 Created
 X-Content-Type-Options: nosniff
 X-XSS-Protection: 1; mode=block
@@ -484,19 +555,25 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY</code></pre>
+                    </div>
                 </div>
             </div>
-            <div class="listingblock">
-                <div class="title">request</div>
-                <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /rest/admin/users HTTP/1.1
-Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu
-Host: localhost:8080</code></pre>
+        </div>
+    </div>
+    <div class="sect1">
+        <h2 id="_adminrestcontroller">2. AdminRestController</h2>
+        <div class="sectionbody">
+            <div class="sect2">
+                <h3 id="_get_list_of_all_users">2.1. Get list of all Users</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+                        <pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/admin/users' -i -u 'admin@gmail.com:admin' -X GET</code></pre>
+                    </div>
                 </div>
-            </div>
-            <div class="listingblock">
-                <div class="title">response</div>
-                <div class="content">
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
 X-Content-Type-Options: nosniff
@@ -512,7 +589,7 @@ Content-Length: 343
   "name" : "Admin",
   "email" : "admin@gmail.com",
   "registered" : "2018-11-25T19:00:00",
-  "roles" : [ "ADMIN", "USER" ],
+  "roles" : [ "USER", "ADMIN" ],
   "restaurants" : null
 }, {
   "id" : 100000,
@@ -522,19 +599,20 @@ Content-Length: 343
   "roles" : [ "USER" ],
   "restaurants" : null
 } ]</code></pre>
+                    </div>
                 </div>
             </div>
-            <div class="listingblock">
-                <div class="title">request</div>
-                <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /rest/admin/users/100000 HTTP/1.1
-Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu
-Host: localhost:8080</code></pre>
+            <div class="sect2">
+                <h3 id="_get_user_by_userid">2.2. Get User by userID</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+                        <pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/admin/users/100000' -i -u 'admin@gmail.com:admin' -X GET</code></pre>
+                    </div>
                 </div>
-            </div>
-            <div class="listingblock">
-                <div class="title">response</div>
-                <div class="content">
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
 X-Content-Type-Options: nosniff
@@ -553,28 +631,27 @@ Content-Length: 163
   "roles" : [ "USER" ],
   "restaurants" : null
 }</code></pre>
+                    </div>
                 </div>
             </div>
-            <div class="listingblock">
-                <div class="title">request</div>
-                <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">POST /rest/admin/users/ HTTP/1.1
-Content-Type: application/json
-Content-Length: 126
-Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu
-Host: localhost:8080
-
-{
+            <div class="sect2">
+                <h3 id="_create_new_user">2.3. Create new User</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/admin/users/' -i -u 'admin@gmail.com:admin' -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
   "name" : "NewUser",
   "email" : "newuser@gmail.com",
   "registered" : "2021-01-05T23:00:00",
   "roles" : [ "USER" ]
-}</code></pre>
+}'</code></pre>
+                    </div>
                 </div>
-            </div>
-            <div class="listingblock">
-                <div class="title">response</div>
-                <div class="content">
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 201 Created
 X-Content-Type-Options: nosniff
 X-XSS-Protection: 1; mode=block
@@ -582,20 +659,21 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY</code></pre>
+                    </div>
                 </div>
             </div>
-            <div class="listingblock">
-                <div class="title">request</div>
-                <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">DELETE /rest/admin/users/100000 HTTP/1.1
-Content-Type: application/json
-Authorization: Basic YWRtaW5AZ21haWwuY29tOmFkbWlu
-Host: localhost:8080</code></pre>
+            <div class="sect2">
+                <h3 id="_delete_user">2.4. Delete User</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/admin/users/100000' -i -u 'admin@gmail.com:admin' -X DELETE \
+    -H 'Content-Type: application/json'</code></pre>
+                    </div>
                 </div>
-            </div>
-            <div class="listingblock">
-                <div class="title">response</div>
-                <div class="content">
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 204 No Content
 X-Content-Type-Options: nosniff
 X-XSS-Protection: 1; mode=block
@@ -603,6 +681,1139 @@ Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
 X-Frame-Options: DENY</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sect1">
+        <h2 id="_userrestaurantsrestcontroller">3. UserRestaurantsRestController</h2>
+        <div class="sectionbody">
+            <div class="sect2">
+                <h3 id="_create_new_restaurant">3.1. Create new Restaurant</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/profile/restaurants/all' -i -u 'user@gmail.com:user' -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+  "name" : "New Restaur",
+  "address" : "new Place",
+  "registerDateTime" : "2021-01-05T15:00:00",
+  "description" : "Food",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg"
+}'</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 201 Created
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_delete_restaurant">3.2. Delete Restaurant</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/profile/restaurants/all/100006' -i -u 'user@gmail.com:user' -X DELETE \
+    -H 'Content-Type: application/json'</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 204 No Content
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_get_all_restaurants_with_likes_of_the_logged_in_user">3.3. Get all Restaurants with likes of the logged-in User</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+                        <pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/profile/restaurants/all/likes' -i -u 'admin@gmail.com:admin' -X GET</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 1424
+
+[ {
+  "id" : 100002,
+  "name" : "Chez Marlene",
+  "address" : "58 avenue de Paris",
+  "registerDateTime" : "2020-03-30T10:00:00",
+  "description" : "French Cuisine",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg",
+  "menu" : null,
+  "likesOfRestaurant" : [ ]
+}, {
+  "id" : 100003,
+  "name" : "Chez Antoine",
+  "address" : "93 rue de Versailles",
+  "registerDateTime" : "2018-05-28T11:00:00",
+  "description" : "Creperie",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg",
+  "menu" : null,
+  "likesOfRestaurant" : [ ]
+}, {
+  "id" : 100007,
+  "name" : "La Table du 11",
+  "address" : "8 Rue de la Chancellerie",
+  "registerDateTime" : "2017-05-13T15:00:00",
+  "description" : "French Cuisine",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg",
+  "menu" : null,
+  "likesOfRestaurant" : [ ]
+}, {
+  "id" : 100008,
+  "name" : "Chez Tiouiche",
+  "address" : "4 Rue Saint-Julien",
+  "registerDateTime" : "2018-05-28T16:00:00",
+  "description" : "Creperie",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg",
+  "menu" : null,
+  "likesOfRestaurant" : [ ]
+}, {
+  "id" : 100009,
+  "name" : "Cheval Rouge",
+  "address" : "Place de la Loi",
+  "registerDateTime" : "2020-11-15T17:00:00",
+  "description" : "English Cuisine",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg",
+  "menu" : null,
+  "likesOfRestaurant" : [ ]
+} ]</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sect1">
+        <h2 id="_adminrestaurantsrestcontroller">4. AdminRestaurantsRestController</h2>
+        <div class="sectionbody">
+            <div class="sect2">
+                <h3 id="_get_all_restaurants_of_all_users">4.1. Get all Restaurants (of all users)</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+                        <pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/admin/rs/all' -i -u 'admin@gmail.com:admin' -X GET</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 2295
+
+[ {
+  "id" : 100002,
+  "name" : "Chez Marlene",
+  "address" : "58 avenue de Paris",
+  "registerDateTime" : "2020-03-30T10:00:00",
+  "description" : "French Cuisine",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg",
+  "menu" : null,
+  "likesOfRestaurant" : null
+}, {
+  "id" : 100003,
+  "name" : "Chez Antoine",
+  "address" : "93 rue de Versailles",
+  "registerDateTime" : "2018-05-28T11:00:00",
+  "description" : "Creperie",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg",
+  "menu" : null,
+  "likesOfRestaurant" : null
+}, {
+  "id" : 100004,
+  "name" : "La Belle Epoque",
+  "address" : "10 Place de la Mairie",
+  "registerDateTime" : "2017-03-28T12:00:00",
+  "description" : "French Cuisine",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg",
+  "menu" : null,
+  "likesOfRestaurant" : null
+}, {
+  "id" : 100005,
+  "name" : "La Veranda",
+  "address" : "1 Boulevard de la Reine",
+  "registerDateTime" : "2016-05-28T13:00:00",
+  "description" : "European Cuisine",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg",
+  "menu" : null,
+  "likesOfRestaurant" : null
+}, {
+  "id" : 100006,
+  "name" : "Le Sept",
+  "address" : "7 Rue de Montreuil",
+  "registerDateTime" : "2015-05-27T14:00:00",
+  "description" : "European Cuisine",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg",
+  "menu" : null,
+  "likesOfRestaurant" : null
+}, {
+  "id" : 100007,
+  "name" : "La Table du 11",
+  "address" : "8 Rue de la Chancellerie",
+  "registerDateTime" : "2017-05-13T15:00:00",
+  "description" : "French Cuisine",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg",
+  "menu" : null,
+  "likesOfRestaurant" : null
+}, {
+  "id" : 100008,
+  "name" : "Chez Tiouiche",
+  "address" : "4 Rue Saint-Julien",
+  "registerDateTime" : "2018-05-28T16:00:00",
+  "description" : "Creperie",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg",
+  "menu" : null,
+  "likesOfRestaurant" : null
+}, {
+  "id" : 100009,
+  "name" : "Cheval Rouge",
+  "address" : "Place de la Loi",
+  "registerDateTime" : "2020-11-15T17:00:00",
+  "description" : "English Cuisine",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg",
+  "menu" : null,
+  "likesOfRestaurant" : null
+} ]</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_get_restaurant_by_its_id">4.2. Get Restaurant by its ID</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+                        <pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/admin/100001/100007' -i -u 'admin@gmail.com:admin' -X GET</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 292
+
+{
+  "id" : 100007,
+  "name" : "La Table du 11",
+  "address" : "8 Rue de la Chancellerie",
+  "registerDateTime" : "2017-05-13T15:00:00",
+  "description" : "French Cuisine",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg",
+  "menu" : null,
+  "likesOfRestaurant" : null
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_create_new_restaurant_2">4.3. Create new Restaurant</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/admin/100001' -i -u 'admin@gmail.com:admin' -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+  "name" : "New Restaur",
+  "address" : "new Place",
+  "registerDateTime" : "2021-01-05T15:00:00",
+  "description" : "Food",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg"
+}'</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 201 Created
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_delete_restaurant_2">4.4. Delete Restaurant</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/admin/100001/100007' -i -u 'admin@gmail.com:admin' -X DELETE \
+    -H 'Content-Type: application/json'</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 204 No Content
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_get_all_restaurants_of_a_user">4.5. Get all Restaurants of a User</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+                        <pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/admin/100001/all' -i -u 'admin@gmail.com:admin' -X GET</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 1429
+
+[ {
+  "id" : 100002,
+  "name" : "Chez Marlene",
+  "address" : "58 avenue de Paris",
+  "registerDateTime" : "2020-03-30T10:00:00",
+  "description" : "French Cuisine",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg",
+  "menu" : null,
+  "likesOfRestaurant" : null
+}, {
+  "id" : 100003,
+  "name" : "Chez Antoine",
+  "address" : "93 rue de Versailles",
+  "registerDateTime" : "2018-05-28T11:00:00",
+  "description" : "Creperie",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg",
+  "menu" : null,
+  "likesOfRestaurant" : null
+}, {
+  "id" : 100007,
+  "name" : "La Table du 11",
+  "address" : "8 Rue de la Chancellerie",
+  "registerDateTime" : "2017-05-13T15:00:00",
+  "description" : "French Cuisine",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg",
+  "menu" : null,
+  "likesOfRestaurant" : null
+}, {
+  "id" : 100008,
+  "name" : "Chez Tiouiche",
+  "address" : "4 Rue Saint-Julien",
+  "registerDateTime" : "2018-05-28T16:00:00",
+  "description" : "Creperie",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg",
+  "menu" : null,
+  "likesOfRestaurant" : null
+}, {
+  "id" : 100009,
+  "name" : "Cheval Rouge",
+  "address" : "Place de la Loi",
+  "registerDateTime" : "2020-11-15T17:00:00",
+  "description" : "English Cuisine",
+  "imgUrl" : "resources/images/placeholder_restaurant_pic.jpg",
+  "menu" : null,
+  "likesOfRestaurant" : null
+} ]</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sect1">
+        <h2 id="_usermenurestcontroller">5. UserMenuRestController</h2>
+        <div class="sectionbody">
+            <div class="sect2">
+                <h3 id="_get_all_menus">5.1. Get all Menus</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+                        <pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/profile/menus/' -i -u 'user@gmail.com:user' -X GET</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 1545
+
+[ {
+  "id" : 100010,
+  "description" : "French Lunch Menu",
+  "creationDateTime" : "2020-03-30T12:00:00",
+  "likesOfMenu" : null,
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100011,
+  "description" : "Crepes",
+  "creationDateTime" : "2020-03-30T17:00:00",
+  "likesOfMenu" : null,
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100012,
+  "description" : "English Lunch Menu",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : null,
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100013,
+  "description" : "English Breakfast Menu",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : null,
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100014,
+  "description" : "French Lunch Menu",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : null,
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100015,
+  "description" : "English Dinner Menu",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : null,
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100016,
+  "description" : "English Breakfast Menu",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : null,
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100017,
+  "description" : "Crepes",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : null,
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+} ]</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_get_all_menus_with_likes">5.2. Get all Menus with Likes</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+                        <pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/profile/menus/likes' -i -u 'user@gmail.com:user' -X GET</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 1735
+
+[ {
+  "id" : 100011,
+  "description" : "Crepes",
+  "creationDateTime" : "2020-03-30T17:00:00",
+  "likesOfMenu" : [ ],
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100014,
+  "description" : "French Lunch Menu",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : [ ],
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100013,
+  "description" : "English Breakfast Menu",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : [ ],
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100010,
+  "description" : "French Lunch Menu",
+  "creationDateTime" : "2020-03-30T12:00:00",
+  "likesOfMenu" : [ {
+    "id" : 100018,
+    "creationDateTime" : "2021-05-01T07:00:00",
+    "userID" : 100000
+  } ],
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100012,
+  "description" : "English Lunch Menu",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : [ ],
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100015,
+  "description" : "English Dinner Menu",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : [ ],
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100017,
+  "description" : "Crepes",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : [ {
+    "id" : 100019,
+    "creationDateTime" : "2021-05-01T08:00:00",
+    "userID" : 100001
+  } ],
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100016,
+  "description" : "English Breakfast Menu",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : [ ],
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+} ]</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_get_menu_by_id">5.3. Get Menu by ID</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+                        <pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/profile/menus/100010' -i -u 'user@gmail.com:user' -X GET</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 192
+
+{
+  "id" : 100010,
+  "description" : "French Lunch Menu",
+  "creationDateTime" : "2020-03-30T12:00:00",
+  "likesOfMenu" : null,
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_create_new_menu_or_update_menu">5.4. Create new Menu (or update Menu)</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/profile/menus/100006' -i -u 'user@gmail.com:user' -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+  "description" : "New Lunch Menu",
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}'</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 201 Created
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_delete_menu">5.5. Delete Menu</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/profile/menus/100010' -i -u 'user@gmail.com:user' -X DELETE \
+    -H 'Content-Type: application/json'</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 204 No Content
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_get_all_menus_by_restaurant_id">5.6. Get all Menus by Restaurant ID</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+                        <pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/profile/menus/100002/all' -i -u 'user@gmail.com:user' -X GET</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 196
+
+[ {
+  "id" : 100010,
+  "description" : "French Lunch Menu",
+  "creationDateTime" : "2020-03-30T12:00:00",
+  "likesOfMenu" : null,
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+} ]</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_get_all_menus_by_restaurant_id_with_likes">5.7. Get all Menus by Restaurant ID with Likes</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+                        <pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/profile/menus/100002/all/likes' -i -u 'user@gmail.com:user' -X GET</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 294
+
+[ {
+  "id" : 100010,
+  "description" : "French Lunch Menu",
+  "creationDateTime" : "2020-03-30T12:00:00",
+  "likesOfMenu" : [ {
+    "id" : 100018,
+    "creationDateTime" : "2021-05-01T07:00:00",
+    "userID" : 100000
+  } ],
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+} ]</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sect1">
+        <h2 id="_adminmenurestcontroller">6. AdminMenuRestController</h2>
+        <div class="sectionbody">
+            <div class="sect2">
+                <h3 id="_get_all_menus_2">6.1. Get all Menus</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+                        <pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/admin/menus/' -i -u 'admin@gmail.com:admin' -X GET</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 1545
+
+[ {
+  "id" : 100010,
+  "description" : "French Lunch Menu",
+  "creationDateTime" : "2020-03-30T12:00:00",
+  "likesOfMenu" : null,
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100011,
+  "description" : "Crepes",
+  "creationDateTime" : "2020-03-30T17:00:00",
+  "likesOfMenu" : null,
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100012,
+  "description" : "English Lunch Menu",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : null,
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100013,
+  "description" : "English Breakfast Menu",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : null,
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100014,
+  "description" : "French Lunch Menu",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : null,
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100015,
+  "description" : "English Dinner Menu",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : null,
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100016,
+  "description" : "English Breakfast Menu",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : null,
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100017,
+  "description" : "Crepes",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : null,
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+} ]</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_get_all_menus_with_likes_2">6.2. Get all Menus with Likes</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+                        <pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/admin/menus/likes' -i -u 'admin@gmail.com:admin' -X GET</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 1735
+
+[ {
+  "id" : 100011,
+  "description" : "Crepes",
+  "creationDateTime" : "2020-03-30T17:00:00",
+  "likesOfMenu" : [ ],
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100014,
+  "description" : "French Lunch Menu",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : [ ],
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100013,
+  "description" : "English Breakfast Menu",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : [ ],
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100010,
+  "description" : "French Lunch Menu",
+  "creationDateTime" : "2020-03-30T12:00:00",
+  "likesOfMenu" : [ {
+    "id" : 100018,
+    "creationDateTime" : "2021-05-01T07:00:00",
+    "userID" : 100000
+  } ],
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100012,
+  "description" : "English Lunch Menu",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : [ ],
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100015,
+  "description" : "English Dinner Menu",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : [ ],
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100017,
+  "description" : "Crepes",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : [ {
+    "id" : 100019,
+    "creationDateTime" : "2021-05-01T08:00:00",
+    "userID" : 100001
+  } ],
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}, {
+  "id" : 100016,
+  "description" : "English Breakfast Menu",
+  "creationDateTime" : "2020-03-30T10:00:00",
+  "likesOfMenu" : [ ],
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+} ]</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_get_menu_by_its_id">6.3. Get Menu by its ID</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+                        <pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/admin/menus/100010' -i -u 'admin@gmail.com:admin' -X GET</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 192
+
+{
+  "id" : 100010,
+  "description" : "French Lunch Menu",
+  "creationDateTime" : "2020-03-30T12:00:00",
+  "likesOfMenu" : null,
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_create_save_or_update_menu">6.4. Create (Save or Update) Menu</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/admin/menus/100006' -i -u 'admin@gmail.com:admin' -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+  "description" : "New Lunch Menu",
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+}'</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 201 Created
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_delete_menu_2">6.5. Delete Menu</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/admin/menus/100010' -i -u 'admin@gmail.com:admin' -X DELETE \
+    -H 'Content-Type: application/json'</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 204 No Content
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_get_menu_by_restaurant_id">6.6. Get Menu by Restaurant ID</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+                        <pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/admin/menus/100002/all' -i -u 'admin@gmail.com:admin' -X GET</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 196
+
+[ {
+  "id" : 100010,
+  "description" : "French Lunch Menu",
+  "creationDateTime" : "2020-03-30T12:00:00",
+  "likesOfMenu" : null,
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+} ]</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_get_menu_by_restaurant_id_with_likes">6.7. Get Menu by Restaurant ID with Likes</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+                        <pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/admin/menus/100002/all/likes' -i -u 'admin@gmail.com:admin' -X GET</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 294
+
+[ {
+  "id" : 100010,
+  "description" : "French Lunch Menu",
+  "creationDateTime" : "2020-03-30T12:00:00",
+  "likesOfMenu" : [ {
+    "id" : 100018,
+    "creationDateTime" : "2021-05-01T07:00:00",
+    "userID" : 100000
+  } ],
+  "imgUrl" : "resources/images/placeholder_menu_pic.jpg"
+} ]</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sect1">
+        <h2 id="_likerestcontroller">7. LikeRestController</h2>
+        <div class="sectionbody">
+            <div class="sect2">
+                <h3 id="_get_all_likes_by_menu_id">7.1. Get all Likes by Menu ID</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+                        <pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/likes/menu/100010' -i -u 'admin@gmail.com:admin' -X GET</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 94
+
+[ {
+  "id" : 100018,
+  "creationDateTime" : "2021-05-01T07:00:00",
+  "userID" : 100000
+} ]</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_get_all_likes_by_restaurant_id">7.2. Get all Likes by Restaurant ID</h3>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+                        <pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/likes/restaurant/100005' -i -u 'admin@gmail.com:admin' -X GET</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 94
+
+[ {
+  "id" : 100020,
+  "creationDateTime" : "2021-05-01T07:00:00",
+  "userID" : 100001
+} ]</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_save_create_like_of_menu">7.3. Save/Create Like of Menu</h3>
+                <div class="admonitionblock note">
+                    <table>
+                        <tr>
+                            <td class="icon">
+                                <div class="title">Note</div>
+                            </td>
+                            <td class="content">
+                                User can have (can create) only one unique like and if a User has already liked &lt;Menu A&gt; he/she can
+                                remove this Like or like &lt;Menu B&gt; only before 11:00 AM.
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/likes/menu/100015' -i -u 'admin@gmail.com:admin' -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+  "creationDateTime" : "2021-04-05T07:00:00"
+}'</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Language: en
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sect2">
+                <h3 id="_save_create_like_of_restaurant">7.4. Save/Create Like of Restaurant</h3>
+                <div class="admonitionblock note">
+                    <table>
+                        <tr>
+                            <td class="icon">
+                                <div class="title">Note</div>
+                            </td>
+                            <td class="content">
+                                User can have (can create) only one unique like and if a User has already liked &lt;Restaurant A&gt; he/she can
+                                remove this Like or like &lt;Restaurant B&gt; only before 11:00 AM.
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="listingblock">
+                    <div class="title">request</div>
+                    <div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/lunchplacepicker/rest/likes/restaurant/100006' -i -u 'admin@gmail.com:admin' -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+  "creationDateTime" : "2021-04-05T07:00:00"
+}'</code></pre>
+                    </div>
+                </div>
+                <div class="listingblock">
+                    <div class="title">response</div>
+                    <div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Language: en
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY</code></pre>
+                    </div>
                 </div>
             </div>
         </div>
@@ -610,7 +1821,7 @@ X-Frame-Options: DENY</code></pre>
 </div>
 <div id="footer">
     <div id="footer-text">
-        Last updated 2021-05-04 20:18:07 CEST
+        Last updated 2021-05-09 20:43:38 CEST
     </div>
 </div>
 </body>

@@ -67,7 +67,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant getByID(Integer id) {
-        Restaurant restaurant = restaurantRepo.getById(id);
+        Restaurant restaurant = restaurantRepo.getRestaurantById(id);
         if (restaurant == null) {
             throw new NotFoundException(String.format("Entity with id %s does not exist;", id));
         } else {
