@@ -2,12 +2,17 @@ package com.olexiy.lunchplacepicker.service.like;
 
 import com.olexiy.lunchplacepicker.models.LikeOfRestaurant;
 import com.olexiy.lunchplacepicker.repository.LikeOfRestaurantRepo;
+import com.olexiy.lunchplacepicker.utils.exceptions.NotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class LikeOfRestaurantServiceImpl implements LikeOfRestaurantService {
+
+    protected final Logger log = LoggerFactory.getLogger(getClass());
 
     private LikeOfRestaurantRepo likeOfRestaurantRepo;
 
@@ -17,7 +22,13 @@ public class LikeOfRestaurantServiceImpl implements LikeOfRestaurantService {
 
     @Override
     public LikeOfRestaurant getById(Integer id) {
-        return likeOfRestaurantRepo.getById(id);
+        LikeOfRestaurant likeOfRestaurant = likeOfRestaurantRepo.getLikeOfRestaurantById(id);
+        if (likeOfRestaurant == null) {
+            throw new NotFoundException(String.format("Entity with id %s does not exist;", id));
+        } else {
+            log.info("get menu {}", likeOfRestaurant);
+            return likeOfRestaurant;
+        }
     }
 
     @Override
@@ -44,5 +55,4 @@ public class LikeOfRestaurantServiceImpl implements LikeOfRestaurantService {
     public LikeOfRestaurant getByUserId(Integer id) {
         return likeOfRestaurantRepo.getByUserID(id);
     }
-
 }

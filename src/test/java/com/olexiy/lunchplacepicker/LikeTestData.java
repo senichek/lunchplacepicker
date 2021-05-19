@@ -17,6 +17,8 @@ public class LikeTestData {
 
     public static LikeOfMenu getNewLikeOfMenu = new LikeOfMenu(null, LocalDateTime.of(2021, Month.APRIL, 05, 07, 00));
 
+    public static LikeOfRestaurant getNewLikeOfRestaurant = new LikeOfRestaurant(null, LocalDateTime.of(2021, Month.APRIL, 05, 07, 00));
+
     static {
         likeOfMenu.setUserID(100000);
         likeOfRestaurant.setUserID(100001);

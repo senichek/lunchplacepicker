@@ -2,12 +2,17 @@ package com.olexiy.lunchplacepicker.service.like;
 
 import com.olexiy.lunchplacepicker.models.LikeOfMenu;
 import com.olexiy.lunchplacepicker.repository.LikeOfMenuRepo;
+import com.olexiy.lunchplacepicker.utils.exceptions.NotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class LikeOfMenuServiceImpl implements LikeOfMenuService {
+
+    protected final Logger log = LoggerFactory.getLogger(getClass());
 
     private LikeOfMenuRepo likeOfMenuRepo;
 
@@ -17,7 +22,13 @@ public class LikeOfMenuServiceImpl implements LikeOfMenuService {
 
     @Override
     public LikeOfMenu getById(Integer id) {
-        return likeOfMenuRepo.getById(id);
+        LikeOfMenu likeOfMenu = likeOfMenuRepo.getLikeOfMenuById(id);
+        if (likeOfMenu == null) {
+            throw new NotFoundException(String.format("Entity with id %s does not exist;", id));
+        } else {
+            log.info("get menu {}", likeOfMenu);
+            return likeOfMenu;
+        }
     }
 
     @Override
