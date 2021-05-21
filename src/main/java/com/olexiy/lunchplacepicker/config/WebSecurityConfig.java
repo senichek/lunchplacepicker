@@ -46,11 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic();
     }
     //TODO
-    // Добавить роль мега-админа, чтобы его невозможно было удалить с помощью UI
-    // Добавить обработку дубликата пользователя при регистрации
     // Сделать возможность смены пароля
-    // Добавить сообщение о неверном пароле
-    // Добавить сообщение о том, что такого юзера нет в базе данных при попытке логина
 
     @Bean
     DaoAuthenticationProvider authenticationProvider () {

@@ -51,7 +51,10 @@ $('#users_table tbody').on('click', '.delete', function () {
 function deleteRow(id) {
     $.ajax({
         url: adminUrl + id,
-        type: "DELETE"
+        type: "DELETE",
+        error: function (a){
+            failNoty(a.responseText);
+        }
     }).done(function () {
         table.ajax.reload();
     });

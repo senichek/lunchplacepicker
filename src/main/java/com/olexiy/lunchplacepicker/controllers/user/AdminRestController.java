@@ -4,6 +4,7 @@ import com.olexiy.lunchplacepicker.models.User;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,9 +33,8 @@ public class AdminRestController extends AbstractUserController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     @Transactional
-    public void delete(@PathVariable("id") Integer id) {
-        super.delete(id);
+    public ResponseEntity delete(@PathVariable("id") Integer id) {
+        return super.delete(id);
     }
 }

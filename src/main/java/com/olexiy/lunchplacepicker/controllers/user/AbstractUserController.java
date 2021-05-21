@@ -4,11 +4,14 @@ import com.olexiy.lunchplacepicker.models.Role;
 import com.olexiy.lunchplacepicker.models.User;
 import com.olexiy.lunchplacepicker.service.user.UserService;
 import com.olexiy.lunchplacepicker.utils.CustomValidator;
+import com.olexiy.lunchplacepicker.utils.SecurityUtils;
 import com.olexiy.lunchplacepicker.utils.UserUtils;
 import com.olexiy.lunchplacepicker.utils.exceptions.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 
@@ -85,7 +88,12 @@ public abstract class AbstractUserController {
         }
     }
 
-    public void delete(Integer id) {
-        userService.deleteByID(id);
+    public ResponseEntity delete(Integer id) {
+        if (id.equals(SecurityUtils.getLoggedInUser().getId())) {
+            return new ResponseEntity("You cannot delete your own account", HttpStatus.BAD_REQUEST);
+        } else {
+            userService.deleteByID(id);
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
     }
 }
