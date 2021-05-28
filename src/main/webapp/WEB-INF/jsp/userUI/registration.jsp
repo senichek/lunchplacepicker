@@ -45,7 +45,8 @@
                placeholder="Confirm Password" required>
     </p>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    <button class="btn btn-lg btn-primary btn-block" type="button" id="registerBtn">Sign Up</button>
+    <button class="btn btn-lg btn-primary btn-block"  id="registerBtn">Sign Up</button>
+    <button class="btn btn-lg btn-dark btn-block" type="button" id="backToIndexBtn">Back to Index</button>
     <%--By assigning the button <type="button"> we override the standard button behavior in the <form>
     and preventing the form from reloading when the button is clicked.--%>
 </form>

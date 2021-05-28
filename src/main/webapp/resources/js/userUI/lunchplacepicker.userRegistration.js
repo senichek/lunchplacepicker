@@ -37,3 +37,7 @@ function saveUser(user) {
         window.location.replace("restaurants")
     });
 }
+
+$('#backToIndexBtn').on('click', function () {
+    window.location.replace("")
+});
