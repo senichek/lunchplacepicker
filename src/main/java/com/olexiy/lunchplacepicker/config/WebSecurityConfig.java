@@ -34,6 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login") //custom login page, login view must be also returned by controller
+                .failureUrl("/error")
                 .permitAll()
                 .and()
                 .csrf().ignoringAntMatchers("/rest/**")

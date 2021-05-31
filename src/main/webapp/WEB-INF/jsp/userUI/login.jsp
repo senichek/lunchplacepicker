@@ -35,9 +35,9 @@
             <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
         </p>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        <button class="btn btn-lg btn-primary btn-block" id="loginBtn" type="submit">Login</button>
-        <button class="btn btn-lg btn-dark btn-block" id="enterAsAdminBtn" type="submit">Login as Admin</button>
-        <button class="btn btn-lg btn-dark btn-block" id="enterAsUserBtn" type="submit">Login as User</button>
+        <button class="btn btn-lg btn-primary btn-block" id="loginBtn" >Login</button>
+        <button class="btn btn-lg btn-dark btn-block" id="enterAsAdminBtn" >Login as Admin</button>
+        <button class="btn btn-lg btn-dark btn-block" id="enterAsUserBtn" >Login as User</button>
     </form>
 </div>
 </body>

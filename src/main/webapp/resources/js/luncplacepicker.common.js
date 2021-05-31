@@ -11,8 +11,27 @@ $('#mainPageBtn').on('click', function () {
 function login(email, password, redirectURL) {
     document.getElementById("username").value = email;
     document.getElementById("password").value = password;
-    $("#loginForm").submit();
-    window.location.href = redirectURL;
+    $("#loginForm").one('submit', function () {
+        $.ajax({
+            url: $('#loginForm').attr('action'),
+            type: 'POST',
+            data: $('#loginForm').serialize(),
+            success: function () {
+                window.location.href = redirectURL;
+            },
+            // Login page exceptions trigger /error, see CustomErrorController;
+            /*Unsuccessful authentication is handled by .failureUrl("/error") in WebSecurityConfig
+            and also trigger /error, see CustomErrorController;*/
+            // "text" is the View "exception.jsp" returned by CustomErrorController;
+            error: function (text) {
+                if (text.responseText != "") {
+                    failNoty(text.responseText);
+                    return;
+                }
+            }
+        });
+        return false;
+    });
 }
 
 function saveLike(like, entityID, URL) {

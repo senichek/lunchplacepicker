@@ -50,6 +50,8 @@ public class RootController {
 
     @GetMapping(value = "/login")
     public String login(){
+        // login page exceptions are handled by CustomErrorController;
+        // https://www.baeldung.com/spring-boot-custom-error-page
         return "userUI/login";
     }
 
