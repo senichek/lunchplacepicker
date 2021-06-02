@@ -1,4 +1,4 @@
-var userID = location.pathname.split('/')[3]; //extracting id from URL
+var userID = location.pathname.replace(/[\D]/g, ''); //extracting id from URL
 var restaurantUrl = "admin/" + userID;
 
 var table = $('#restaurants_table').DataTable({
