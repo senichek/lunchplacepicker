@@ -32,9 +32,9 @@ public class Webconfig implements WebMvcConfigurer {
     public DataSource dataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder
-                .url("jdbc:postgresql://ec2-54-228-9-90.eu-west-1.compute.amazonaws.com:5432/du6ldu7muvl9k")
-                .username("lhtvririnawcdg")
-                .password("c87b15fb9fbbc6f555b4fb887b06f505c7edc42c5714731ad26f8f61ef46c71f");
+                .url("jdbc:postgresql://ec2-34-254-120-2.eu-west-1.compute.amazonaws.com:5432/db8d84mne4ma4k")
+                .username("ywxmtnhgmvlutz")
+                .password("0fdbab19309612259eaca1dc3361ba2a02b61f86f9618253b28147ecb4f4eea1");
         return dataSourceBuilder.build();
     }
 
