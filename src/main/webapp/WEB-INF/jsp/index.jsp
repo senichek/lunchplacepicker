@@ -41,6 +41,10 @@
             <a href="http://junit.org/">JUnit</a>,
             <a href="http://jquery.com/">jQuery</a>,
             <a href="http://getbootstrap.com/">Bootstrap</a>.
+            <br>
+            Services and Controllers are covered by tests.
+            <br>
+            Please, use <b>Google Chrome</b> or <b>Mozilla Firefox</b>.
         </div>
     </div>
 </div>
