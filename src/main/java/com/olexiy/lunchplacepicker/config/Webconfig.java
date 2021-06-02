@@ -18,13 +18,23 @@ import javax.sql.DataSource;
 @Configuration
 public class Webconfig implements WebMvcConfigurer {
 
-    @Bean
+    /*@Bean
     public DataSource dataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder
         .url("jdbc:postgresql://localhost:5432/lunchplacepicker")
         .username("postgres")
         .password("password");
+        return dataSourceBuilder.build();
+    }*/
+
+    @Bean
+    public DataSource dataSource() {
+        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+        dataSourceBuilder
+                .url("jdbc:postgresql://ec2-54-228-9-90.eu-west-1.compute.amazonaws.com:5432/du6ldu7muvl9k")
+                .username("lhtvririnawcdg")
+                .password("c87b15fb9fbbc6f555b4fb887b06f505c7edc42c5714731ad26f8f61ef46c71f");
         return dataSourceBuilder.build();
     }
 
