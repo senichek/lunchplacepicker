@@ -1,14 +1,13 @@
 package com.olexiy.lunchplacepicker.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.olexiy.lunchplacepicker.utils.StringToInteger;
 import com.olexiy.lunchplacepicker.web.json.JacksonObjectMapper;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -17,14 +16,9 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 import javax.sql.DataSource;
-import java.nio.charset.Charset;
-import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 public class Webconfig implements WebMvcConfigurer {
-
-    private static final Charset UTF8 = Charset.forName("UTF-8");
 
     /*@Bean
     public DataSource dataSource() {
@@ -56,10 +50,9 @@ public class Webconfig implements WebMvcConfigurer {
     }
 
     @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        StringHttpMessageConverter stringConverter = new StringHttpMessageConverter();
-        stringConverter.setSupportedMediaTypes(Arrays.asList(new MediaType("text", "plain", UTF8)));
-        converters.add(stringConverter);
+    public void addFormatters(FormatterRegistry registry) {
+        StringToInteger converter = new StringToInteger();
+        registry.addConverter(converter);
     }
 
     @Bean
