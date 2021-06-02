@@ -46,8 +46,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .httpBasic();
     }
-    //TODO
-    // Сделать возможность смены пароля
 
     @Bean
     DaoAuthenticationProvider authenticationProvider () {
