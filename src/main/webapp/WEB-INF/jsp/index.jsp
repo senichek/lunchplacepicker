@@ -42,17 +42,16 @@
             <a href="http://jquery.com/">jQuery</a>,
             <a href="http://getbootstrap.com/">Bootstrap</a>.
             <br>
-            Services and Controllers are covered by tests.
-            <br>
-            Please, use <b>Google Chrome</b> or <b>Mozilla Firefox</b>.
         </div>
     </div>
 </div>
 <div class="container">
     <div class="lead py-4">
         <p class="lead">
-            <b> Project description: a voting system for deciding where to have lunch.</b>
-            <br>
+            <b>Java Enterprise project</b> with registration/authorization and role-based access (USER, ADMIN).
+            Services and Controllers are covered by tests. Please, use <b>Google Chrome</b> or <b>Mozilla Firefox</b>.
+                <br>
+            This is a <b>voting system</b> for deciding where to have lunch.
             2 types of users: admin and regular users.
             Admin can input a restaurant and it's lunch menu of the day.
             Menu changes each day (admins do the updates).
