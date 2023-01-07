@@ -34,9 +34,9 @@ public class Webconfig implements WebMvcConfigurer {
     public DataSource dataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder
-                .url("jdbc:postgresql://ec2-34-254-120-2.eu-west-1.compute.amazonaws.com:5432/db8d84mne4ma4k")
-                .username("ywxmtnhgmvlutz")
-                .password("0fdbab19309612259eaca1dc3361ba2a02b61f86f9618253b28147ecb4f4eea1");
+                .url("jdbc:postgresql://portfolio-do-user-13257331-0.b.db.ondigitalocean.com:25060/lunch_place_picker?sslmode=require")
+                .username("doadmin")
+                .password("AVNS_zVT7peLfoVMJWx_Y4-t");
         return dataSourceBuilder.build();
     }
 
